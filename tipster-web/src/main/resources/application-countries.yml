@@ -1,0 +1,123 @@
+dictionary:
+  country-import: false
+  countries:
+    - code: greece
+      name: Греция
+    - code: england
+      name: Англия
+    - code: germany
+      name: Германия
+    - code: spain
+      name: Испания
+    - code: italy
+      name: Италия
+    - code: france
+      name: Франция
+    - code: austria
+      name: Австрия
+    - code: belgium
+      name: Бельгия
+    - code: denmark
+      name: Дания
+    - code: switzerland
+      name: Швейцария
+    - code: ireland
+      name: Ирландия
+    - code: cyprus
+      name: Кипр
+    - code: norway
+      name: Норвигия
+    - code: netherlands
+      name: Голландия
+    - code: poland
+      name: Польша
+    - code: portugal
+      name: Португалия
+    - code: russia
+      name: Россия
+    - code: scotland
+      name: Шкотландия
+    - code: sweden
+      name: Швеция
+    - code: turkey
+      name: Турция
+    - code: czech
+      name: Чехия
+    - code: finland
+      name: Финландия
+    - code: argentina
+      name: Аргентина
+    - code: bolivia
+      name: Боливия
+    - code: brazil
+      name: Бразилия
+    - code: usa
+      name: США
+    - code: ecuador
+      name: Эквадор
+    - code: colombia
+      name: Колумбия
+    - code: mexico
+      name: Мексико
+    - code: uruguay
+      name: Урагвай
+    - code: paraguay
+      name: Парагвай
+    - code: peru
+      name: Перу
+    - code: chile
+      name: Чили
+    - code: australia
+      name: Австралия
+    - code: japan
+      name: Япония
+    - code: china
+      name: Китай
+    - code: south-korea
+      name: Южная Корея
+    - code: albania
+      name: Альбания
+    - code: northern-ireland
+      name: Северная Ирландия
+    - code: bulgaria
+      name: Болгария
+    - code: iceland
+      name: Исландия
+    - code: israel
+      name: Исраиль
+    - code: croatia
+      name: Хорватия
+    - code: letonia
+      name: Латвия
+    - code: lithuania
+      name: Литва
+    - code: wales
+      name: Уэльс
+    - code: hungary
+      name: Венгрия
+    - code: ukraine
+      name: Украина
+    - code: romania
+      name: Румыния
+    - code: serbia
+      name: Сербия
+    - code: slovakia
+      name: Словакия
+    - code: slovenia
+      name: Словения
+    - code: egypt
+      name: Египт
+    - code: algeria
+      name: Алгерия
+    - code: uae
+      name: ОАЭ
+    - code: iran
+      name: Иран
+    - code: morocco
+      name: Мароко
+    - code: south
+      name: Южная Африка
+    - code: saudi
+      name: Саудийская Арабия
+    - code: tunisia
+      name: Тунисия

@@ -1,0 +1,17 @@
+dictionary:
+  bookie-import: false
+  bookies:
+    - code: VIVOBET
+      name: Vivobet
+    - code: NOVIBET
+      name: Novibet
+    - code: STOIXIMAN
+      name: Stoiximan
+    - code: INTERWETTEN
+      name: Interwetten
+    - code: BETSHOP
+      name: Betshop
+    - code: WINMASTERS
+      name: Winmasters
+    - code: TIPBET
+      name: Tipbet

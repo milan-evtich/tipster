@@ -1,0 +1,2315 @@
+dictionary:
+  competition-import: false
+  competitions:
+    - code: champions-league
+      name: Лига Чемпионов УЕФА
+      nameGr: ΤΣΑΜΠΙΟΝΣ ΛΙΓΚ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: europa-league
+      name: Лига Европы УЕФА
+      nameGr: ΓΙΟΥΡΟΠΑ ΛΙΓΚ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: greece-a
+      name: Чемпионат Греции. Лига 1 (Суперлига)
+      nameGr: ΣΟΥΠΕΡΛΙΓΚΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΑΡΗΣ
+        - nameGr: ΟΛΥΜΠΙΑΚΟΣ
+        - nameGr: ΠΑΣ ΓΙΑΝΝΙΝΑ
+        - nameGr: ΑΕΚ
+        - nameGr: ΑΤΡΟΜΗΤΟΣ
+        - nameGr: ΛΑΜΙΑ
+        - nameGr: ΛΑΡΙΣΑ
+        - nameGr: ΑΣΤΕΡΑΣ ΤΡ.
+        - nameGr: ΟΦΗ
+        - nameGr: ΑΠΟΛΛΩΝ
+        - nameGr: ΠΑΟΚ
+        - nameGr: ΛΕΒΑΔΕΙΑΚΟΣ
+        - nameGr: ΠΑΝΙΩΝΙΟΣ
+        - nameGr: ΞΑΝθΗ
+        - nameGr: ΠΑΝΑθΗΝΑΙΚΟΣ
+        - nameGr: ΠΑΝΑΙΤΩΛΙΚΟΣ
+      type: LEAGUE
+    - code: greece-b
+      name: Чемпионат Греции. Лига 2
+      nameGr: ΦΟΥΤΜΠΟΛ ΛΙΓΚ
+      season: _2018_2019
+      teams:
+        - nameGr: ΕΡΓΟΤΕΛΗΣ
+        - nameGr: ΝΠΣ ΒΟΛΟΣ
+        - nameGr: ΚΙΣΣΑΜΙΚΟΣ
+        - nameGr: ΑΠΟΛΛΩΝ ΛΑΡ.
+        - nameGr: ΠΑΝΑΧΑΙΚΗ
+        - nameGr: ΑΗΤΤΗΤΟΣ ΣΠΑΤΩΝ
+        - nameGr: ΠΛΑΤΑΝΙΑΣ
+        - nameGr: ΣΠΑΡΤΗ
+        - nameGr: ΑΙΓΙΝΙΑΚΟΣ
+        - nameGr: ΚΑΡΑΙΣΚΑΚΗΣ
+        - nameGr: ΤΡΙΚΑΛΑ
+        - nameGr: ΔΟΞΑ ΔΡ.
+        - nameGr: ΑΟΚ ΚΕΡΚΥΡΑ
+        - nameGr: ΗΡΟΔΟΤΟΣ
+        - nameGr: ΑΠΟΛΛΩΝ ΠΟΝΤΟΥ
+        - nameGr: ΗΡΑΚΛΗΣ
+      type: LEAGUE
+    - code: greece-division-c
+      name: Чемпионат Греции. Лига 3
+      nameGr: Γ ΕΘΝΙΚΗ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΑΝΣΕΡΡΑΙΚΟΣ
+        - nameGr: ΑΛΕΞΑΝΔΡΟΣ ΚΙΛΚΙΣ
+        - nameGr: ΝΕΣΤΟΣ ΧΡΥΣ.
+        - nameGr: ΟΡΦΕΑΣ ΞΑΝθΗΣ
+        - nameGr: ΚΕΡΑΥΝΟΣ ΠΕΡΝΗΣ
+        - nameGr: ΑΡΗΣ ΑΒΑΤΟΥ
+        - nameGr: ΕθΝ. ΣΙΔΗΡΟΚΑΣΤΡΟΥ
+        - nameGr: ΑΠΟΛΛΩΝ ΠΑΡΑΛΙΜΝΙΟΥ
+        - nameGr: ΚΑΒΑΛΑ
+        - nameGr: ΑΕΤΟΣ ΟΡΦΑΝΟΥ
+        - nameGr: ΠΑΟ ΚΟΣΜΙΟΥ
+        - nameGr: ΑΣΠΙΔΑ ΞΑΝθΗΣ
+        - nameGr: ΕθΝ. ΑΛΕΞΑΝΔΡΟΥΠΟΛΗΣ
+        - nameGr: ΑΕ ΚΑΛΑΜΠΑΚΙΟΥ
+      type: LEAGUE
+    - code: greece-cup
+      name: Кубок Греции
+      nameGr: ΚΥΠΕΛΛΟ
+      season: _2018_2019
+      type: CUP
+    - code: england-premier-league
+      name: Чемпионат Англии. Премьер-лига
+      nameGr: ΑΓΓΛΙΑ - ΠΡΕΜΙΕΡ ΛΙΓΚ
+      season: _2018_2019
+      teams:
+        - nameGr: ΤΣΕΛΣΙ
+        - nameGr: ΛΙΒΕΡΠΟΥΛ
+        - nameGr: ΚΑΡΝΤΙΦ
+        - nameGr: ΚΡ. ΠΑΛΑΣ
+        - nameGr: ΓΟΥΟΤΦΟΡΝΤ
+        - nameGr: ΦΟΥΛΑΜ
+        - nameGr: ΤΟΤΕΝΑΜ
+        - nameGr: ΜΠΡΑΙΤΟΝ
+        - nameGr: ΝΙΟΥΚΑΣΤΛ
+        - nameGr: ΧΑΝΤΕΡΣΦΙΛΝΤ
+        - nameGr: ΜΑΝ. ΣΙΤΙ
+        - nameGr: ΕΒΕΡΤΟΝ
+        - nameGr: ΛΕΣΤΕΡ
+        - nameGr: ΜΑΝΤΣΕΣΤΕΡ Γ.
+        - nameGr: ΜΠΕΡΝΛΙ
+        - nameGr: ΣΑΟΥθΑΜΠΤΟΝ
+        - nameGr: ΜΠΟΡΝΜΟΥθ
+        - nameGr: ΑΡΣΕΝΑΛ
+        - nameGr: ΓΟΥΛΒΣ
+        - nameGr: ΓΟΥΕΣΤ ΧΑΜ
+      type: LEAGUE
+    - code: england-championship
+      name: Чемпионат Англии. Чемпионшип
+      nameGr: ΑΓΓΛΙΑ - ΤΣΑΜΠΙΟΝΣΙΠ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΟΤΙΓΧΑΜ
+        - nameGr: ΛΙΝΤΣ
+        - nameGr: ΚΠΡ
+        - nameGr: ΠΡΕΣΤΟΝ
+        - nameGr: ΡΟΔΕΡΑΜ
+        - nameGr: ΣΕΦΙΛΝΤ ΓΙΟΥΝ.
+        - nameGr: ΙΠΣΟΥΙΤΣ
+        - nameGr: ΑΣΤΟΝ ΒΙΛΑ
+        - nameGr: ΜΠΡΙΣΤΟΛ Σ.
+        - nameGr: ΣΤΟΟΥΚ
+        - nameGr: ΜΠΡΕΝΤΦΟΡΝΤ
+        - nameGr: ΧΑΛ
+        - nameGr: ΝΤΕΡΜΠΙ
+        - nameGr: ΣΟΥΟΝΣΙ
+        - nameGr: ΓΟΥΙΓΚΑΝ
+        - nameGr: ΝΟΡΙΤΣ
+        - nameGr: ΜΠΕΡΜΙΓΧΑΜ
+        - nameGr: ΜΙΛΓΟΥΟΛ
+        - nameGr: ΡΕΝΤΙΝΓΚ
+        - nameGr: ΜΠΛΑΚΜΠΕΡΝ
+        - nameGr: ΓΟΥΕΣΤ ΜΠΡΟΜ
+        - nameGr: ΣΕΦΙΛΝΤ ΓΟΥΕΝ.
+        - nameGr: ΜΙΝΤΛΕΣΜΠΡΟ
+        - nameGr: ΜΠΟΛΤΟΝ
+      type: LEAGUE
+    - code: england-league-1
+      name: Чемпионат Англии. Лига 1
+      nameGr: ΑΓΓΛΙΑ - ΛΙΓΚ 1
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΑΡΝΣΛΙ
+        - nameGr: ΤΖΙΛΙΓΧΑΜ
+        - nameGr: ΣΑΝΤΕΡΛΑΝΤ
+        - nameGr: ΜΠΕΡΤΟΝ
+        - nameGr: ΛΟΥΤΟΝ
+        - nameGr: ΠΟΡΤΣΜΟΥθ
+        - nameGr: ΟΞΦΟΡΝΤ
+        - nameGr: ΜΠΡΙΣΤΟΛ Ρ.
+        - nameGr: ΓΟΥΙΚΟΜ
+        - nameGr: ΓΟΥΟΛΣΟΛ
+        - nameGr: ΑΚΡΙΝΓΚΤΟΝ
+        - nameGr: ΣΚΑΝθΟΡΠ
+        - nameGr: ΜΠΡΑΝΤΦΟΡΝΤ
+        - nameGr: ΤΣΑΡΛΤΟΝ
+        - nameGr: ΣΡΙΟΥΣΜΠΕΡΙ
+        - nameGr: ΣΑΟΥθΕΝΤ
+        - nameGr: ΚΟΒΕΝΤΡΙ
+        - nameGr: ΦΛΙΤΓΟΥΝΤ
+        - nameGr: ΠΛΙΜΟΥθ
+        - nameGr: ΜΠΛΑΚΠΟΥΛ
+        - nameGr: ΠΙΤΕΡΜΠΟΡΟ
+        - nameGr: ΓΟΥΙΜΠΛΕΝΤΟΝ
+        - nameGr: ΡΟΤΣΝΤΕΙΛ
+        - nameGr: ΝΤΟΝΚΑΣΤΕΡ
+      type: LEAGUE
+    - code: england-league-2
+      name: Чемпионат Англии. Лига 2
+      nameGr: ΑΓΓΛΙΑ - ΛΙΓΚ 2
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΚ ΝΤΟΝΣ
+        - nameGr: ΤΣΕΛΤΕΝΑΜ
+        - nameGr: ΜΠΕΡΙ
+        - nameGr: ΚΡΟΟΥΛΙ
+        - nameGr: ΜΟΡΚΑΜ
+        - nameGr: ΜΑΚΛΣΦΙΛΝΤ
+        - nameGr: ΝΙΟΥΠΟΡΤ
+        - nameGr: ΝΟΤΣ ΚΑΟΥΝΤΙ
+        - nameGr: ΛΙΝΚΟΛΝ
+        - nameGr: ΣΟΥΙΝΤΟΝ
+        - nameGr: ΠΟΡΤ ΒΕΙΛ
+        - nameGr: ΣΤΙΒΕΝΕΙΤΖ
+        - nameGr: ΚΡΟΥ
+        - nameGr: ΓΙΟΒΙΛ
+        - nameGr: ΜΑΝΣΦΙΛΝΤ
+        - nameGr: ΝΟΡθΑΜΠΤΟΝ
+        - nameGr: ΕΞΕΤΕΡ
+        - nameGr: ΟΛΝΤΑΜ
+        - nameGr: ΓΚΡΙΜΣΜΠΙ
+        - nameGr: ΚΑΡΛΑΙΛ
+        - nameGr: ΚΕΜΠΡΙΤΖ
+        - nameGr: ΦΟΡΕΣΤ ΓΚΡΙΝ
+        - nameGr: ΤΡΑΝΜΙΡ
+        - nameGr: ΚΟΛΤΣΕΣΤΕΡ
+      type: LEAGUE
+    - code: england-national
+      name: Чемпионат Англии. Национал
+      nameGr: ΑΓΓΛΙΑ - ΝΑΣΙΟΝΑΛ ΛΙΓΚ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΑΛΦΟΡΝΤ
+        - nameGr: ΝΤΟΒΕΡ
+        - nameGr: ΜΠΑΡΝΕΤ
+        - nameGr: ΜΠΟΡΑΜ
+        - nameGr: ΜΠΡΕΙΝΤΡΙ
+        - nameGr: ΜΠΑΡΟΟΥ
+        - nameGr: ΣΑΤΟΝ
+        - nameGr: ΜΕΙΝΤΕΝΧΕΝΤ
+        - nameGr: ΡΕΞΑΜ
+        - nameGr: ΧΑΡΤΛΠΟΥΛ
+        - nameGr: ΝΤΑΓΚΕΝΑΜ
+        - nameGr: ΛΕΙΤΟΝ ΟΡ.
+        - nameGr: ΕΜΠΣΦΛΙΤ
+        - nameGr: ΧΑΡΟΓΚΕΙΤ
+        - nameGr: ΧΑΛΙΦΑΞ
+        - nameGr: ΦΑΙΛΝΤ
+        - nameGr: ΓΚΕΙΤΣΧΕΝΤ
+        - nameGr: ΜΕΙΝΤΣΤΟΟΥΝ
+        - nameGr: ΙΣΤΛΙ
+        - nameGr: ΜΠΡΟΜΛΙ
+        - nameGr: ΟΛΝΤΕΡΣΟΤ
+        - nameGr: ΣΟΛΙΧΑΛ
+        - nameGr: ΤΣΕΣΤΕΡΦΙΛΝΤ
+        - nameGr: ΧΑΒΑΝΤ
+      type: LEAGUE
+    - code: england-national-league-north-south
+      name: Чемпионат Англии. Юго-восточная национал
+      nameGr: ΝΑΣΙΟΝΑΛ ΛΙΓΚ ΝΟΡΘ/ΣΑΟΥΘ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΟΣΤΟΝ
+        - nameGr: ΓΚΑΙΣΛΙ
+        - nameGr: ΜΠΛΑΙθ ΣΠ.
+        - nameGr: ΤΣΟΡΛΙ
+        - nameGr: ΑΣΤΟΝ
+        - nameGr: ΤΕΛΦΟΡΝΤ
+        - nameGr: ΓΙΟΡΚ
+        - nameGr: ΧΕΡΕΦΟΡΝΤ
+        - nameGr: ΜΠΡΑΝΤΦΟΡΝΤ PA
+        - nameGr: ΑΛΦΡΕΤΟΝ
+        - nameGr: ΣΤΟΚΠΟΡΤ
+        - nameGr: ΣΠΕΝΙΜΟΥΡ
+        - nameGr: FC ΓΙΟΥΝΑΙΤΕΝΤ
+        - nameGr: ΣΑΟΥθΠΟΡΤ
+        - nameGr: ΝΤΑΡΛΙΝΓΚΤΟΝ
+        - nameGr: ΜΠΡΑΚΛΙ
+        - nameGr: ΤΣΕΣΤΕΡ
+        - nameGr: ΛΙΜΙΝΓΚΤΟΝ
+        - nameGr: ΚΙΝΤΕΡΜΙΝΣΤΕΡ
+        - nameGr: ΟΛΤΡΙΝΓΧΑΜ
+        - nameGr: ΚΕΡΖΟΝ
+        - nameGr: ΝΑΝΙΤΟΝ
+      type: LEAGUE
+    - code: england-fa-cup
+      name: Кубок Англии. FA CUP
+      nameGr: ΑΓΓΛΙΑ - FA CUP
+      season: _2018_2019
+      type: CUP
+    - code: england-league-cup
+      name: Кубок Англии. LEAGUE CUP
+      nameGr: ΑΓΓΛΙΑ - ΛΙΓΚ ΚΑΠ
+      season: _2018_2019
+      type: CUP
+    - code: england-league-trophy
+      name: Кубок Англии. LEAGUE TROPHY
+      nameGr: ΑΓΓΛΙΑ - ΛΙΓΚ ΤΡΟΦΙ
+      season: _2018_2019
+      type: CUP
+    - code: germany-bundesliga
+      name: Чемпионат Германии. Бундеслига
+      nameGr: Α ΓΕΡΜΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΦΡΑΙΜΠΟΥΡΓΚ
+        - nameGr: ΝΥΡΕΜΒΕΡΓΗ
+        - nameGr: ΛΕΒΕΡΚΟΥΖΕΝ
+        - nameGr: ΣΤΟΥΤΓΑΡΔΗ
+        - nameGr: ΒΕΡΝΤΕΡ ΒΡ.
+        - nameGr: ΣΑΛΚΕ
+        - nameGr: ΜΠΑΓΕΡΝ
+        - nameGr: ΝΤΟΡΤΜΟΥΝΤ
+        - nameGr: ΧΟΦΕΝΧΑΙΜ
+        - nameGr: ΒΟΛΦΣΜΠΟΥΡΓΚ
+        - nameGr: ΦΟΡΤΟΥΝΑ ΝΤ.
+        - nameGr: ΧΕΡΤΑ
+        - nameGr: ΑΝΝΟΒΕΡΟ
+        - nameGr: ΑΙΝΤΡΑΧΤ ΦΡ.
+        - nameGr: ΜΑΪΝΤΣ
+        - nameGr: ΑΟΥΓΚΣΜΠΟΥΡΓΚ
+        - nameGr: ΓΚΛΑΝΤΜΠΑΧ
+        - nameGr: ΛΕΙψΙΑ
+      type: LEAGUE
+    - code: germany-bundesliga-2
+      name: Чемпионат Германии. Бундеслига 2
+      nameGr: Β ΓΕΡΜΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΑΝΤΕΡΜΠΟΡΝ
+        - nameGr: ΝΤ. ΔΡΕΣΔΗΣ
+        - nameGr: ΑΟΥΕ
+        - nameGr: ΓΚΡΟΪΤΕΡ ΦΙΡΤ
+        - nameGr: ΙΝΓΚΟΛΣΤΑΝΤ
+        - nameGr: ΧΟΛΣΤΑΪΝ ΚΙΛ
+        - nameGr: ΑΡΜΙΝΙΑ ΜΠ.
+        - nameGr: ΜΠΟΧΟΥΜ
+        - nameGr: ΝΤΑΡΜΣΤΑΝΤ
+        - nameGr: ΜΑΓΔΕΜΒΟΥΡΓΟ
+        - nameGr: ΚΟΛΩΝΙΑ
+        - nameGr: ΡΕΓΚΕΝΣΜΠΟΥΡΓΚ
+        - nameGr: ΑΜΒΟΥΡΓΟ
+        - nameGr: ΧΑΙΝΤΕΝΧΑΙΜ
+        - nameGr: ΖΑΝΤΧΑΟΥΖΕΝ
+        - nameGr: ΣΑΝ ΠΑΟΥΛΙ
+        - nameGr: ΟΥΝΙΟΝ ΒΕΡ.
+        - nameGr: ΝΤΟΥΙΣΜΠΟΥΡΓΚ
+      type: LEAGUE
+    - code: germany-liga-3
+      name: Чемпионат Германии. Бундеслига 3
+      nameGr: Γ ΓΕΡΜΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΒΙΧΕΝ
+        - nameGr: ΚΑΡΛΣΡΟΥΗ
+        - nameGr: ΧΑΛΕΣΕΡ
+        - nameGr: ΖΟΝΕΝΧΟΦ
+        - nameGr: ΜΠΡΑΟΥΝΣΒΑΙΓΚ
+        - nameGr: ΚΟΤΜΠΟΥΣ
+        - nameGr: ΒΙΡΤΣΜΠΟΥΡΓΚΕΡ
+        - nameGr: ΟΥΝΤΕΡΧΑΚΙΝΓΚ
+        - nameGr: ΜΟΝΑΧΟ 1860
+        - nameGr: ΧΑΝΣΑ Ρ.
+        - nameGr: ΟΣΝΑΜΠΡΙΚ
+        - nameGr: ΤΣΒΙΚΑΟΥ
+        - nameGr: ΑΑΛΕΝ
+        - nameGr: ΜΕΠΕΝ
+        - nameGr: ΦΟΡΤΟΥΝΑ ΚΟΛΩΝΙΑΣ
+        - nameGr: ΚΑΙΖΕΡΣΛΑΟΥΤΕΡΝ
+        - nameGr: ΙΕΝΑ
+        - nameGr: ΟΥΡΝΤΙΝΓΚΕΝ
+        - nameGr: ΠΡΟΙΣΕΝ ΜΙΝΣΤΕΡ
+        - nameGr: ΣΠ. ΛΟΤΕ
+      type: LEAGUE
+    - code: germany-dfb-pokal
+      name: Кубок Германии
+      nameGr: DFB POKAL
+      season: _2018_2019
+      type: CUP
+    - code: spain-laliga
+      name: Чемпионат Испании. Примера
+      nameGr: Α ΙΣΠΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΧΕΤΑΦΕ
+        - nameGr: ΣΕΒΙΛΛΗ
+        - nameGr: ΛΕΒΑΝΤΕ
+        - nameGr: ΡΕΑΛ
+        - nameGr: ΕΪΜΠΑΡ
+        - nameGr: ΣΟΣΙΕΔΑΔ
+        - nameGr: ΜΠΑΡΤΣΕΛΟΝΑ
+        - nameGr: ΑθΛ. ΜΠΙΛΜΠΑΟ
+        - nameGr: ΛΕΓΑΝΕΣ
+        - nameGr: ΘΕΛΤΑ
+        - nameGr: ΑΤΛΕΤΙΚΟ
+        - nameGr: ΕΣΠΑΝΙΟΛ
+        - nameGr: ΒΙΓΙΑΡΕΑΛ
+        - nameGr: ΟΥΕΣΚΑ
+        - nameGr: ΜΠΕΤΙΣ
+        - nameGr: ΒΑΓΙΕΚΑΝΟ
+        - nameGr: ΒΑΓΙΑΔΟΛΙΔ
+        - nameGr: ΒΑΛΕΝθΙΑ
+        - nameGr: ΧΙΡΟΝΑ
+        - nameGr: ΑΛΑΒΕΣ
+      type: LEAGUE
+    - code: spain-laliga-2
+      name: Чемпионат Испании. Второй дивизион
+      nameGr: Β ΙΣΠΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΟΡΔΟΒΑ
+        - nameGr: ΓΡΑΝΑΔΑ
+        - nameGr: ΡΕΟΥΣ
+        - nameGr: ΤΕΝΕΡΙΦΗ
+        - nameGr: ΝΟΥΜΑΝθΙΑ
+        - nameGr: ΟΒΙΕΔΟ
+          code: oviedo
+        - nameGr: ΜΑΛΑΓΑ
+        - nameGr: ΑΛΜΕΡΙΑ
+        - nameGr: ΑΛΚΟΡΚΟΝ
+        - nameGr: ΣΑΡΑΓΟΣΑ
+        - nameGr: ΕΛΤΣΕ
+        - nameGr: ΛΑΣ ΠΑΛΜΑΣ
+        - nameGr: ΕΞΤΡΕΜΑΔΟΥΡΑ
+        - nameGr: ΑΛΜΠΑθΕΤΕ
+          code: almpathete
+        - nameGr: ΜΑΓΙΟΡΚΑ
+        - nameGr: ΣΠ. ΧΙΧΟΝ
+        - nameGr: ΚΑΔΙθ
+        - nameGr: ΤΑΡΑΓΟΝΑ
+        - nameGr: ΟΣΑΣΟΥΝΑ
+        - nameGr: ΛΑ ΚΟΡΟΥΝΙΑ
+        - nameGr: ΛΟΥΓΟ
+        - nameGr: ΜΑΧΑΔΑΟΝΤΑ
+      type: LEAGUE
+    - code: spain-copa-del-rey
+      name: Кубок Испании
+      nameGr: COPA DEL REY
+      season: _2018_2019
+      type: CUP
+    - code: italy-serie-a
+      name: Чемпионат Италии. Серия А
+      nameGr: Α ΙΤΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΑΜΠΝΤΟΡΙΑ
+        - nameGr: ΟΥΝΤΙΝΕΖΕ
+        - nameGr: ΚΙΕΒΟ
+        - nameGr: ΚΑΛΙΑΡΙ
+        - nameGr: ΙΝΤΕΡ
+        - nameGr: ΝΑΠΟΛΙ
+        - nameGr: ΦΙΟΡΕΝΤΙΝΑ
+        - nameGr: ΡΟΜΑ
+        - nameGr: ΜΠΟΛΟΝΙΑ
+        - nameGr: ΤΟΡΙΝΟ
+        - nameGr: ΦΡΟΖΙΝΟΝΕ
+        - nameGr: ΣΑΣΣΟΥΟΛΟ
+        - nameGr: ΛΑΤΣΙΟ
+        - nameGr: ΑΤΑΛΑΝΤΑ
+        - nameGr: ΜΙΛΑΝ
+        - nameGr: ΓΙΟΥΒΕΝΤΟΥΣ
+        - nameGr: ΣΠΑΛ
+        - nameGr: ΠΑΡΜΑ
+        - nameGr: ΕΜΠΟΛΙ
+        - nameGr: ΤΖΕΝΟΑ
+      type: LEAGUE
+    - code: italy-serie-b
+      name: Чемпионат Италии. Серия B
+      nameGr: Β ΙΤΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΕΤΣΕ
+        - nameGr: ΤΣΙΤΑΝΤΕΛΑ
+        - nameGr: ΒΕΝΕΤΣΙΑ
+        - nameGr: ΣΑΛΕΡΝΙΤΑΝΑ
+        - nameGr: ΚΡΕΜΟΝΕΖΕ
+        - nameGr: ΜΠΕΝΕΒΕΝΤΟ
+        - nameGr: ΛΙΒΟΡΝΟ
+        - nameGr: ΚΡΟΤΟΝΕ
+        - nameGr: ΜΠΡΕΣΙΑ
+        - nameGr: ΒΕΡΟΝΑ
+        - nameGr: ΦΟΤΖΙΑ
+        - nameGr: ΠΕΡΟΥΤΖΙΑ
+        - nameGr: ΚΟΖΕΝΤΣΑ
+        - nameGr: ΚΑΡΠΙ
+        - nameGr: ΣΠΕΤΣΙΑ
+        - nameGr: ΠΑΝΤΟΒΑ
+        - nameGr: ΠΑΛΕΡΜΟ
+        - nameGr: ΠΕΣΚΑΡΑ
+        - nameGr: ΑΣΚΟΛΙ
+      type: LEAGUE
+    - code: italy-serie-c
+      name: Чемпионат Италии. Серия C
+      nameGr: Γ ΙΤΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΙΑΤΣΕΝΤΖΑ
+        - nameGr: ΚΑΡΑΡΕΖΕ
+        - nameGr: ΡΟΜΠΟΥΡ ΣΙΕΝΑ
+        - nameGr: ΑΡΕΤΣΟ
+        - nameGr: ΠΟΝΤΕΝΤΕΡΑ
+        - nameGr: ΠΙΖΑ
+        - nameGr: ΑΡΖΑΤΣΕΝΑ
+        - nameGr: ΠΡΟ ΠΑΤΡΙΑ
+        - nameGr: ΓΙΟΥΒΕΝΤΟΥΣ U23
+        - nameGr: ΛΟΥΚΕΖΕ
+        - nameGr: ΝΟΒΑΡΑ
+        - nameGr: ΚΟΥΝΕΟ
+        - nameGr: ΠΙΣΤΟΓΕΖΕ
+        - nameGr: ΑΛΕΣΑΝΤΡΙΑ
+        - nameGr: ΟΛΜΠΙΑ
+        - nameGr: ΒΙΡΤΟΥΣ ΕΝΤΕΛΑ
+        - nameGr: ΑΛΜΠΙΣΟΛΑ
+        - nameGr: ΠΡΟ ΒΕΡΤΣΕΛΙ
+        - nameGr: ΓΚΟΤΖΑΝΟ
+      type: LEAGUE
+    - code: italy-coppa-italia
+      name: Кубок Италии
+      nameGr: COPPA ITALIA
+      season: _2018_2019
+      type: CUP
+    - code: france-ligue-1
+      name: Чемпионат Франции. Первая лига
+      nameGr: Α ΓΑΛΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΥΩΝ
+        - nameGr: ΜΟΝΠΕΛΙΕ
+        - nameGr: ΝΑΝΤ
+        - nameGr: ΣΤΡΑΣΒΟΥΡΓΟ
+        - nameGr: ΡΕΜΣ
+        - nameGr: ΜΟΝΑΚΟ
+        - nameGr: ΝΙΣ
+        - nameGr: ΑΜΙΑΝ
+        - nameGr: ΓΚΙΝΓΚΑΜΠ
+        - nameGr: ΤΟΥΛΟΥΖ
+        - nameGr: ΠΑΡΙ Σ.Ζ.
+        - nameGr: ΡΕΝ
+        - nameGr: ΣΕΝΤ ΕΤΙΕΝ
+        - nameGr: ΑΝΖΕ
+        - nameGr: ΚΑΕΝ
+        - nameGr: ΜΠΟΡΝΤΟ
+        - nameGr: ΝΙΜ
+        - nameGr: ΝΤΙΖΟΝ
+        - nameGr: ΜΑΡΣΕΙΓ
+        - nameGr: ΛΙΛ
+      type: LEAGUE
+    - code: france-ligue-2
+      name: Чемпионат Франции. Вторая лига
+      nameGr: Β ΓΑΛΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΡΕΣΤ
+        - nameGr: ΣΟΣΟ
+        - nameGr: ΜΠΕΖΙΕ
+        - nameGr: ΒΑΛΕΝΣΙΕΝ
+        - nameGr: ΛΟΡΙΑΝ
+        - nameGr: ΟΣΕΡ
+        - nameGr: ΓΚΡΕΝΟΜΠΛ
+        - nameGr: ΟΡΛΕΑΝ
+        - nameGr: ΝΙΟΡ
+        - nameGr: ΑΖΑΞΙΟ
+        - nameGr: ΧΑΒΡΗ
+        - nameGr: ΜΕΤΣ
+        - nameGr: ΛΑΝΣ
+        - nameGr: ΚΛΕΡΜΟΝ
+        - nameGr: ΠΑΡΙ FC
+        - nameGr: ΕΡ. ΑΣΤΕΡΑΣ
+        - nameGr: ΤΡΟΥΑ
+        - nameGr: ΝΑΝΣΙ
+        - nameGr: ΣΑΤΟΡΟΥ
+        - nameGr: ΓΚΑΖΕΛΕΚ
+      type: LEAGUE
+    - code: france-national
+      name: Чемпионат Франции. Националь
+      nameGr: Γ ΓΑΛΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΑΝΚΕΡΚ
+        - nameGr: ΖΑΝ ΝΤ΄ ΑΡΚ
+        - nameGr: ΜΠΟΥΡΓΚ
+        - nameGr: ΣΟΛΕ
+        - nameGr: ΛΥΩΝ ΛΑ ΝΤΥΣΕΡ
+        - nameGr: ΜΠΟΥΛΟΝ
+        - nameGr: ΚΕΒΙΓΙ
+        - nameGr: ΡΟΝΤΕΖ
+        - nameGr: ΚΟΝΚΑΡΝΟ
+        - nameGr: ΣΑΜΠΛΙ
+        - nameGr: ΑΝΤΑΝΤ
+        - nameGr: ΤΟΥΡ
+        - nameGr: ΠΟ
+        - nameGr: ΒΙΛΦΡΑΝΣ
+        - nameGr: ΑΒΡΑΝΣ
+        - nameGr: ΛΑΒΑΛ
+        - nameGr: ΛΕ ΜΑΝ
+        - nameGr: ΜΑΡΙΝΙΑΝ
+      type: LEAGUE
+    - code: france-coupe
+      name: Кубок Франции
+      nameGr: COUPE DE FRANCE
+      season: _2018_2019
+      type: CUP
+    - code: france-coupe-de-la-ligue
+      name: Кубок франции. Лига куп
+      nameGr: ΛΙΓΚ ΚΑΠ ΓΑΛΛΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: austria-bundesliga
+      name: Чемпионат Австрии. Бундеслига
+      nameGr: Α ΑΥΣΤΡΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΑΤΕΡΣΜΠΟΥΡΓΚ
+        - nameGr: ΖΑΛΤΣΜΠΟΥΡΓΚ
+        - nameGr: ΒΑΚΕΡ ΙΝΣΜΠΡΟΥΚ
+        - nameGr: ΛΙΝΤΣΕΡ
+        - nameGr: ΑΛΤΑΧ
+        - nameGr: ΑΟΥΣΤΡΙΑ
+        - nameGr: ΣΤ. ΠΟΛΤΕΝ
+        - nameGr: ΒΑΚ ΠΕΛΕΤΣ
+        - nameGr: ΧΑΡΤΜΠΕΡΓΚ
+        - nameGr: ΡΑΠΙΝΤ
+        - nameGr: ΑΝΤΜΙΡΑ
+        - nameGr: ΣΤΟΥΡΜ ΓΚΡΑΤΣ
+      type: LEAGUE
+    - code: austria-2-liga
+      name: Чемпионат Австрии. Бундеслига 2
+      nameGr: Β ΑΥΣΤΡΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΟΙΣΤΑΝΤ
+        - nameGr: ΛΑΦΝΙΤΣ
+        - nameGr: ΑΟΥΣΤΡΙΑ ΛΟΥΣΤ.
+        - nameGr: ΛΙΦΕΡΙΝΓΚ
+        - nameGr: ΡΙΝΤ
+        - nameGr: ΦΟΡΒΑΤΣ ΣΤΕΙΡ
+        - nameGr: ΒΑΚΕΡ ΙΝΣΜΠΡΟΥΚ ΙΙ
+        - nameGr: ΚΛΑΓΚΕΝΦΟΥΡΤ
+        - nameGr: ΑΜΣΤΕΤΕΝ
+        - nameGr: FC ΤΖΟΥΝΙΟΡΣ ΟΟ
+        - nameGr: ΧΟΡΝ
+        - nameGr: ΜΠΛΟΥ ΒΑΙΣ ΛΙΝΤΣ
+        - nameGr: ΑΟΥΣΤΡΙΑ ΙΙ
+        - nameGr: ΚΑΠΦΕΝΜΠΕΡΓΚ
+        - nameGr: ΦΛΟΡΙΝΤΣΝΤΟΡΦΕΡ
+        - nameGr: ΒΑΤΕΝΣ
+      type: LEAGUE
+    - code: austria-ofb-cup
+      name: Кубок Австрии
+      nameGr: ΚΥΠΕΛΛΟ ΑΥΣΤΡΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: belgium-jupiler-league
+      name: Чемпионат Бельгии. Премьер-лига
+      nameGr: Α ΒΕΛΓΙΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΕΟΥΠΕΝ
+        - nameGr: ΓΚΕΝΚ
+        - nameGr: ΑΝΤΒΕΡΠ
+        - nameGr: ΣΙΝΤ ΤΡΟΥΙΝΤΕΝ
+        - nameGr: ΑΝΤΕΡΛΕΧΤ
+        - nameGr: ΣΑΡΛΕΡΟΥΑ
+        - nameGr: ΟΣΤΑΝΔΗ
+        - nameGr: ΣΕΡΚΛ ΜΠΡΙΖ
+        - nameGr: Ζ. ΒΑΡΕΓΚΕΜ
+        - nameGr: ΛΟΚΕΡΕΝ
+        - nameGr: ΚΛΑΜΠ ΜΠΡΙΖ
+        - nameGr: ΓΑΝΔΗ
+        - nameGr: ΚΟΡΤΡΑΙΚ
+        - nameGr: ΣΤΑΝΤΑΡ Λ.
+        - nameGr: Β. ΜΠΕΒΕΡΕΝ
+        - nameGr: ΜΟΥΣΚΡΟΝ
+      type: LEAGUE
+    - code: belgium-proximus-league
+      name: Чемпионат Бельгии. Вторая лига
+      nameGr: Β ΒΕΛΓΙΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΟΜΕΛ
+        - nameGr: ΡΟΥΖΕΛΑΡ
+        - nameGr: ΤΟΥΜΠΙΖΕ
+        - nameGr: ΜΑΛΙΝ
+        - nameGr: ΒΕΣΤΕΡΛΟ
+        - nameGr: ΟΥΝΤ-ΕΡΒΕΛ
+        - nameGr: ΜΠΙΡΣΧΟΤ
+        - nameGr: ΟΥΝΙΟΝ ΣΕΝΤ ΖΙΛΟΥΑ
+      type: LEAGUE
+    - code: belgium-play-offs-1
+      name: Чемпионат Бельгии. Плейоффс
+      nameGr: ΠΛΕΙ ΟΦ ΒΕΛΓΙΟΥ
+      season: _2018_2019
+      type: CUP
+    - code: belgian-cup
+      name: Кубок Бельгии
+      nameGr: ΚΥΠΕΛΛΟ ΒΕΛΓΙΟΥ
+      season: _2018_2019
+      type: CUP
+    - code: denmark-superliga
+      name: Чемпионат Дании. Суперлига
+      nameGr: Α ΔΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΒΕΝΤΙΣΕΛ
+        - nameGr: ΜΠΡΟΝΤΜΠΙ
+        - nameGr: ΧΟΜΠΡΟ
+        - nameGr: ΒΕΙΛΕ
+        - nameGr: ΧΟΡΣΕΝΣ
+        - nameGr: ΝΟΡΝΤΖΕΛΑΝΤ
+        - nameGr: ΟΝΤΕΝΣΕ
+        - nameGr: ΚΟΠΕΓΧΑΓΗ
+        - nameGr: ΕΣΜΠΙΕΡΓΚ
+        - nameGr: ΡΑΝΤΕΡΣ
+        - nameGr: ΣΟΝΤΕΡΙΣΚΕ
+        - nameGr: ΑΑΡΧΟΥΣ
+        - nameGr: ΜΙΝΤΙΛΑΝΤ
+        - nameGr: ΑΑΛΜΠΟΡΓΚ
+      type: LEAGUE
+    - code: denmark-b
+      name: Чемпионат Дании. Вторая лига
+      nameGr: Β ΔΑΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΕΛΣΙΝΟΡ
+        - nameGr: ΒΙΜΠΟΡΓΚ
+        - nameGr: ΝΑΕΣΤΒΕΝΤ
+        - nameGr: ΒΙΝΤΟΒΡΕ
+        - nameGr: ΦΡΕΜΑΝΤ ΑΜΑΓΚΕΡ
+        - nameGr: ΚΟΓΚΕ
+        - nameGr: ΝΑΙΚΟΜΠΙΝΓΚ
+        - nameGr: ΡΟΣΚΙΛΝΤΕ
+        - nameGr: ΣΙΛΚΕΜΠΟΡΓΚ
+        - nameGr: ΛΙΝΓΚΜΠΙ
+        - nameGr: ΘΙΣΤΕΝΤ
+        - nameGr: ΦΡΕΝΤΕΡΙΤΣΙΑ
+      type: LEAGUE
+    - code: denmark-landspokal-cup
+      name: Кубок Дании
+      nameGr: ΚΥΠΕΛΛΟ ΔΑΝΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: switzerland-super-league
+      name: Чемпионат Швейцариию. Лига A
+      nameGr: Α ΕΛΒΕΤΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΟΥΓΚΑΝΟ
+        - nameGr: ΛΟΥΚΕΡΝΗ
+        - nameGr: ΖΥΡΙΧΗ
+        - nameGr: ΒΑΣΙΛΕΙΑ
+        - nameGr: ΓΚΡΑΣΧΟΠΕΡΣ
+        - nameGr: ΤΟΥΝ
+        - nameGr: ΣΙΟΝ
+        - nameGr: ΣΕΝΤ ΓΚΑΛΕΝ
+        - nameGr: ΓΙΟΥΝΓΚ ΜΠΟΙΣ
+        - nameGr: ΞΑΜΑΞ
+      type: LEAGUE
+    - code: switzerland-challenge-league
+      name: Чемпионат Швейцарии. Лига B
+      nameGr: Β ΕΛΒΕΤΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΡΙΝΣ
+        - nameGr: ΣΑΦΧΑΟΥΖΕΝ
+        - nameGr: ΒΙΝΤΕΡΤΟΥΡ
+        - nameGr: ΑΑΡΑΟΥ
+        - nameGr: ΒΙΛ
+        - nameGr: ΒΑΝΤΟΥΖ
+        - nameGr: ΡΑΠΕΣΒΙΛ ΓΙΟΝΑ
+        - nameGr: ΛΩΖΑΝΗ
+        - nameGr: ΣΕΡΒΕΤ
+        - nameGr: ΚΙΑΣΟ
+      type: LEAGUE
+    - code: swiss-cup
+      name: Кубок Швейцарии
+      nameGr: ΚΥΠΕΛΛΟ ΕΛΒΕΤΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: ireland-premier-division
+      name: Чемпионат Ирландии. Премьер-лига
+      nameGr: Α ΙΡΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΙΟΥ ΣΙ ΝΤΙ
+        - nameGr: ΜΠΟΕΜΙΑΝ
+        - nameGr: ΣΛΙΓΚΟ
+        - nameGr: ΓΟΥΟΤΕΡΦΟΡΝΤ
+        - nameGr: ΣΑΜΡΟΚ
+        - nameGr: ΝΤΕΡΙ
+        - nameGr: ΝΤΑΝΤΑΛΚ
+        - nameGr: ΣΕΝΤ ΠΑΤΡΙΚΣ
+        - nameGr: ΚΟΡΚ
+        - nameGr: ΦΙΝ ΧΑΡΠΣ
+      type: LEAGUE
+    - code: ireland-division-1
+      name: Чемпионат Ирландии. Первый дивизион
+      nameGr: Β ΙΡΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΑΜΠΙΝΤΛΙ
+        - nameGr: ΛΟΝΓΚΦΟΡΝΤ ΤΑΟΥΝ
+        - nameGr: ΛΙΜΕΡΙΚ
+        - nameGr: ΓΚΑΛΓΟΥΕΙ ΓΙΟΥΝ.
+        - nameGr: ΜΠΡΕΪ Γ.
+          code: mprei
+        - nameGr: ΑθΛΟΟΥΝ ΤΑΟΥΝ
+        - nameGr: ΝΤΡΟΧΕΝΤΑ
+        - nameGr: ΣΕΛΜΠΟΥΡΝ
+        - nameGr: ΓΟΥΕΞΦΟΡΝΤ
+        - nameGr: ΚΟΜΠ ΡΑΜΠΛΕΡΣ
+      type: LEAGUE
+    - code: ireland-fai-cup
+      name: Кубок Ирландии
+      nameGr: ΚΥΠΕΛΛΟ ΙΡΛΑΝΔΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: ireland-league-cup
+      name: Кубок Ирландии. Лиг куп
+      nameGr: ΛΙΓΚ ΚΑΠ ΙΡΛΑΝΔΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: cyprus-a
+      name: Чемпионат Кипра
+      nameGr: Α ΚΥΠΡΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΟΜΟΝΟΙΑ
+        - nameGr: ΠΑΦΟΣ
+        - nameGr: ΔΟΞΑ Κ.
+        - nameGr: ΝΕΑ ΣΑΛΑΜΙΝΑ
+        - nameGr: ΑΠΟΕΛ
+        - nameGr: ΑΕΛ
+        - nameGr: ΑΕΚ ΛΑΡΝΑΚΑΣ
+        - nameGr: ΕΡΜΗΣ
+        - nameGr: ΑΝΟΡθΩΣΗ
+        - nameGr: ΠΑΡΑΛΙΜΝΙ
+        - nameGr: ΑΠΟΛΛΩΝ ΛΕΜ.
+        - nameGr: ΑΛΚΗ
+      type: LEAGUE
+    - code: cyprus-cup
+      name: Кубок Кипра
+      nameGr: ΚΥΠΕΛΛΟ ΚΥΠΡΟΥ
+      season: _2018_2019
+      type: CUP
+    - code: norway-eliteserien
+      name: Чемпионат Норвегии. Элитсерия
+      nameGr: Α ΝΟΡΒΗΓΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΧΑΟΥΓΚΕΣΟΥΝΤ
+        - nameGr: ΒΙΚΙΝΓΚ
+        - nameGr: ΛΙΛΕΣΤΡΟΜ
+        - nameGr: ΣΤΑΜΠΑΕΚ
+        - nameGr: ΜΟΛΝΤΕ
+        - nameGr: ΜΠΟΝΤΟ
+        - nameGr: ΚΡΙΣΤΙΑΝΣΟΥΝΤ
+        - nameGr: ΣΤΡΟΜΣΓΚΟΝΤΣΕΤ
+        - nameGr: ΜΙΟΝΤΑΛΕΝ
+        - nameGr: ΣΑΡΠΣΜΠΟΡΓΚ
+        - nameGr: ΡΟΖΕΝΜΠΟΡΓΚ
+        - nameGr: ΤΡΟΜΣΟ
+        - nameGr: ΒΑΛΕΡΕΝΓΚΑ
+        - nameGr: ΜΠΡΑΝ
+        - nameGr: ΡΑΝΧΑΙΜ
+        - nameGr: ΟΝΤ
+      type: LEAGUE
+    - code: norway-obos-ligaen
+      name: Чемпионат Норвегии. 1-й дивизион
+      nameGr: Β ΝΟΡΒΗΓΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΡΑΟΥΦΟΣ
+        - nameGr: ΑΑΛΕΣΟΥΝΤ
+        - nameGr: ΚΦΟΥΜ
+        - nameGr: ΚΟΝΓΚΣΒΙΝΓΚΕΡ
+        - nameGr: ΣΤΑΡΤ
+        - nameGr: ΣΑΝΤΝΕΣ
+        - nameGr: ΣΚΕΙΝΤ
+        - nameGr: ΤΡΟΜΣΝΤΑΛΕΝ
+        - nameGr: ΧΑΜ ΚΑΜ
+        - nameGr: ΓΙΕΡΒ
+        - nameGr: ΣΟΓΚΝΤΑΛ
+        - nameGr: ΟΥΛΕΝΣΑΚΕΡ
+        - nameGr: ΝΕΣΤ ΣΟΤΡΑ
+        - nameGr: ΣΑΝΤΕΦΙΟΡΝΤ
+        - nameGr: ΝΟΤΟΝΤΕΝ
+        - nameGr: ΣΤΡΟΜΕΝ
+      type: LEAGUE
+    - code: norway-nm-cup
+      name: Кубок Норвегии
+      nameGr: ΚΥΠΕΛΛΟ ΝΟΡΒΗΓΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: netherlands-eredivisie
+      name: Чемпионат Голландии. Эрдивизи
+      nameGr: Α ΟΛΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΚΡΟΝΙΝΓΚΕΝ
+        - nameGr: ΦΟΡΤΟΥΝΑ
+        - nameGr: ΑΛΚΜΑΑΡ
+        - nameGr: ΕΞΕΛΣΙΟΡ
+        - nameGr: ΧΕΡΑΚΛΕΣ
+        - nameGr: ΝΤΕ ΓΚΡΑΑΦΣΤΣΑΠ
+        - nameGr: ΧΕΡΕΝΦΕΝ
+        - nameGr: ΦΕΝΛΟ
+        - nameGr: ΦΕΓΕΝΟΡΝΤ
+        - nameGr: ΑΙΝΤΧΟΦΕΝ
+        - nameGr: ΝΤΕΝ ΧΑΑΓΚ
+        - nameGr: ΜΠΡΕΝΤΑ
+        - nameGr: ΦΙΤΕΣΕ
+        - nameGr: ΕΜΕΝ
+        - nameGr: ΑΓΙΑΞ
+        - nameGr: ΟΥΤΡΕΧΤΗ
+        - nameGr: ΒΙΛΕΜ
+        - nameGr: ΖΒΟΛΕ
+      type: LEAGUE
+    - code: netherlands-eerste-divisie
+      name: Чемпионат Голландии. Второй дивизион
+      nameGr: Β ΟΛΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΡΟΝΤΑ
+        - nameGr: ΓΙΟΝΓΚ ΑΛΚΜΑΑΡ
+        - nameGr: ΓΙΟΝΓΚ ΟΥΤΡΕΧΤΗ
+        - nameGr: ΓΙΟΝΓΚ ΑΓΙΑΞ
+        - nameGr: ΟΣ
+        - nameGr: ΒΑΑΛΒΑΪΚ
+        - nameGr: ΤΒΕΝΤΕ
+        - nameGr: ΝΤΟΡΝΤΡΕΧΤ
+        - nameGr: ΓΙΟΝΓΚ ΑΪΝΤΧΟΦΕΝ
+        - nameGr: ΑΛΜΕΡΕ
+        - nameGr: ΤΕΛΣΤΑΡ
+        - nameGr: ΝΑΪΜΕΓΚΕΝ
+        - nameGr: ΚΑΜΠΟΥΡ
+        - nameGr: ΜΑΑΣΤΡΙΧΤ
+        - nameGr: ΧΕΛΜΟΝΤ
+        - nameGr: ΓΚΟΟΥ ΑΧΕΝΤ ΙΓΚΛΣ
+        - nameGr: ΦΚ ΑΪΝΤΧΟΦΕΝ
+        - nameGr: ΝΤΕΝ ΜΠΟΣ
+        - nameGr: ΣΠΑΡΤΑ ΡΟΤ.
+        - nameGr: ΦΟΛΕΝΤΑΜ
+      type: LEAGUE
+    - code: netherlands-knvb-beker
+      name: Кубок Голландии
+      nameGr: ΚΥΠΕΛΛΟ ΟΛΛΑΝΔΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: poland-ekstraklasa
+      name: Чемпионат Польшы
+      nameGr: Α ΠΟΛΩΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΟΡΟΝΑ ΚΙΕΛΤΣΕ
+        - nameGr: ΛΕΧΙΑ
+        - nameGr: ΛΕΓΚΝΙΚΑ
+        - nameGr: ΓΙΑΓΚΕΛΟΝΙΑ
+        - nameGr: ΛΕΓΚΙΑ
+        - nameGr: ΠΟΓΚΟΝ
+        - nameGr: ΒΙΣΛΑ ΠΛΟΚ
+        - nameGr: ΑΡΚΑ
+        - nameGr: ΣΟΣΝΟΒΙΕΚ
+        - nameGr: ΛΕΧ ΠΟΖΝΑΝ
+        - nameGr: ΣΛΑΣΚ
+        - nameGr: ΒΙΣΛΑ ΚΡΑΚΟΒΙΑΣ
+        - nameGr: ΓΚΟΡΝΙΚ Ζ.
+        - nameGr: ΖΑΓΚΛΕΜΠΙΕ
+        - nameGr: ΠΙΑΣΤ ΓΚΛ.
+        - nameGr: ΚΡΑΚΟΒΙΑ
+      type: LEAGUE
+    - code: polish-cup
+      name: Кубок Польшы
+      nameGr: ΚΥΠΕΛΛΟ ΠΟΛΩΝΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: portugal-primeira-liga
+      name: Чемпионат Португалии. Примера
+      nameGr: Α ΠΟΡΤΟΓΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΤΟΝΤΕΛΑ
+        - nameGr: ΦΕΙΡΕΝΣΕ
+        - nameGr: ΡΙΟ ΑΒΕ
+        - nameGr: ΜΠΕΛΕΝΕΝΣΕΣ
+        - nameGr: ΠΟΡΤΟ
+        - nameGr: ΜΑΡΙΤΙΜΟ
+        - nameGr: ΜΟΡΕΙΡΕΝΣΕ
+        - nameGr: ΣΑΝΤΑ ΚΛΑΡΑ
+        - nameGr: ΓΚΙΜΑΡΑΕΣ
+        - nameGr: ΝΑΣΙΟΝΑΛ
+        - nameGr: ΜΠΡΑΓΚΑ
+        - nameGr: ΣΕΤΟΥΜΠΑΛ
+        - nameGr: ΤΣΑΒΕΣ
+        - nameGr: ΜΠΕΝΦΙΚΑ
+        - nameGr: ΣΠΟΡΤΙΝΓΚ
+        - nameGr: ΜΠΟΑΒΙΣΤΑ
+        - nameGr: ΑΒΕΣ
+        - nameGr: ΠΟΡΤΙΜΟΝΕΝΣΕ
+      type: LEAGUE
+    - code: portugal-segunda-liga
+      name: Чемпионат Португалии. Второй дивизион
+      nameGr: Β ΠΟΡΤΟΓΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΕΝΑΦΙΕΛ
+        - nameGr: ΟΛΙΒΕΙΡΕΝΣΕ
+        - nameGr: ΜΑΦΡΑ
+        - nameGr: ΠΑΣΟΣ ΦΕΡΕΙΡΑ
+        - nameGr: ΜΠΡΑΓΚΑ Β
+        - nameGr: ΦΑΜΑΛΙΚΑΟ
+        - nameGr: ΑΡΟΥΚΑ
+        - nameGr: ΦΑΡΕΝΣΕ
+        - nameGr: ΓΚΙΜΑΡΑΕΣ Β
+        - nameGr: ΠΟΡΤΟ Β
+        - nameGr: ΛΕΙΣΟΕΣ
+        - nameGr: ΑΚΑΔΕΜΙΚΑ
+        - nameGr: ΕΣΤΟΡΙΛ
+        - nameGr: ΑΚ. ΒΙΣΕΟΥ
+        - nameGr: ΣΠ. ΚΟΒΙΛΙΑ
+        - nameGr: ΚΟΒΑ ΝΤΑ ΠΙΕΔΑΔ
+        - nameGr: ΜΠΕΝΦΙΚΑ Β
+        - nameGr: ΒΑΡΖΙΜ
+      type: LEAGUE
+    - code: taca-de-portugal
+      name: Кубок Португалии
+      nameGr: ΚΥΠΕΛΛΟ ΠΟΡΤΟΓΑΛΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: portugal-league-cup
+      name: Кубок Португалии. Лиг куп
+      nameGr: ΛΙΓΚ ΚΑΠ ΠΟΡΤΟΓΑΛΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: russia-premier-league
+      name: Чемпионат России. Премьер-лига
+      nameGr: Α ΡΩΣΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΕΝΙΣΕΙ
+        - nameGr: ΟΡΕΝΜΠΟΥΡΓΚ
+        - nameGr: ΚΡΑΣΝΟΝΤΑΡ
+        - nameGr: ΤΣΣΚΑ Μ.
+        - nameGr: ΑΝΖΙ
+        - nameGr: ΑΧΜΑΤ
+        - nameGr: ΛΟΚΟΜΟΤΙΒ Μ.
+        - nameGr: ΚΡΙΛΙΑ
+        - nameGr: ΟΥΦΑ
+        - nameGr: ΡΟΣΤΟΦ
+        - nameGr: ΡΟΥΜΠΙΝ
+        - nameGr: ΑΡΣΕΝΑΛ
+        - nameGr: ΖΕΝΙΤ
+        - nameGr: ΟΥΡΑΛ
+        - nameGr: ΝΤΙΝΑΜΟ Μ.
+        - nameGr: ΣΠΑΡΤΑΚ Μ.
+      type: LEAGUE
+    - code: russia-fnl
+      name: Чемпионат России. ФНЛ
+      nameGr: Β ΡΩΣΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΤΣΕΡΤΑΝΟΒΟ
+        - nameGr: ΜΟΡΝΤΟΒΙΑ
+        - nameGr: ΑΡΜΑΒΙΡ
+        - nameGr: ΝΙΖΝΙ
+        - nameGr: ΑΒΑΝΓΚΑΡΝΤ ΚΟΥΡΣΚ
+        - nameGr: ΣΠΑΡΤΑΚ Β
+        - nameGr: ΣΙΝΙΚ
+        - nameGr: ΜΠΑΛΤΙΚΑ
+        - nameGr: ΣΚΑ
+        - nameGr: ΛΟΥΧ ΕΝΕΡΓΚΙΑ
+        - nameGr: ΧΙΜΚΙ
+        - nameGr: ΖΕΝΙΤ Β
+        - nameGr: ΤΙΟΥΜΕΝ
+        - nameGr: ΚΡΑΣΝΤΟΝΤΑΡ Β
+        - nameGr: ΣΙΜΠΙΡ
+        - nameGr: ΣΟΤΣΙ
+        - nameGr: ΦΑΚΕΛ
+        - nameGr: ΤΑΜΠΟΦ
+        - nameGr: ΤΟΜ ΤΟΜΣΚ
+        - nameGr: ΡΟΤΟΡ
+      type: LEAGUE
+    - code: russian-cup
+      name: Кубок России
+      nameGr: ΚΥΠΕΛΛΟ ΡΩΣΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: scotland-premiersip
+      name: Чемпионат Шотландии. Премьер-лига
+      nameGr: ΣΚΩΤΙΑ - ΠΡΈΕΜΙΕΡΣΙΠ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΙΒΙΝΓΚΣΤΟΝ
+        - nameGr: ΑΜΠΕΡΝΤΙΝ
+        - nameGr: ΡΕΙΝΤΖΕΡΣ
+        - nameGr: ΚΙΛΜΑΡΝΟΚ
+        - nameGr: ΣΕΝΤ ΤΖΟΝΣΤΟΝ
+        - nameGr: ΧΙΜΠΕΡΝΙΑΝ
+        - nameGr: ΣΕΛΤΙΚ
+        - nameGr: ΧΑΜΙΛΤΟΝ
+        - nameGr: ΝΤΑΝΤΙ
+        - nameGr: ΣΕΝΤ ΜΙΡΕΝ
+        - nameGr: ΧΑΡΤΣ
+        - nameGr: ΜΑΔΕΡΓΟΥΕΛ
+      type: LEAGUE
+    - code: scotland-championship
+      name: Чемпионат Шотландии. Чемпионшип
+      nameGr: ΣΚΩΤΙΑ - ΤΣΑΜΠΙΟΝΣΙΠ
+      season: _2018_2019
+      teams:
+        - nameGr: ΑΛΟΑ
+        - nameGr: ΙΝΒΕΡΝΕΣ
+        - nameGr: ΦΟΛΚΕΡΚ
+        - nameGr: ΜΟΡΤΟΝ
+        - nameGr: ΠΑΡΤΙΚ ΘΙΣΤΛ
+        - nameGr: ΚΟΥΙΝ ΟΦ ΣΑΟΥθ
+        - nameGr: ΝΤΑΝΦΕΡΜΛΙΝ
+        - nameGr: ΕΙΡ ΓΙΟΥΝ.
+        - nameGr: ΡΟΣ ΚΑΟΥΝΤΙ
+        - nameGr: ΝΤΑΝΤΙ ΓΙΟΥΝ.
+      type: LEAGUE
+    - code: scotland-league1
+      name: Чемпионат Шотландии. Лига 1
+      nameGr: ΣΚΩΤΙΑ - ΛΙΓΚ 1
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΤΕΝΧΑΟΥΣΜΙΟΥΡ
+        - nameGr: ΑΡΜΠΡΟΟΥθ
+        - nameGr: ΕΡΝΤΡΙΟΝΙΑΝΣ
+        - nameGr: ΣΤΡΑΝΡΑΕΡ
+        - nameGr: ΙΣΤ ΦΑΙΦ
+        - nameGr: ΜΟΝΤΡΟΟΥΖ
+        - nameGr: ΝΤΑΜΠΑΡΤΟΝ
+        - nameGr: ΦΟΡΦΑΡ
+        - nameGr: ΡΕΙθ ΡΟΒΕΡΣ
+        - nameGr: ΜΠΡΕΧΙΝ
+      type: LEAGUE
+    - code: scotland-league2
+      name: Чемпионат Шотландии. Лига 2
+      nameGr: ΣΚΩΤΙΑ - ΛΙΓΚ 2
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΛΑΙΝΤ
+        - nameGr: ΑΛΜΠΙΟΝ ΡΟΒΕΡΣ
+        - nameGr: ΚΟΥΙΝΣ ΠΑΡΚ
+        - nameGr: ΜΠΕΡΓΟΥΙΚ
+        - nameGr: ΠΙΤΕΡΧΕΝΤ
+        - nameGr: ΑΝΑΝ
+        - nameGr: ΚΑΟΥΝΤΕΝΜΠΙθ
+        - nameGr: ΕΝΤΙΝΜΠΟΥΡΓΚ
+        - nameGr: ΣΤΕΡΛΙΝΓΚ ΑΛΜΠΙΟΝ
+        - nameGr: ΕΛΓΚΙΝ
+      type: LEAGUE
+    - code: scotland-facup
+      name: Кубок Шотландии. FA CUP
+      nameGr: ΣΚΩΤΙΑ - ΚΥΠΕΛΛΟ
+      season: _2018_2019
+      type: CUP
+    - code: scotland-league-cup
+      name: Кубок Шотландии. LEAGUE CUP
+      nameGr: ΣΚΩΤΙΑ - ΛΙΓΚ ΚΑΠ
+      season: _2018_2019
+      type: CUP
+    - code: scotland-challenge-cup
+      name: Кубок Шотландии. CHALLENGE CUP
+      nameGr: ΣΚΩΤΙΑ - ΤΣΑΛΕΝΤΖ ΚΑΠ
+      season: _2018_2019
+      type: CUP
+    - code: sweden-allsvenskan
+      name: Чемпионат Швеции. Аллсвенскан
+      nameGr: Α ΣΟΥΗΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΟΡΣΕΠΙΝΓΚ
+        - nameGr: ΧΕΛΣΙΝΜΠΟΡΓΚ
+        - nameGr: ΕΛΦΣΜΠΟΡΓΚ
+        - nameGr: ΕΣΚΙΛΣΤΟΥΝΑ
+        - nameGr: ΕΡΕΜΠΡΟ
+        - nameGr: ΓΚΕΤΕΜΠΟΡΓΚ
+        - nameGr: ΣΙΡΙΟΥΣ
+        - nameGr: ΦΑΛΚΕΝΜΠΕΡΓΚ
+        - nameGr: ΤΖΟΥΡΓΚΑΡΝΤΕΝ
+        - nameGr: ΧΑΚΕΝ
+        - nameGr: ΚΑΛΜΑΡ
+        - nameGr: ΕΣΤΕΡΣΟΥΝΤ
+        - nameGr: ΜΑΛΜΕ
+        - nameGr: ΧΑΜΑΡΜΠΙ
+        - nameGr: ΣΟΥΝΤΣΒΑΛ
+        - nameGr: ΑΙΚ
+      type: LEAGUE
+    - code: sweden-superettan
+      name: Чемпионат Швеции. Супэрэттан
+      nameGr: Β ΣΟΥΗΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΟΡΜΠΙ
+        - nameGr: ΒΑΡΜΠΕΡΓΚ
+        - nameGr: ΝΤΕΓΚΕΡΦΟΡΣ
+        - nameGr: ΜΠΡΟΜΑΠΟΙΚΑΡΝΑ
+        - nameGr: ΦΡΕΙ
+        - nameGr: ΓΚΑΙΣ
+        - nameGr: ΕΡΓΚΡΙΤΕ
+        - nameGr: ΒΕΣΤΕΡΟΣ
+        - nameGr: ΧΑΛΜΣΤΑΝΤ
+        - nameGr: ΜΙΕΛΜΠΙ
+        - nameGr: ΓΙΟΝΣΕΠΙΝΓΚ
+        - nameGr: ΝΤΑΛΚΟΥΡΝΤ
+        - nameGr: ΤΡΕΛΕΜΠΟΡΓΚ
+        - nameGr: ΣΥΡΙΑΝΣΚΑ
+        - nameGr: ΜΠΡΑΓΚΕ
+        - nameGr: ΕΣΤΕΡ
+      type: LEAGUE
+    - code: sweden-cupen
+      name: Кубок Швеции
+      nameGr: ΚΥΠΕΛΛΟ ΣΟΥΗΔΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: turkey-super-lig
+      name: Чемпионат Турции. Суперлига
+      nameGr: Α ΤΟΥΡΚΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΦΕΝΕΡΜΠΑΧΤΣΕ
+        - nameGr: ΕΡΖΟΥΡΟΥΜΣΠΟΡ
+        - nameGr: ΑΛΑΝΙΑΣΠΟΡ
+        - nameGr: ΜΠΟΥΡΣΑΣΠΟΡ
+        - nameGr: ΚΟΝΙΑΣΠΟΡ
+        - nameGr: ΜΠΑΣΑΚΣΕΧΙΡ
+        - nameGr: ΣΙΒΑΣΠΟΡ
+        - nameGr: ΚΑΙΣΕΡΙΣΠΟΡ
+        - nameGr: ΓΚΕΖΤΕΠΕ
+        - nameGr: ΑΚΙΣΑΡ
+        - nameGr: ΤΡΑΜΠΖΟΝΣΠΟΡ
+        - nameGr: ΜΑΛΑΤΙΑΣΠΟΡ
+        - nameGr: ΡΙΖΕΣΠΟΡ
+        - nameGr: ΚΑΣΙΜΠΑΣΑ
+        - nameGr: ΑΝΤΑΛΙΑΣΠΟΡ
+        - nameGr: ΓΑΛΑΤΑΣΑΡΑΙ
+        - nameGr: ΜΠΕΣΙΚΤΑΣ
+        - nameGr: ΑΝΚΑΡΑΓΚΟΥΤΣΟΥ
+      type: LEAGUE
+    - code: turkey-b
+      name: Чемпионат Турции. Первая лига
+      nameGr: Β ΤΟΥΡΚΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΕΛΑΖΙΓΚΣΠΟΡ
+        - nameGr: ΓΚΑΖΙΣΕΧΙΡ ΓΚΑΖΙΑΝΤΕΠ
+        - nameGr: ΑΦΙΟΝΣΠΟΡ
+        - nameGr: ΜΠΟΛΟΥΣΠΟΡ
+        - nameGr: ΙΣΤΑΝΜΠΟΥΛΣΠΟΡ
+        - nameGr: ΧΑΤΑΙΣΠΟΡ
+        - nameGr: ΕΣΚΙΣΕΧΙΡΣΠΟΡ
+        - nameGr: ΜΠΑΛΙΚΕΣΙΡΣΠΟΡ
+        - nameGr: ΓΚΙΡΕΣΟΥΝΣΠΟΡ
+        - nameGr: ΑΛΤΑΙ
+        - nameGr: ΑΝΤΑΝΑΣΠΟΡ
+        - nameGr: ΓΚΕΝΤΣΛΕΡΜΠΙΡΛΙΓΚΙ
+        - nameGr: ΝΤΕΝΙΖΛΙΣΠΟΡ
+        - nameGr: ΟΣΜΑΝΛΙΣΠΟΡ
+        - nameGr: ΚΑΡΑΜΠΟΥΚΣΠΟΡ
+        - nameGr: ΝΤΕΜΙΡΣΠΟΡ
+        - nameGr: ΟΥΜΡΑΝΙΓΕΣΠΟΡ
+        - nameGr: ΑΛΤΙΝΟΡΝΤΟΥ
+      type: LEAGUE
+    - code: turkish-cup
+      name: Кубок Турции
+      nameGr: ΚΥΠΕΛΛΟ ΤΟΥΡΚΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: czech-a
+      name: Чемпионат Чехии
+      nameGr: Α ΤΣΕΧΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΟΥΚΛΑ ΠΡ.
+        - nameGr: ΟΛΟΜΟΥΤΣ
+        - nameGr: ΛΙΜΠΕΡΕΤΣ
+        - nameGr: ΤΕΠΛΙΤΣΕ
+        - nameGr: ΓΙΑΜΠΛΟΝΕΤΣ
+        - nameGr: ΒΙΚΤ. ΠΛΖΕΝ
+        - nameGr: ΜΠΑΝΙΚ
+        - nameGr: ΜΛΑΝΤΑ
+        - nameGr: ΟΠΑΒΑ
+        - nameGr: ΚΑΡΒΙΝΑ
+        - nameGr: ΜΠΟΕΜΙΑΝΣ
+        - nameGr: ΠΡΙΜΠΡΑΜ
+        - nameGr: ΣΛΑΒΙΑ ΠΡ.
+        - nameGr: ΣΛΟΒΑΤΣΚΟ
+        - nameGr: ΣΠΑΡΤΑ ΠΡ.
+        - nameGr: ΖΛΙΝ
+      type: LEAGUE
+    - code: czech-cup
+      name: Кубок Чехии
+      nameGr: ΚΥΠΕΛΛΟ ΤΣΕΧΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: finland-veikkausliiga
+      name: Чемпионат Финляндии. Высшая лига
+      nameGr: Α ΦΙΝΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΟΚΚΟΛΑ KPV
+        - nameGr: ΕΛΣΙΝΚΙ
+        - nameGr: ΚΟΥΟΠΙΟ
+        - nameGr: ΧΕΛΣΙΝΓΚΦΟΡΣ
+        - nameGr: ΙΛΒΕΣ
+        - nameGr: ΜΑΡΙΕΧΑΜΝ
+        - nameGr: ΒΑΑΣΑ
+        - nameGr: ΣΕΙΝΑΓΙΟΕΝ
+        - nameGr: ΡΟΒΑΝΙΕΜΙ
+        - nameGr: ΛΑΧΤΙ
+        - nameGr: ΧΟΝΚΑ
+        - nameGr: ΙΝΤΕΡ ΤΟΥΡΚΟΥ
+      type: LEAGUE
+    - code: finland-ykkonen
+      name: Чемпионат Финляндии. Юккёнен
+      nameGr: Β ΦΙΝΛΑΝΔΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΧΑΚΑ
+        - nameGr: ΤΟΥΡΚΟΥ
+        - nameGr: ΓΙΑΡΟ
+        - nameGr: ΚΑΓΙΑΝΙ
+        - nameGr: ΜΟΥΣΑ
+        - nameGr: ΠΑΛΟΒΕΙΚΟΤ ΤΑΜΠΕΡΕ
+        - nameGr: ΜΙΛΙΚΟΣΚΙ
+        - nameGr: ΟΥΛΟΥ
+        - nameGr: ΚΟΤΚΑ
+        - nameGr: ΕΚΕΝΑΣ
+      type: LEAGUE
+    - code: finland-cup
+      name: Кубок Финляндии
+      nameGr: ΚΥΠΕΛΛΟ ΦΙΝΛΑΝΔΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: copa-libertadores
+      name: Кубок Либертадорес
+      nameGr: ΛΙΜΠΕΡΤΑΔΟΡΕΣ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: copa-sudamericana
+      name: Кубок судамерикана
+      nameGr: ΣΟΥΝΤΑΜΕΡΙΚΑΝΑ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: argentina-a
+      name: Чемпионат Аргентины. Примера
+      nameGr: Α ΑΡΓΕΝΤΙΝΗΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΕΦΕΝΣΑ
+        - nameGr: ΑΛΝΤΟΣΙΒΙ
+        - nameGr: ΠΑΤΡΟΝΑΤΟ
+        - nameGr: ΡΙΒΕΡ
+        - nameGr: ΤΙΓΚΡΕ
+        - nameGr: ΟΥΡΑΚΑΝ
+        - nameGr: ΑΤΛ. ΤΟΥΚΟΥΜΑΝ
+        - nameGr: ΙΝΤΕΠΕΝΤΙΕΝΤΕ
+        - nameGr: ΛΑΝΟΥΣ
+        - nameGr: ΒΕΛΕΖ
+        - nameGr: ΚΟΛΟΝ
+        - nameGr: ΣΑΝ ΛΟΡΕΝΤΖΟ
+        - nameGr: ΟΥΝΙΟΝ ΣΦ
+        - nameGr: ΜΠΟΚΑ
+        - nameGr: ΣΑΝ ΜΑΡΤΙΝ Τ.
+        - nameGr: ΝΙΟΥΕΛΣ
+        - nameGr: ΓΟΔΟΙ ΚΡΟΥΖ
+        - nameGr: ΣΑΝ ΜΑΡΤΙΝ ΣΧ
+        - nameGr: ΕΣΤΟΥΔΙΑΝΤΕΣ ΛΠ
+        - nameGr: ΡΟΖΑΡΙΟ
+        - nameGr: ΡΑΣΙΝΓΚ
+        - nameGr: ΜΠΑΝΦΙΛΝΤ
+        - nameGr: ΑΡΧΕΝΤΙΝΟΣ
+        - nameGr: ΤΑΓΕΡΕΣ
+        - nameGr: ΧΙΜΝΑΣΙΑ ΛΠ
+        - nameGr: ΜΠΕΛΓΡΑΝΟ
+      type: LEAGUE
+    - code: argentina-b
+      name: Чемпионат Аргентины. Вторая лига
+      nameGr: Β ΑΡΓΕΝΤΙΝΗΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΒΙΓΙΑ ΝΤ.
+        - nameGr: ΜΠΡΑΟΥΝ ΑΝΤ.
+        - nameGr: Ν. ΣΙΚΑΓΟ
+        - nameGr: ΣΕΝΤ. ΚΟΡΔΟΒΑ
+        - nameGr: ΣΑΝΤΑΜΑΡΙΝΑ
+        - nameGr: ΝΤΕΠ. ΜΟΡΟΝ
+        - nameGr: ΙΝΣΤΙΤΟΥΤΟ
+        - nameGr: ΠΛΑΤΕΝΣΕ
+        - nameGr: ΑΡΣΕΝΑΛ Σ.
+        - nameGr: ΣΑΡΜΙΕΝΤΟ
+        - nameGr: ΑΓΚΡΟΠΕΚΟΥΑΡΙΟ
+        - nameGr: ΑΛΜΑΓΚΡΟ
+        - nameGr: ΜΙΤΡΕ
+        - nameGr: ΚΙΛΜΕΣ
+        - nameGr: ΤΕΜΠΕΡΛΕΙ
+        - nameGr: ΑΤΛ. ΡΑΦΑΕΛΑ
+        - nameGr: ΤΣΑΚΑΡΙΤΑ
+        - nameGr: ΝΤ. ΜΠΕΛΓΡΑΝΟ
+        - nameGr: ΟΛΙΜΠΟ
+        - nameGr: ΦΕΡΟ
+        - nameGr: ΧΙΜΝΑΣΙΑ Χ.
+        - nameGr: ΛΟΣ ΑΝΤΕΣ
+        - nameGr: ΧΙΜΝΑΣΙΑ Μ.
+        - nameGr: ΙΝΤ. ΡΙΒΑΔΑΒΙΑ
+        - nameGr: ΓΚ. ΜΠΡΑΟΥΝ
+      type: LEAGUE
+    - code: argentina-cup
+      name: Кубок Аргентины
+      nameGr: ΚΥΠΕΛΛΟ ΑΡΓΕΝΤΙΝΗΣ
+      season: _2018_2019
+      type: CUP
+    - code: bolivia-division-profesional
+      name: Чемпионат Боливии
+      nameGr: Α ΒΟΛΙΒΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΟΛΙΒΑΡ
+        - nameGr: ΣΠΟΡΤ ΜΠΟΙΣ
+        - nameGr: ΔΕ ΣΤΡΟΝΓΚΕΣΤ
+        - nameGr: ΡΕΑΛ ΠΟΤΟΣΙ
+        - nameGr: ΡΟΓΙΑΛ ΠΑΡΙ
+        - nameGr: ΟΛΓΟΥΕΙΣ ΡΕΝΤΙ
+        - nameGr: ΣΑΝ ΧΟΣΕ
+        - nameGr: ΟΡ. ΠΕΤΡΟΛΕΡΟ
+        - nameGr: ΝΑΣ. ΠΟΤΟΣΙ
+        - nameGr: ΧΟΡΧΕ ΒΙΛΣΤΕΡΜΑΝ
+        - nameGr: ΜΠΛΟΥΜΙΝΓΚ
+        - nameGr: ΝΤΕΣΤΡΟΓΙΕΡΣ
+        - nameGr: ΓΚΟΥΑΜΠΙΡΑ
+        - nameGr: ΑΟΥΡΟΡΑ
+      type: LEAGUE
+    - code: brazil-serie-a
+      name: Чемпионат Бразилии. Лига A
+      nameGr: Α ΒΡΑΖΙΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΚΡΕΜΙΟ
+        - nameGr: ΠΑΛΜΕΙΡΑΣ
+        - nameGr: ΑΤΛ. ΜΙΝΕΙΡΟ
+        - nameGr: ΣΑΟ ΠΑΟΥΛΟ
+        - nameGr: ΚΡΟΥΖΕΙΡΟ
+        - nameGr: ΣΑΝΤΟΣ
+        - nameGr: ΦΟΡΤΑΛΕΖΑ
+        - nameGr: ΓΚΟΙΑΣ
+        - nameGr: CSA
+        - nameGr: ΣΑΠΕΚΟΕΝΣΕ
+        - nameGr: ΦΛΟΥΜΙΝΕΝΣΕ
+        - nameGr: ΣΕΑΡΑ
+        - nameGr: ΑΤΛ. ΠΑΡΑΝΑΕΝΣΕ
+        - nameGr: ΑΒΑΐ
+        - nameGr: ΚΟΡΙΝθΙΑΝΣ
+        - nameGr: ΦΛΑΜΕΝΓΚΟ
+        - nameGr: ΜΠΟΤΑΦΟΓΚΟ
+        - nameGr: ΙΝΤΕΡΝΑΣΙΟΝΑΛ
+        - nameGr: ΜΠΑΐΑ
+        - nameGr: ΒΑΣΚΟ
+      type: LEAGUE
+    - code: brazil-serie-b
+      name: Чемпионат Бразилии. Лига B
+      nameGr: Β ΒΡΑΖΙΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΑΟ ΜΠΕΝΤΟ
+        - nameGr: ΜΠΟΤΑΦΟΓΚΟ-SP
+        - nameGr: ΒΙΤΟΡΙΑ
+        - nameGr: ΠΟΝΤΕ ΠΡΕΤΑ
+        - nameGr: ΑΜΕΡΙΚΑ ΜΙΝ.
+        - nameGr: ΜΠΡΑΓΚΑΝΤΙΝΟ
+        - nameGr: ΑΤΛ. ΓΚΟΙΑΝΙΕΝΣΕ
+        - nameGr: ΠΑΡΑΝΑ
+        - nameGr: ΜΠΡΑΖΙΛ
+        - nameGr: ΦΙΓΚΕΙΡΕΝΣΕ
+        - nameGr: ΣΠΟΡΤ ΡΕΣΙΦΕ
+        - nameGr: ΚΟΥΙΑΜΠΑ
+        - nameGr: ΒΙΛΑ ΝΟΒΑ
+        - nameGr: ΟΠΕΡΑΡΙΟ
+        - nameGr: ΓΚΟΥΑΡΑΝΙ
+        - nameGr: ΚΡΙΣΙΟΥΜΑ
+        - nameGr: ΛΟΝΤΡΙΝΑ
+        - nameGr: ΟΕΣΤΕ
+        - nameGr: ΚΛ. ΡΕΓΚΑΤΑΣ
+        - nameGr: ΚΟΡΙΤΙΜΠΑ
+      type: LEAGUE
+    - code: copa-do-brasil
+      name: Кубок Бразилии
+      nameGr: ΚΥΠΕΛΛΟ ΒΡΑΖΙΛΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: usa-major-league-soccer
+      name: Чемпионат США. MLS
+      nameGr: MLS
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΟΣ ΑΝΤΖΕΛΕΣ
+        - nameGr: ΣΙΝΣΙΝΑΤΙ
+        - nameGr: ΜΙΝΕΣΟΤΑ
+        - nameGr: ΚΟΛΟΜΠΟΥΣ
+        - nameGr: ΑΤΛΑΝΤΑ
+        - nameGr: ΟΥΑΣΙΝΓΚΤΟΝ
+        - nameGr: ΤΟΡΟΝΤΟ
+        - nameGr: ΣΙΑΤΛ
+        - nameGr: Ν.Υ. ΣΙΤΙ
+        - nameGr: ΣΙΚΑΓΟ
+        - nameGr: ΣΑΝ ΧΟΣΕ
+        - nameGr: ΒΑΝΚΟΥΒΕΡ
+        - nameGr: ΦΙΛΑΔΕΛΦΕΙΑ
+        - nameGr: ΜΟΝΤΡΕΑΛ
+        - nameGr: ΝΙΟΥ ΙΝΓΚΛΑΝΤ
+        - nameGr: ΠΟΡΤΛΑΝΤ
+        - nameGr: ΝΤΑΛΑΣ
+        - nameGr: Λ.Α. ΓΚΑΛΑΞΙ
+        - nameGr: ΟΡΛΑΝΤΟ
+        - nameGr: ΧΙΟΥΣΤΟΝ
+        - nameGr: ΚΑΝΣΑΣ
+        - nameGr: ΝΕΑ ΥΟΡΚΗ
+        - nameGr: ΚΟΛΟΡΑΝΤΟ
+        - nameGr: ΣΟΛΤ ΛΕΙΚ
+      type: LEAGUE
+    - code: usa-cup
+      name: Кубок США
+      nameGr: ΚΥΠΕΛΛΟ ΗΠΑ
+      season: _2018_2019
+      type: CUP
+    - code: ecuador-serie-a
+      name: Чемпионат Эквадора
+      nameGr: Α ΙΣΗΜΕΡΙΝΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΕΛΦΙΝ
+        - nameGr: ΟΛΜΕΔΟ
+        - nameGr: ΕΜΕΛΕΚ
+        - nameGr: ΑΜΕΡΙΚΑ ΝΤΕ ΚΙΤΟ
+        - nameGr: ΜΠΑΡΤΣΕΛΟΝΑ
+        - nameGr: ΟΥΝ. ΚΑΤΟΛΙΚΑ
+        - nameGr: ΙΝΤ. ΝΤΕΛ ΒΑΓΕ
+        - nameGr: ΕΛ ΝΑΣΙΟΝΑΛ
+        - nameGr: ΚΟΥΕΝΚΑ
+        - nameGr: ΓΚΟΥΑΓΙΑΚΙΛ
+        - nameGr: ΜΟΥΣΟΥΚ ΡΟΥΝΑ
+        - nameGr: ΦΟΥΕΡΣΑ ΑΜΑΡΙΓΙΑ
+        - nameGr: ΛΙΓΚΑ ΝΤΕ ΚΙΤΟ
+        - nameGr: ΑΟΥΚΑΣ
+        - nameGr: ΜΑΚΑΡΑ
+        - nameGr: ΤΕΚΝΙΚΟ
+      type: LEAGUE
+    - code: colombia-liga-aguila
+      name: Чемпионат Колумбии
+      nameGr: Α ΚΟΛΟΜΒΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΙΓΙΟΝΑΡΙΟΣ
+        - nameGr: ΡΙΟΝΕΓΚΡΟ
+        - nameGr: ΑΤΛ. ΝΑΣΙΟΝΑΛ
+        - nameGr: ΜΠΟΥΚΑΡΑΜΑΝΓΚΑ
+        - nameGr: ΣΑΝΤΑ ΦΕ
+        - nameGr: ΝΤΕΠ. ΚΑΛΙ
+        - nameGr: ΠΑΤΡΙΟΤΑΣ
+        - nameGr: ΤΖΑΓΚΟΥΑΡΕΣ
+        - nameGr: ΤΖΟΥΝΙΟΡ
+        - nameGr: ΜΕΝΤΕΓΙΝ
+        - nameGr: ΟΝΣΕ ΚΑΛΝΤΑΣ
+        - nameGr: ΑΜΕΡΙΚΑ ΚΑΛΙ
+        - nameGr: ΤΟΛΙΜΑ
+        - nameGr: ΕΝΒΙΓΚΑΔΟ
+        - nameGr: ΕΚΙΔΑΔ
+        - nameGr: ΝΤΕΠ. ΠΑΣΤΟ
+        - nameGr: ΑΤΛ. ΟΥΙΛΑ
+        - nameGr: ΑΛΙΑΝΣΑ
+        - nameGr: ΜΑΓΚΝΤΑΛΕΝΑ
+        - nameGr: ΚΟΥΚΟΥΤΑ
+      type: LEAGUE
+    - code: colombia-copa-aguila
+      name: Кубок Колумбии
+      nameGr: ΚΥΠΕΛΛΟ ΚΟΛΟΜΒΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: mexico-primera-division
+      name: Чемпионат Мексики
+      nameGr: Α ΜΕΞΙΚΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΡΟΥΖ ΑΖΟΥΛ
+        - nameGr: ΜΟΝΑΡΚΑΣ
+        - nameGr: ΠΟΥΜΑΣ
+        - nameGr: ΤΟΛΟΥΚΑ
+        - nameGr: ΚΕΡΕΤΑΡΟ
+        - nameGr: ΝΕΚΑΞΑ
+        - nameGr: ΣΑΝΤΟΣ
+        - nameGr: ΑΜΕΡΙΚΑ
+        - nameGr: ΤΙΓΚΡΕΣ
+        - nameGr: ΤΙΧΟΥΑΝΑ
+        - nameGr: ΠΑΤΣΟΥΚΑ
+        - nameGr: ΛΕΟΝ
+        - nameGr: ΠΟΥΕΜΠΛΑ
+        - nameGr: ΓΟΥΔΑΛΑΧΑΡΑ
+        - nameGr: ΜΟΝΤΕΡΕΙ
+        - nameGr: ΑΤΛΑΣ
+        - nameGr: ΒΕΡΑΚΡΟΥΖ
+        - nameGr: ΛΟΜΠΟΣ
+      type: LEAGUE
+    - code: mexico-copa
+      name: Кубок Мексики
+      nameGr: ΚΥΠΕΛΛΟ ΜΕΞΙΚΟΥ
+      season: _2018_2019
+      type: CUP
+    - code: uruguay-primera-division
+      name: Чемпионат Уругвая
+      nameGr: Α ΟΥΡΟΥΓΟΥΑΗΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΕΡΟ
+        - nameGr: ΧΟΥΒΕΝΤΟΥΔ
+        - nameGr: ΓΟΥΟΝΤΕΡΕΡΣ
+        - nameGr: ΛΙΒΕΡΠΟΥΛ
+        - nameGr: ΡΙΒΕΡ
+        - nameGr: ΝΤΑΝΟΥΜΠΙΟ
+        - nameGr: ΣΕΡΟ ΛΑΡΓΚΟ
+        - nameGr: ΜΠΟΣΤΟΝ ΡΙΒΕΡ
+        - nameGr: ΡΑΣΙΝΓΚ
+        - nameGr: ΠΡΟΓΚΡΕΣΟ
+        - nameGr: ΠΛΑΣΑ ΚΟΛΟΝΙΑ
+        - nameGr: ΠΕΝΙΑΡΟΛ
+        - nameGr: ΝΑΣΙΟΝΑΛ
+        - nameGr: ΡΑΜΠΛΑ ΤΖΟΥΝΙΟΡΣ
+        - nameGr: ΦΕΝΙΞ
+        - nameGr: ΝΤΕΦΕΝΣΟΡ
+      type: LEAGUE
+    - code: paraguay-primera-division
+      name: Чемпионат Парагвая
+      nameGr: Α ΠΑΡΑΓΟΥΑΗΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΚΟΥΑΡΑΝΙ
+        - nameGr: ΟΛΙΜΠΙΑ
+        - nameGr: ΝΑΣΙΟΝΑΛ
+        - nameGr: ΛΟΥΚΕΝΙΟ
+        - nameGr: ΚΑΠΙΑΤΑ
+        - nameGr: ΧΕΝΕΡΑΛ ΝΤΙΑΣ
+        - nameGr: ΣΕΡΟ ΠΟΡΤΕΝΙΟ
+        - nameGr: ΡΙΒΕΡ ΠΛΕΙΤ
+        - nameGr: ΣΟΛ
+        - nameGr: ΣΑΝΤΑΝΙ
+        - nameGr: ΛΙΜΠΕΡΤΑΔ
+        - nameGr: ΣΑΝ ΛΟΡΕΝΣΟ
+      type: LEAGUE
+    - code: peru-primera-division
+      name: Чемпионат Перу
+      nameGr: Α ΠΕΡΟΥ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΕΛΓΑΡ
+        - nameGr: ΣΠΟΡΤ ΜΠΟΙΣ
+        - nameGr: ΙΝΤΙ ΓΚΑΣ
+        - nameGr: ΑΛ. ΛΙΜΑ
+        - nameGr: ΟΥΝ. ΚΟΜΕΡΣΙΟ
+        - nameGr: ΣΑΝ ΜΑΡΤΙΝ
+        - nameGr: ΓΚΑΡΣΙΛΑΣΟ
+        - nameGr: ΟΥΝΙΒΕΡΣΙΤΑΡΙΟ
+        - nameGr: ΚΑΧΑΜΑΡΚΑ
+        - nameGr: ΚΑΝΤΟΛΑΟ
+        - nameGr: ΚΑΡΛΟΣ ΜΑΝΟΥΤΣΙ
+        - nameGr: ΜΠΙΝΑΣΙΟΝΑΛ
+        - nameGr: ΕΛ ΠΙΡΑΤΑ
+        - nameGr: ΣΠ. ΚΡΙΣΤΑΛ
+        - nameGr: ΜΟΥΝΙΣΙΠΑΛ
+        - nameGr: ΣΕΣΑΡ ΒΑΓΙΕΧΟ
+        - nameGr: ΑΛΙΑΝΣΑ ΟΥΝΙΒΕΡΣΙΔΑΔ
+        - nameGr: ΟΥΑΝΚΑΓΙΟ
+      type: LEAGUE
+    - code: chile-primera-division
+      name: Чемпионат Чили
+      nameGr: Α ΧΙΛΗΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΑ ΚΑΛΕΡΑ
+        - nameGr: ΚΟΜΠΡΕΣΑΛ
+        - nameGr: ΟΥΝ. ΚΑΤΟΛΙΚΑ
+        - nameGr: ΑΝΤΟΦΑΓΑΣΤΑ
+        - nameGr: ΚΟΥΡΙΚΟ
+        - nameGr: ΑΟΥΝΤΑΞ
+        - nameGr: ΟΥΝ. ΝΤΕ ΤΣΙΛΕ
+        - nameGr: Ο ΧΙΓΚΙΝΣ
+        - nameGr: ΕΒΕΡΤΟΝ
+        - nameGr: ΚΟΚΙΜΠΟ
+        - nameGr: ΟΥΑΤΣΙΠΑΤΟ
+        - nameGr: ΙΚΙΚΕ
+        - nameGr: ΠΑΛΕΣΤΙΝΟ
+        - nameGr: ΟΥΝ. ΕΣΠΑΝΙΟΛΑ
+        - nameGr: ΚΟΛΟ ΚΟΛΟ
+        - nameGr: ΟΥΝ. ΚΟΝΣΕΠΣΙΟΝ
+      type: LEAGUE
+    - code: chile-cup
+      name: Кубок Чили
+      nameGr: ΚΥΠΕΛΛΟ ΧΙΛΗΣ
+      season: _2018_2019
+      type: CUP
+    - code: asia-afc-champions-league
+      name: Лига Чемпиоов Азии
+      nameGr: ΤΣΑΜΠΙΟΝΣ ΛΙΓΚ ΑΣΙΑΣ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: australia-a-league
+      name: Чемпионат Австралии.
+      nameGr: Α ΑΥΣΤΡΑΛΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΕΛ. ΒΙΚΤΟΡΙ
+        - nameGr: ΓΟΥΟΝΤΕΡΕΡΣ
+        - nameGr: ΜΕΛ. ΣΙΤΙ
+        - nameGr: ΜΠΡΙΣΜΠΕΙΝ
+        - nameGr: ΠΕΡθ ΓΚΛΟΡΙ
+        - nameGr: ΟΥΕΛΙΝΓΚΤΟΝ
+        - nameGr: ΣΙΔΝΕΙ
+        - nameGr: ΣΕΝΤΡΑΛ ΚΟΣΤ
+        - nameGr: ΝΙΟΥΚΑΣΤΛ
+        - nameGr: ΑΔΕΛΑΐΔΑ
+      type: LEAGUE
+    - code: australia-cup
+      name: Кубок Австралии
+      nameGr: ΚΥΠΕΛΛΟ ΑΥΣΤΡΑΛΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: japan-a
+      name: Чемпионат Японии
+      nameGr: Α ΙΑΠΩΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΑΓΚΟΓΙΑ
+        - nameGr: ΤΣΕΡΕΖΟ ΟΣ.
+        - nameGr: ΟΙΤΑ ΤΡΙΝΙΤΑ
+        - nameGr: ΣΟΝΑΝ ΜΠ.
+        - nameGr: ΚΑΒΑΣΑΚΙ
+        - nameGr: ΤΟΚΥΟ
+        - nameGr: Β. ΣΕΝΤΑΙ
+        - nameGr: ΓΙΟΚΟΧΑΜΑ Μ.
+        - nameGr: Γ. ΙΒΑΤΑ
+        - nameGr: ΣΙΜΙΖΟΥ
+        - nameGr: ΚΑΣΙΜΑ
+        - nameGr: ΣΑΓΚΑΝ ΤΟΣΟΥ
+        - nameGr: ΒΙΣΕΛ ΚΟΜΠΕ
+        - nameGr: ΟΥΡΑΒΑ
+        - nameGr: Μ. ΓΙΑΜΑΓΚΑ
+        - nameGr: ΧΙΡΟΣΙΜΑ
+        - nameGr: ΓΚ. ΟΣΑΚΑ
+        - nameGr: Κ. ΣΑΠΟΡΟ
+      type: LEAGUE
+    - code: japan-b
+      name: Чемпионат Японии. Второй дивизион
+      nameGr: Β ΙΑΠΩΝΙΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: Β. ΚΟΦΟΥ
+        - nameGr: ΚΙΟΤΟ
+        - nameGr: ΜΙΤΟ
+        - nameGr: ΟΚΑΓΙΑΜΑ
+        - nameGr: ΕΧΙΜΕ
+        - nameGr: ΝΑΓΚΑΣΑΚΙ
+        - nameGr: ΚΑΓΚΟΣΙΜΑ
+        - nameGr: ΜΟΝΤΕΔΙΟ
+        - nameGr: ΓΙΟΚΟΧΑΜΑ
+        - nameGr: ΚΑΣΙΒΑ
+        - nameGr: ΤΟΚΟΥΣΙΜΑ
+        - nameGr: ΡΕΝΟΦΑ ΓΙΑΜΑΓΚΟΥΤΣΙ
+        - nameGr: ΦΟΥΚΟΥΚΟΑ
+        - nameGr: ΟΜΙΓΙΑ
+        - nameGr: ΖΒΕΙΓΚΕΝ
+        - nameGr: ΡΙΟΥΚΙΟΥ
+        - nameGr: ΤΟΤΣΙΓΚΙ
+        - nameGr: ΤΖΙΦΟΥ
+        - nameGr: ΤΟΚΙΟ ΒΕΡΝΤΙ
+        - nameGr: ΜΑΤΣΙΝΤΑ
+        - nameGr: ΤΣΙΜΠΑ ΓΙΟΥΝ.
+        - nameGr: ΝΙΓΚΑΤΑ
+      type: LEAGUE
+    - code: japan-cup
+      name: Кубок Японии
+      nameGr: ΚΥΠΕΛΛΟ ΙΑΠΩΝΙΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: japan-league-cup
+      name: Кубок Японии. Лига куп
+      nameGr: ΛΙΓΚ ΚΑΠ
+      season: _2018_2019
+      type: CUP
+    - code: china-a
+      name: Чемпионат Китая
+      nameGr: Α ΚΙΝΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΧΕΜΠΕΙ
+        - nameGr: ΓΚΟΥΟΑΝ
+        - nameGr: ΕΒΕΡΓΚΡΑΝΤΕ
+        - nameGr: ΤΙΑΝΧΑΙ
+        - nameGr: ΣΕΝΧΟΥΑ
+        - nameGr: ΤΣΟΝΓΚΙΝΓΚ
+        - nameGr: ΣΑΝΓΚΑΗ ΣΙΠΓ
+        - nameGr: ΡΕΝΕ
+        - nameGr: ΝΤΑΛΙΑΝ
+        - nameGr: ΓΚΟΥΑΝΓΚΤΖΟΥ ΡΦ
+        - nameGr: ΓΟΥΧΑΝ ΖΑΛ
+        - nameGr: ΣΕΝΖΕΝ
+        - nameGr: ΓΙΑΝΓΚΣΟΥ
+        - nameGr: ΤΕΝΤΑ
+        - nameGr: ΣΑΝΤΟΝΓΚ
+        - nameGr: ΧΕΝΑΝ
+      type: LEAGUE
+    - code: china-cup
+      name: Кубок Китая
+      nameGr: ΚΥΠΕΛΛΟ ΚΙΝΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: south-korea-k-league-1
+      name: Чемпионат Южной Кореи
+      nameGr: Α Ν. ΚΟΡΕΑΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΑΕΓΟΥ
+        - nameGr: ΣΑΝΓΚΓΙΟΥ
+        - nameGr: ΣΕΟΝΓΚΝΑΜ
+        - nameGr: ΟΥΛΣΑΝ
+        - nameGr: ΣΕΟΥΛ
+        - nameGr: ΓΙΕΓΙΟΥ
+        - nameGr: ΓΙΕΟΝΜΠΟΥΚ
+        - nameGr: ΓΚΑΝΓΚΒΟΝ
+        - nameGr: ΠΟΧΑΝΓΚ
+        - nameGr: ΓΚΙΕΟΝΓΚΝΑΜ
+        - nameGr: ΙΝΤΣΕΟΝ
+        - nameGr: ΣΟΥΓΟΝ
+      type: LEAGUE
+    - code: south-korea-cup
+      name: Кубок Южной Кореи
+      nameGr: ΚΥΠΕΛΛΟ Ν. ΚΟΡΕΑΣ
+      season: _2018_2019
+      type: CUP
+    - code: world-cup
+      name: Чемпионат Мира
+      nameGr: ΠΑΓΚΟΣΜΙΟ ΚΥΠΕΛΛΟ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: euro
+      name: Чемпионат Европы
+      nameGr: EURO
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: nations-league
+      name: Лига Наций УЕФА
+      nameGr: UEFA NATIONS LEAGUE
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: nations-league-a
+      name: Лига Наций УЕФА група A
+      nameGr: NATIONS LEAGUE GROUP A
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: nations-league-b
+      name: Лига Наций УЕФА група B
+      nameGr: NATIONS LEAGUE GROUP B
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: nations-league-c
+      name: Лига Наций УЕФА група C
+      nameGr: NATIONS LEAGUE GROUP C
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: nations-league-group-d
+      name: Лига Наций УЕФА група D
+      nameGr: NATIONS LEAGUE GROUP D
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: euro-u21
+      name: Чемпионат Европы до 21 года
+      nameGr: EURO U21
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: copa-america
+      name: Кубок Америки
+      nameGr: ΚΟΠΑ ΑΜΕΡΙΚΑ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: africa-cup-of-nations
+      name: Кубок Африканских Наций
+      nameGr: ΚΥΠΕΛΛΟ ΕΘΝΩΝ ΑΦΡΙΚΗΣ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: gkolnt-kap
+      name: Кубок голд
+      nameGr: ΓΚΟΛΝΤ ΚΑΠ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: kyp-synomospondion
+      name: Кубок конфедерации
+      nameGr: ΚΥΠ. ΣΥΝΟΜΟΣΠΟΝΔΙΩΝ
+      season: _2018_2019
+      type: INTERNATIONAL
+    - code: friendly-international
+      name: Товарищеские матчи сборные
+      nameGr: ΦΙΛΙΚΑ ΕΘΝΙΚΩΝ
+      season: _2018_2019
+      type: FRIENDLY
+    - code: albania-a
+      name: Чемпионат Альбании
+      nameGr: ΑΛΒΑΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΤΙΡΑΝΑ
+        - nameGr: ΠΑΡΤΙΖΑΝ ΤΙΡ.
+        - nameGr: ΣΚΕΝΤΕΡΜΠΕΟΥ
+        - nameGr: ΛΑΤΣΙ
+        - nameGr: ΤΕΟΥΤΑ ΝΤΟΥΡΕΣ
+        - nameGr: ΚΟΥΚΕΣΙ
+        - nameGr: ΚΑΜΖΑ
+        - nameGr: ΦΛΑΜΟΥΡΤΑΡΙ
+        - nameGr: ΛΟΥΦΤΕΤΑΡΙ
+        - nameGr: ΚΑΣΤΡΙΟΤΙ
+      type: LEAGUE
+    - code: northern-ireland-premiership
+      name: Чемпионат Северной Ирландии
+      nameGr: ΒΟΡΕΙΑ ΙΡΛΑΝΔΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΟΥΝΓΚΑΝΟΝ
+        - nameGr: ΑΡΝΤΣ
+        - nameGr: ΓΚΛΕΝΤΟΡΑΝ
+        - nameGr: ΝΙΟΥΡΙ ΣΙΤΙ
+        - nameGr: ΛΙΝΦΙΛΝΤ
+        - nameGr: ΓΚΛΕΝΑΒΟΝ
+        - nameGr: ΚΟΛΕΡΕΙΝ
+        - nameGr: ΙΝΣΤΙΤΟΥΤ
+        - nameGr: ΓΟΥΟΡΕΝΠΟΙΝΤ
+        - nameGr: ΚΛΙΦΤΟΝΒΙΛ
+        - nameGr: ΜΠΑΛΙΜΕΝΑ
+        - nameGr: ΚΡΟΥΣΕΙΝΤΕΡΣ
+      type: LEAGUE
+    - code: bulgaria-a
+      name: Чемпионат Болгарии
+      nameGr: ΒΟΥΛΓΑΡΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΝΤΟΥΝΑΒ ΡΟΥΣΕ
+        - nameGr: ΒΕΡΕΓΙΑ
+        - nameGr: ΜΠΕΡΟΕ
+        - nameGr: ΤΣΕΡΝΟ ΜΟΡΕ ΒΑΡΝΑ
+        - nameGr: ΜΠΟΤΕΦ ΒΡΑΤΣΑ
+        - nameGr: ΣΕΠΤΕΜΒΡΙ ΣΟΦΙΑ
+        - nameGr: ΛΕΦΣΚΙ ΣΟΦΙΑΣ
+        - nameGr: ΕΤΑΡ
+        - nameGr: ΣΛΑΒΙΑ ΣΟΦΙΑΣ
+        - nameGr: ΛΟΚ. ΠΛΟΒΝΤΙΒ
+        - nameGr: ΜΠΟΤΕΦ ΠΛΟΒΝΤΙΒ
+        - nameGr: ΒΙΤΟΣΑ
+        - nameGr: ΤΣΣΚΑ ΣΟΦΙΑΣ
+        - nameGr: ΛΟΥΝΤΟΓΚΟΡΕΤΣ
+      type: LEAGUE
+    - code: iceland-a
+      name: Чемпионат Исландии
+      nameGr: ΙΣΛΑΝΔΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΑΚΡΑΝΕΣ
+        - nameGr: ΒΕΣΤΜΑΝΑΕΓΙΑΡ
+        - nameGr: ΓΚΡΙΝΤΑΒΙΚ
+        - nameGr: ΣΤΙΑΡΝΑΝ
+        - nameGr: FH ΧΑΦΝΑΡΦΙΟΝΤΟΥΡ
+        - nameGr: ΑΚΟΥΡΕΙΡΙ
+        - nameGr: ΦΙΛΚΙΡ
+        - nameGr: ΒΑΛΟΥΡ
+        - nameGr: ΒΙΚΙΝΓΚΟΥΡ ΡΕΚΙΑΒΙΚ
+        - nameGr: ΜΠΡΕΙΝΤΑΜΠΛΙΚ
+        - nameGr: ΚΟΠΑΒΟΓΚΣ
+        - nameGr: KR ΡΕΙΚΙΑΒΙΚ
+      type: LEAGUE
+    - code: israel-a
+      name: Чемпионат Израиля
+      nameGr: ΙΣΡΑΗΛ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΑΚ. ΠΕΤΑΧ ΤΙΚΒΑ
+        - nameGr: ΑΣΝΤΟΝΤ
+        - nameGr: ΧΑΠ. ΡΑΑΝΑΝΑ
+        - nameGr: ΧΑΠ. ΤΕΛ ΑΒΙΒ
+        - nameGr: ΧΑΠ. ΙΡΟΝΙ ΚΙΡΙΑΤ ΣΜΟΝΑ
+        - nameGr: ΧΑΠ. ΧΑΙΦΑ
+        - nameGr: ΧΑΠ. ΜΠΙΡ ΣΕΒΑ
+        - nameGr: ΜΑΚ. ΧΑΙΦΑ
+        - nameGr: ΜΑΚΑΜΠΙ Τ.Α.
+        - nameGr: ΜΠΕΙΤΑΡ ΙΕΡ.
+        - nameGr: ΜΠΝΕΙ ΣΑΚΝΙΝ
+        - nameGr: ΜΠΝΕΙ ΓΕΧΟΥΝΤΑ Τ.Α.
+        - nameGr: ΧΑΠ. ΧΑΝΤΕΡΑ ΕΡΑΝ
+        - nameGr: ΜΑΚ. ΝΕΤΑΝΙΑ
+      type: LEAGUE
+    - code: croatia-a
+      name: Чемпионат Хорватии
+      nameGr: ΚΡΟΑΤΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΚΟΡΙΤΣΑ
+        - nameGr: ΡΟΥΝΤΕΣ
+        - nameGr: ΝΤ. ΖΑΓΚΡΕΜΠ
+        - nameGr: ΣΛΑΒΕΝ
+        - nameGr: ΙΣΤΡΑ 1961
+        - nameGr: ΡΙΕΚΑ
+        - nameGr: ΙΝΤΕΡ ΖΑΠΡΕΣΙΤΣ
+        - nameGr: ΟΣΙΓΙΕΚ
+        - nameGr: ΧΑΙΝΤΟΥΚ
+        - nameGr: ΛΟΚΟΜΟΤΙΒΑ
+      type: LEAGUE
+    - code: letonia
+      name: Чемпионат Латвии
+      nameGr: ΛΕΤΟΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΛΙΕΠΑΓΙΑ
+        - nameGr: ΡΙΓΑ Φ.Σ.
+        - nameGr: ΓΕΛΓΚΑΒΑ
+        - nameGr: ΒΑΛΜΙΕΡΑΣ
+        - nameGr: ΝΤΑΟΥΓΚΑΒΠΙΛΣ
+        - nameGr: ΒΕΝΤΣΠΙΛΣ
+        - nameGr: ΜΕΤΑ
+        - nameGr: ΣΠΑΡΤΑΚΣ
+        - nameGr: ΡΙΓΑ
+      type: LEAGUE
+    - code: a-lithoyanias
+      name: Чемпионат Литвы
+      nameGr: ΛΙΘΟΥΑΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΤΟΥΜΠΡΑΣ
+        - nameGr: ΠΑΝΕΒΕΖΙΣ
+        - nameGr: ΠΑΛΑΝΓΚΑ
+        - nameGr: ΚΑΟΥΝΟ ΖΑΛΓΚΙΡΙΣ
+        - nameGr: ΡΙΤΕΡΙΑΙ
+        - nameGr: ΑΤΛΑΝΤΑΣ ΚΛΑΙΠΕΝΤΑ
+        - nameGr: ΣΟΥΝΤΟΥΒΑ
+        - nameGr: ΖΑΛΓΚΙΡΙΣ ΒΙΛΝΙΟΥΣ
+      type: LEAGUE
+    - code: wales-premier-league
+      name: Чемпионат Уэльс
+      nameGr: ΟΥΑΛΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΑΛΑ ΤΑΟΥΝ
+        - nameGr: ΝΙΟΥΤΑΟΥΝ
+        - nameGr: ΑΜΠΕΡΙΣΤΓΟΥΙθ
+        - nameGr: ΚΑΡΜΑΡθΕΝ
+        - nameGr: ΣΕΦΝ ΝΤΡΟΥΙΝΤΣ
+        - nameGr: ΚΑΡΝΤΙΦ ΜΕΤ ΓΙΟΥΝ.
+        - nameGr: ΝΙΟΥ ΣΕΝΤΣ
+        - nameGr: ΚΟΝΑΧΣ ΚΟΥΕΙ
+        - nameGr: ΜΠΑΡΙ ΤΑΟΥΝ
+        - nameGr: ΣΕΡΝΑΡΦΟΝ
+        - nameGr: ΛΙΑΝΕΛΙ
+        - nameGr: ΛΙΑΝΤΟΥΝΤΟ
+      type: LEAGUE
+    - code: hungary-a
+      name: Чемпионат Венгрии
+      nameGr: ΟΥΓΓΑΡΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΒΑΡΝΤΑ
+        - nameGr: ΧΑΛΑΝΤΑΣ
+        - nameGr: ΒΙΝΤΙ
+        - nameGr: ΜΤΚ ΒΟΥΔΑΠΕΣΤΗΣ
+        - nameGr: ΜΕΖΟΚΟΒΕΣΝΤ
+        - nameGr: ΟΥΙΠΕΣΤ
+        - nameGr: ΦΕΡΕΝΤΣΒΑΡΟΣ
+        - nameGr: ΝΤΕΜΠΡΕΤΣΕΝΙ
+        - nameGr: ΝΤΙΟΣΓΚΙΟΡ
+        - nameGr: ΧΟΝΕΒΝΤ
+        - nameGr: ΠΟΥΣΚΑΣ ΑΚΑΝΤΕΜΙ
+        - nameGr: ΠΑΚΣΙ
+      type: LEAGUE
+    - code: ukraine
+      name: Чемпионат Украини
+      nameGr: ΟΥΚΡΑΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΑΛΕΞΑΝΤΡΙΑ
+        - nameGr: ΑΡΣΕΝΑΛ ΚΙΕΒΟΥ
+        - nameGr: ΛΒΙΒ
+        - nameGr: ΤΣΕΡΝΟΜΟΡΕΤΣ
+        - nameGr: ΝΤ. ΚΙΕΒΟΥ
+        - nameGr: ΚΑΡΠΑΤΙ
+        - nameGr: ΒΟΡΣΚΛΑ
+        - nameGr: ΝΤΕΣΝΑ
+        - nameGr: ΟΛΙΜΠΙΚ ΝΤ.
+        - nameGr: ΣΑΧΤΑΡ
+        - nameGr: ΜΑΡΙΟΥΠΟΛ
+        - nameGr: ΖΟΡΙΑ
+      type: LEAGUE
+    - code: romania-a
+      name: Чемпионат Румынии
+      nameGr: ΡΟΥΜΑΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΚΛΟΥΖ
+        - nameGr: ΓΚΑΖ ΜΕΤΑΝ
+        - nameGr: ΜΠΟΤΟΣΑΝΙ
+        - nameGr: ΝΤΟΥΝΑΡΕΑ
+        - nameGr: ΒΙΤΟΡΟΥΛ ΚΟΝΣΤΑΝΤΑ
+        - nameGr: ΧΕΡΜΑΝΣΤΑΝΤ
+        - nameGr: ΒΟΛΟΥΝΤΑΡΙ
+        - nameGr: ΟΥΝ. ΚΡΑΙΟΒΑ
+        - nameGr: ΑΣΤΡΑ
+        - nameGr: ΚΟΝΚΟΡΝΤΙΑ
+        - nameGr: ΣΤΕΑΟΥΑ ΒΟΥΚ.
+        - nameGr: ΝΤΙΝΑΜΟ ΒΟΥΚ.
+        - nameGr: ΣΕΠΣΙ
+        - nameGr: ΙΑΣΙ
+      type: LEAGUE
+    - code: serbia-a
+      name: Чемпионат Сербии
+      nameGr: ΣΕΡΒΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΑΤΣΒΑ
+        - nameGr: ΜΠΑΤΣΚΑ
+        - nameGr: ΖΕΜΟΥΝ
+        - nameGr: ΕΡΥθΡΟΣ ΑΣΤΕΡΑΣ
+        - nameGr: ΡΑΝΤ
+        - nameGr: ΡΑΝΤΝΙΣΚΙ Ν.
+        - nameGr: ΒΟΙΒΟΝΤΙΝΑ
+        - nameGr: ΒΟΖΝΤΟΒΑΤΣ
+        - nameGr: ΠΡΟΛΕΤΕΡ
+        - nameGr: ΝΑΠΡΕΝΤΑΚ
+        - nameGr: ΠΑΡΤΙΖΑΝ Β.
+        - nameGr: ΡΑΝΤΝΙΚ
+        - nameGr: ΜΛΑΝΤΟΣΤ Λ.
+        - nameGr: ΣΟΥΜΠΟΤΙΤΣΑ
+        - nameGr: ΝΤ. ΒΡΙΑΝΙΕ
+        - nameGr: ΤΣΟΥΚΑΡΙΤΣΚΙ
+      type: LEAGUE
+    - code: slovakia-a
+      name: Чемпионат Словакии
+      nameGr: ΣΛΟΒΑΚΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΛΟΒΑΝ ΜΠΡ.
+        - nameGr: ΤΡΕΝΤΣΙΝ
+        - nameGr: ΠΟΝΤΜΠΡΕΖΟΒΑ
+        - nameGr: ΖΕΜΠΛΙΝ
+        - nameGr: ΣΕΡΕΝΤ
+        - nameGr: Ζ. ΜΟΡΑΦΤΣΕ
+        - nameGr: ΡΟΥΖΟΜΠΕΡΟΚ
+        - nameGr: ΖΙΛΙΝΑ
+        - nameGr: ΝΤΟΥΝΑΙΣΚΑ
+        - nameGr: ΣΠ. ΤΡΝΑΒΑ
+        - nameGr: ΣΕΝΙΤΣΑ
+        - nameGr: ΝΙΤΡΑ
+      type: LEAGUE
+    - code: slovenia-a
+      name: Чемпионат Словении
+      nameGr: ΣΛΟΒΕΝΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΛΟΒΑΝ ΜΠΡ.
+        - nameGr: ΤΡΕΝΤΣΙΝ
+        - nameGr: ΠΟΝΤΜΠΡΕΖΟΒΑ
+        - nameGr: ΖΕΜΠΛΙΝ
+        - nameGr: ΣΕΡΕΝΤ
+        - nameGr: Ζ. ΜΟΡΑΦΤΣΕ
+        - nameGr: ΡΟΥΖΟΜΠΕΡΟΚ
+        - nameGr: ΖΙΛΙΝΑ
+        - nameGr: ΝΤΟΥΝΑΙΣΚΑ
+        - nameGr: ΣΠ. ΤΡΝΑΒΑ
+        - nameGr: ΣΕΝΙΤΣΑ
+        - nameGr: ΝΙΤΡΑ
+      type: LEAGUE
+    - code: egypt-premier-league
+      name: Чемпионат Египта
+      nameGr: ΑΙΓΥΠΤΟΣ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΕΤΡΟΤΖΕΤ
+        - nameGr: ΕΛ ΖΑΜΑΛΕΚ
+        - nameGr: ΕΛ ΧΑΡΜΠΙ
+        - nameGr: ΕΛ ΧΟΝΤΟΟΝΤ
+        - nameGr: ΑΛ ΜΟΚΑΒΛΟΟΝ
+        - nameGr: ΜΙΣΡ ΕΛ ΜΑΚΑΣΑ
+        - nameGr: ΣΜΟΥΧΑ
+        - nameGr: ΕΛ ΓΚΕΙΣΧ
+        - nameGr: ΝΟΓΚΟΟΜ
+        - nameGr: ΕΛ ΓΚΟΥΝΑ
+        - nameGr: ΕΛ ΝΤΑΚΛΕΓΙΑ
+        - nameGr: ΠΥΡΑΜΙΝΤΣ
+        - nameGr: ΑΛ ΜΑΡΣΙ
+        - nameGr: ΒΑΝΤΙ ΝΤΕΓΚΛΑ
+        - nameGr: ΕΝΠΙ
+        - nameGr: ΑΛ ΑΧΛΙ
+        - nameGr: ΑΛ ΙΤΙΧΑΝΤ
+        - nameGr: ΙΣΜΑΙΛΙ
+      type: LEAGUE
+    - code: algeria-a
+      name: Чемпионат алжир
+      nameGr: ΑΛΓΕΡΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΣΕΤΙΦ
+        - nameGr: ΤΑΝΤΖΕΝΑΝΤ
+        - nameGr: ΧΟΥΣΕΐΝ ΝΤΕΙ
+        - nameGr: MC ΟΡΑΝ
+        - nameGr: ΟΛΙΜΠΙΚ ΜΕΝΤΕΑ
+        - nameGr: ΣΑΟΥΡΑ
+        - nameGr: MC ΑΛΖΕΡ
+        - nameGr: CABBA
+        - nameGr: USM ΑΛΖΕΡ
+        - nameGr: MO ΜΠΕΤΖΑΙΑ
+        - nameGr: ΠΑΡΑΝΤΟΥ
+        - nameGr: ΚΟΝΣΤΑΝΤΙΝ
+        - nameGr: ΚΑΜΠΙΛΙΕ
+        - nameGr: ΜΠΕΛΟΥΙΖΝΤΑΝΤ
+        - nameGr: ΜΠΕΛ ΑΜΠΕΣ
+        - nameGr: ΑΐΝ ΜΙΓΙΑ
+      type: LEAGUE
+    - code: uae-pro-league
+      name: Чемпионат ОАЭ
+      nameGr: Η.Α.Ε.
+      season: _2018_2019
+      teams:
+        - nameGr: ΑΛ ΤΖΑΖΙΡΑ
+        - nameGr: ΑΙΜΑΝ
+        - nameGr: ΕΜΙΡΕΙΤΣ
+        - nameGr: ΑΛ ΒΑΣΛ
+        - nameGr: Σ. ΑΛ ΑΧΛΙ ΝΤΟΥΜΠΑΙ
+        - nameGr: ΜΠΑΝΙΓΙΑΣ
+        - nameGr: ΑΛ ΝΤΑΦΡΑ
+        - nameGr: ΑΛ ΑΙΝ
+        - nameGr: ΣΑΡΑΧ
+        - nameGr: ΑΛ ΦΟΥΖΑΡΑ
+        - nameGr: ΑΛ ΝΑΣΡ
+        - nameGr: ΑΛ ΓΟΥΑΝΤΑ
+        - nameGr: ΑΛ ΙΤΙΧΑΝΤ ΚΑΛΜΠΑ
+        - nameGr: ΝΤΙΜΠΑ ΑΛ ΦΟΥΖΑΡΑ
+      type: LEAGUE
+    - code: iran-persian-gulf-pro-league
+      name: Чемпионат Ирана
+      nameGr: ΙΡΑΝ
+      season: _2018_2019
+      teams:
+        - nameGr: ΠΑΠΙΝΤΕΧ
+        - nameGr: ΕΣΤ. ΚΟΥΖΕΣΤΑΝ
+        - nameGr: ΡΑΣΧΤ
+        - nameGr: ΣΑΙΠΑ
+        - nameGr: ΣΑΝΑΤ ΝΑΦΤ
+        - nameGr: ΠΑΙΚΑΝ
+        - nameGr: ΖΟΜΠ ΑΧΑΝ
+        - nameGr: ΝΑΦΤ ΣΟΛΕΙΜΑΝ
+        - nameGr: ΠΕΡΣΕΠΟΛΙΣ
+        - nameGr: ΜΑΖΑΝΤΑΡΑΝ
+        - nameGr: ΦΟΛΑΝΤ ΚΟΥΖΕΣΤΑΝ
+        - nameGr: ΣΕΠΑΧΑΝ
+        - nameGr: Μ. ΣΑΖΙ
+        - nameGr: ΠΑΡΣ ΤΖΟΝΟΥΜΠΙ
+        - nameGr: ΕΣΤΕΓΚΑΛ
+        - nameGr: ΤΡ. ΣΑΖΙ ΤΑΜΠΡΙΖ
+      type: LEAGUE
+    - code: morocco-a
+      name: Чемпионат Мароко
+      nameGr: ΜΑΡΟΚΟ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΕΡΚΑΝΕ
+        - nameGr: FAR ΡΑΜΠΑΝΤ
+        - nameGr: ΤΕΤΟΥΑΝ
+        - nameGr: ΟΥΙΝΤΑΝΤ ΚΑΖΑΜΠΛΑΝΚΑ
+        - nameGr: ΙΤΙΧΑΝΤ ΤΑΝΖΕΡ
+        - nameGr: FUS ΡΑΜΠΑΤ
+        - nameGr: ΣΑΜΠΑΜΠ
+        - nameGr: Χ. ΑΓΚΑΝΤΙΡ
+        - nameGr: ΟΛΙΜΠΙΚ ΝΤΕ ΣΑΦΙ
+        - nameGr: ΚΟΥΡΙΜΠΓΚΑ
+        - nameGr: ΡΑΠΙΝΤ ΚΛΑΜΠ
+        - nameGr: ΡΑΧΑ ΚΑΖΑΜΠΛΑΝΚΑ
+        - nameGr: ΟΥΤΖΑ
+        - nameGr: ΓΙΟΥΣΟΥΦΙΑ ΜΠ.
+        - nameGr: ΚΑΜΠΑΜΠ ΜΑΡΑΚΕΣ
+        - nameGr: ΝΤΙΦΑΑ ΕΛ ΤΖΑΝΤΙΝΤΑ
+      type: LEAGUE
+    - code: south-africa-a
+      name: Чемпионат Южной Африки
+      nameGr: ΝOTIA ΑΦΡΙΚΗ
+      season: _2018_2019
+      teams:
+        - nameGr: ΓΚΟΛΝΤΕΝ ΑΡΟΟΥΣ
+        - nameGr: ΣΟΥΠΕΡΣΠΟΡΤ
+        - nameGr: ΜΑΜΕΛΟΝΤΙ ΣΑΝΤΑΟΥΝΣ
+        - nameGr: ΠΟΛΟΚΟΥΕΙΝ
+        - nameGr: ΜΑΡΙΤΖΜΠΟΥΡΓΚ
+        - nameGr: ΚΑΙΖΕΡ ΤΣΙΦΣ
+        - nameGr: ΜΠΛΟΥΜΦΟΝΤΕΙΝ
+        - nameGr: ΟΡΛΑΝΤΟ ΠΑΙΡΑΤΣ
+        - nameGr: ΜΠΙΝΤΒΕΣΤ
+        - nameGr: ΚΕΙΠ ΤΑΟΥΝ ΣΙΤΙ
+        - nameGr: ΦΡΙ ΣΤΕΙΤ
+        - nameGr: ΜΠΛΑΚ ΛΕΟΠΑΡΝΤΣ
+        - nameGr: ΧΑΙΛΑΝΤΣ ΠΑΡΚ
+        - nameGr: ΑΜΑΖΟΥΛΟΥ
+        - nameGr: ΤΣΙΠΑ
+        - nameGr: ΜΠΑΡΟΚΑ
+      type: LEAGUE
+    - code: saudi-professional-league
+      name: Чемпионат Саудовской Аравии
+      nameGr: ΣΑΟΥΔΙΚΗ ΑΡΑΒΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΟΧΟΝΤ
+        - nameGr: ΑΛ ΕΤΙΦΑΚ
+        - nameGr: ΑΛ ΦΑΙΣΑΛΙ
+        - nameGr: ΑΛ ΦΑΤΕΧ
+        - nameGr: ΑΛ ΧΙΛΑΛ
+        - nameGr: ΑΛ ΣΑΜΠΑΜΠ
+        - nameGr: ΑΛ ΚΑΝΤΑΣΙΓΙΑ
+        - nameGr: ΑΛ ΜΠΑΤΙΝ
+        - nameGr: ΑΛ ΒΕΝΤΑ
+        - nameGr: ΑΛ ΦΕΙΧΑ
+        - nameGr: ΑΛ ΝΑΣΡ
+        - nameGr: ΑΛ ΧΑΖΜ
+        - nameGr: ΑΛ ΤΑΑΒΟΝ
+        - nameGr: ΑΛ ΑΧΛΙ
+        - nameGr: ΑΛ ΙΤΙΧΑΝΤ
+        - nameGr: ΑΛ ΡΑΕΝΤ
+      type: LEAGUE
+    - code: tunisia-a
+      name: Чемпионат Туниса
+      nameGr: ΤΥΝΗΣΙΑ
+      season: _2018_2019
+      teams:
+        - nameGr: ΜΠΙΖΕΡΤΙΕΝ
+        - nameGr: ΜΠΕΝ ΓΚΕΡΝΤΑΝ
+        - nameGr: ΓΚΑΜΠΕΣ
+        - nameGr: ΜΟΝΑΣΤΙΡ
+        - nameGr: ΚΛΑΜΠ ΑΦΡΙΚΕΝ
+        - nameGr: ΧΑΜΑΜ ΛΙΦ
+        - nameGr: ΣΤΑΝΤ ΤΙΝΙΣΙΕΝ
+        - nameGr: ΣΦΑΞΙΕΝ
+        - nameGr: ΚΑΙΡΟΥΑΝ
+        - nameGr: ΕΣΠΕΡΑΝΣ
+        - nameGr: ΕΤΟΥΑΛ
+        - nameGr: ΤΑΤΟΥΙΝ
+        - nameGr: ΕΤΟΥΑΛ ΜΕΤΛΑΟΥΙ
+        - nameGr: ΣΤΑΝΤ ΓΚΑΜΠΕΖΙΑΝ
+      type: LEAGUE

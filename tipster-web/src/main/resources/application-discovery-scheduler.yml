@@ -1,0 +1,7 @@
+dictionary:
+  discovery-scheduler-import: false
+  default-discovery-scheduler:
+    code: default-game-scheduler
+    name: "Default discovery scheduler"
+    active: false
+    lastMatchDay: 01-06-2019

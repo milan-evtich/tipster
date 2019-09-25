@@ -1,0 +1,11 @@
+dictionary:
+  sport-import: false
+  sports:
+    - code: football
+      name: Футбол
+    - code: basketball
+      name: Баскетбол
+    - code: hockey
+      name: Хокей
+    - code: tennis
+      name: Теннис

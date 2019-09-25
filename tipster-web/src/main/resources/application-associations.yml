@@ -1,0 +1,17 @@
+dictionary:
+  association-import: false
+  associations:
+    - code: FIFA
+      name: ФИФА
+    - code: UEFA
+      name: УЕФА
+    - code: CONCACAF
+      name: КОНКАКАФ
+    - code: CONMEBOL
+      name: КОНМЕБОЛ
+    - code: CAF
+      name: КАФ
+    - code: AFC
+      name: АФК
+    - code: OFC
+      name: ОФК
