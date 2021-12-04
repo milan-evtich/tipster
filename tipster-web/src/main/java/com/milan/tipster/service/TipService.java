@@ -1,11 +1,14 @@
 package com.milan.tipster.service;
 
+import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Tip;
+import com.milan.tipster.model.enums.ETipStatus;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TipService {
@@ -29,4 +32,13 @@ public interface TipService {
     int fetchTipsWithFetchStatusPartlyFetched(boolean fetchFromFile);
 
     int fetchTipsWithOddsNull(boolean parseFetchFileOrUrl);
+
+    List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes);
+
+    List<PredictionTipDto> getTipsPredictionForPeriod(int top, LocalDateTime start, LocalDateTime end);
+
+    int fetchTipsWithStatusAndPlayedAlready(boolean parseFetchFileOrUrl, ETipStatus status);
+
+    int fetchTipsWithStatusAndNotPlayedYet(boolean parseFetchFileOrUrl, ETipStatus status);
+
 }

@@ -12,7 +12,12 @@ import com.milan.tipster.service.TipmanCompetitionRatingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -27,6 +32,51 @@ public class RatingServiceImpl implements RatingService {
     private TipRepository tipRepository;
     @Autowired
     private CompetitionRepository competitionRepository;
+
+    @Override
+    @Transactional
+    public int rateBaseOnTipsSinceDate(LocalDateTime startDateTime) {
+        List<Tip> unratedTips = tipRepository.findAllByStatusNotAndRatedFlag_RatedFalseAndGame_PlayedOnAfter(ETipStatus.OPEN, startDateTime);
+        return rateTips(unratedTips);
+    }
+
+    @Override
+    @Transactional
+    public int rateTop100UnratedTips() {
+        List<Tip> unratedTips = tipRepository.findTop100ByRatedFlag_RatedFalseAndStatusNot(ETipStatus.OPEN);
+        return rateTips(unratedTips);
+    }
+
+
+    private int rateTips(List<Tip> unratedTips) {
+        int count = 0;
+        for (Tip tip : unratedTips) {
+            boolean tcRatedNow = false;
+            boolean tipmanRatedNow = false;
+            boolean competitionRatedNow = false;
+            if (tip.getRatedFlag() == null) {
+                tip.setRatedFlag(new RatedFlag());
+            }
+            RatedFlag ratedFlag = tip.getRatedFlag();
+            if (!ratedFlag.isTcRated()) {
+                tcRatedNow = updateTCRating(tip.getTipId());
+                ratedFlag.setTcRated(tcRatedNow);
+            }
+            if (!ratedFlag.isTipmanRated()) {
+                tipmanRatedNow = updateTipmanRating(tip.getTipId());
+                ratedFlag.setTipmanRated(tipmanRatedNow);
+            }
+            if (!ratedFlag.isCompetitionRated()) {
+                competitionRatedNow = updateCompetitionRating(tip.getTipId());
+                ratedFlag.setCompetitionRated(competitionRatedNow);
+            }
+
+            if (tcRatedNow || tipmanRatedNow || competitionRatedNow) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     @Override
     public void createTipmanCompetitionRatingIfNotExist(Tipman tipman, Competition competition) {
@@ -46,61 +96,71 @@ public class RatingServiceImpl implements RatingService {
         }
     }
 
-    @Override
-    public boolean updateTipmanRating(Long tipId) {
+    /**
+     * Updates tipman rating
+     * @param tipId
+     * @return
+     */
+    private boolean updateTipmanRating(Long tipId) {
         Tip tip = getTip(tipId);
         Objects.requireNonNull(tip.getTipman(), "Tipman is null!");
 
         Rating rating = tip.getTipman().getRating();
-        if (rating == null) {
-            tip.getTipman().setRating(new Rating());
 
-        }
-        boolean rated = updateRating(rating, tip.getStatus());
+        boolean rated = rate(tip, rating);
         if (rated) {
             tipmanRepository.save(tip.getTipman());
         }
         return rated;
     }
 
-    @Override
-    public boolean updateCompetitionRating(Long tipId) {
+    /**
+     * Updates competition rating
+     * @param tipId
+     * @return
+     */
+    private boolean updateCompetitionRating(Long tipId) {
         Tip tip = getTip(tipId);
         Objects.requireNonNull(tip.getGame(), "Game is null!");
         Objects.requireNonNull(tip.getGame().getCompetition(), "Competition is null!");
 
         Rating rating = tip.getGame().getCompetition().getRating();
-        if (rating == null) {
-            tip.getGame().getCompetition().setRating(new Rating());
-        }
-        boolean rated = updateRating(rating, tip.getStatus());
+        boolean rated = rate(tip, rating);
         if (rated) {
             competitionRepository.save(tip.getGame().getCompetition());
         }
         return rated;
     }
 
-    @Override
-    public boolean updateTCRating(Long tipId) {
+    /**
+     * Updates complex (TipmanCompetitionRating) rating for tipman and competition
+     * @param tipId
+     * @return
+     */
+    private boolean updateTCRating(Long tipId) {
         Tip tip = getTip(tipId);
         Objects.requireNonNull(tip.getTipman(), "Tipman is null!");
         Objects.requireNonNull(tip.getGame(), "Game is null!");
         Objects.requireNonNull(tip.getGame().getCompetition(), "Competition is null!");
 
+        log.info("Rating tipman {}, tip {} and competition {}", tip.getTipman().getTipmanId(), tip.getTipId(), tip.getGame().getCompetition().getCompetitionId());
         TipmanCompetitionRating tcRating = findTipmanCompetitionRating(tip.getTipman(),
-                tip.getGame().getCompetition().getCode());
-        Rating rating = tcRating.getRating();
-        if (rating == null) {
-            tcRating.setRating(new Rating());
-        }
-        boolean rated = updateRating(rating, tip.getStatus());
+                tip.getGame().getCompetition());
+        boolean rated = rate(tip, tcRating.getRating());
         if (rated) {
-            // TODO check if works, if not use tipmanCompetitionRatingRepository
             tipmanRepository.save(tip.getTipman());
         }
         return rated;
 
 
+    }
+
+    private boolean rate(Tip tip, Rating rating) {
+        double odds = 1D;
+        if (Objects.nonNull(tip.getOdds())) {
+            odds = tip.getHotMatch() ? 2 * tip.getOdds() : tip.getOdds();
+        }
+        return updateRating(rating, tip.getStatus(), odds);
     }
 
     private Tip getTip(Long tipId) {
@@ -112,25 +172,24 @@ public class RatingServiceImpl implements RatingService {
         return tip;
     }
 
-    private TipmanCompetitionRating findTipmanCompetitionRating(Tipman tipman, String competitionCode) {
+
+    private TipmanCompetitionRating findTipmanCompetitionRating(Tipman tipman, Competition competition) {
         for (TipmanCompetitionRating tcRating : tipman.getTipmanCompetitionRatings()) {
-            if (tcRating.getCompetition().getCode().equalsIgnoreCase(competitionCode)) {
+            if (tcRating.getCompetition().getCode().equalsIgnoreCase(competition.getCode())) {
                 return tcRating;
-            } else {
-                throw new TipmanCompetitionRatingNotFoundException("Tipman "
-                        + tipman.getFullName() + ", competition " + competitionCode);
             }
         }
-        return null;
+        tipmanCompetitionRatingService.createNewTipmanCompetitionRating(tipman.getTipmanId(), competition.getCompetitionId());
+        return tipmanCompetitionRatingService.findTipmanCompetitionRating(tipman.getTipmanId(), competition.getCompetitionId());
     }
 
-    private boolean updateRating(Rating rating, ETipStatus status) {
+    private boolean updateRating(Rating rating, ETipStatus status, double odds) {
         switch (status) {
             case WON:
-                rating.addMatch().addTip().addTipWon();
+                rating.addMatch().addTip().addTipWon().addCoefficientWin(odds);
                 return true;
             case LOST:
-                rating.addMatch().addTip().addTipLost();
+                rating.addMatch().addTip().addTipLost().addCoefficientLost(odds);
                 return true;
             case DNB:
                 rating.addMatch().addTip().addTipDNB();

@@ -9,4 +9,5 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
 
     Country findByCode(String code);
 
+    Country findByFlag(String flag);
 }

@@ -19,11 +19,11 @@ public class GameDiscoveryServiceImpl implements GameDiscoveryService {
 
     @Override
     public void discoverAllGames() {
-
+    // TODO not working
         DiscoveryScheduler discoveryScheduler = discoverySchedulerRepository.findByCode(Constants.DEFAULT_GAME_DISCOVERY_SCHEDULER);
         if (discoveryScheduler.getActive()) {
-            LocalDate today = LocalDate.now();
-            while (!discoveryScheduler.getLastMatchDay().isEqual(today)) {
+            LocalDate tomorrow = LocalDate.now().plusDays(1L);
+            while (!discoveryScheduler.getLastMatchDay().isEqual(tomorrow)) {
                 log.info("TEST_COUNT");
                 fetchMatchDay(discoveryScheduler);
             }

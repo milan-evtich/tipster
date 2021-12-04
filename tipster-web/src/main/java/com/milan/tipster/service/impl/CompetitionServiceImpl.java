@@ -2,6 +2,7 @@ package com.milan.tipster.service.impl;
 
 import com.milan.tipster.dao.CompetitionRepository;
 import com.milan.tipster.dao.TipRepository;
+import com.milan.tipster.error.exception.TipsterException;
 import com.milan.tipster.model.*;
 import com.milan.tipster.model.enums.EFetchStatus;
 import com.milan.tipster.model.enums.ESeason;
@@ -49,16 +50,7 @@ public class CompetitionServiceImpl implements CompetitionService {
         String compLabel = flagParts[flagParts.length - 1];
         Competition competition = findBySeasonAndNameGrOrNameGrAllCase(compNameGr1, compNameGr2, season);
         if (competition == null) {
-            log.error("----ERROR----COMPETITION NOT FOUND----{}---gameCode:{}---season:{}", compNameGr1, gameCode, season);
-            competition = Competition.builder()
-                    .nameGr(compNameGr1)
-                    .country(country)
-                    .season(season)
-                    .label(compLabel)
-                    .build();
-            competition = updateFetchStatus(competition);
-            competition = competitionRepository.save(competition);
-            log.info("------NEW COMPETITION SAVED TO DB-------{}", competition.getNameGr());
+            competition = makeNewCompetition(gameCode, country, compNameGr1, season, compLabel);
         } else if (EFetchStatus.needsFetching(competition.getFetchStatus())) {
             competition.setNameGr(compNameGr1);
             competition.setCountry(country);
@@ -72,14 +64,44 @@ public class CompetitionServiceImpl implements CompetitionService {
     }
 
     @Override
+    public Competition makeNewCompetition(String gameCode, Country country, String compNameGr1, ESeason season, String compLabel) {
+        Competition competition;
+        log.warn("----WARN----COMPETITION NOT FOUND----{}---gameCode:{}---season:{}", compNameGr1, gameCode, season);
+        competition = Competition.builder()
+                .nameGr(compNameGr1)
+                .country(country)
+                .season(season)
+                .label(compLabel)
+                .build();
+        competition = updateFetchStatus(competition);
+        competition = competitionRepository.save(competition);
+        log.info("------NEW COMPETITION SAVED TO DB-------{}", competition.getNameGr());
+        return competition;
+    }
+
+    @Override
     public Competition findBySeasonAndNameGrOrNameGrAllCase(String nameGr1, String nameGr2, ESeason season) {
         Objects.requireNonNull(nameGr1);
         Objects.requireNonNull(nameGr2);
-        Competition competition = competitionRepository.findBySeasonAndNameGrOrNameGr(season, nameGr1, nameGr2);
+
+        Competition competition = competitionRepository.findByNameGrAndSeason(nameGr1, season);
         if (competition == null) {
-            competition = competitionRepository.findBySeasonAndNameGrOrNameGr(season, nameGr1.toUpperCase(), nameGr2.toUpperCase());
+            competition = competitionRepository.findByNameGrAndSeason(nameGr1.toUpperCase(), season);
             if (competition == null) {
-                competition = competitionRepository.findBySeasonAndNameGrOrNameGr(season, greekToUpper(nameGr1), greekToUpper(nameGr2));
+                competition = competitionRepository.findByNameGrAndSeason(nameGr2, season);
+                if (competition == null) {
+                    competition = competitionRepository.findByNameGrAndSeason(nameGr2.toUpperCase(), season);
+                    if (competition == null) {
+                        competition = competitionRepository.findByNameGrAndSeason(greekToUpper(nameGr1), season);
+                        if (competition == null) {
+                            competition = competitionRepository.findByNameGrAndSeason(greekToUpper(nameGr2), season);
+                            if (competition == null ) {
+                                log.error("Competition with nameGr1 {} or nameGr2 {} and season {} not found in DB!", nameGr1, nameGr2, season);
+                                throw new TipsterException("Competition not found in DB!");
+                            }
+                        }
+                    }
+                }
             }
         }
         return competition;
@@ -88,11 +110,11 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Override
     public Competition findByNameGrNoMetterCase(String nameGr, ESeason season) {
         Objects.requireNonNull(nameGr);
-        Competition competition = competitionRepository.findByNameGr(nameGr);
+        Competition competition = competitionRepository.findByNameGrAndSeason(nameGr, season);
         if (competition == null) {
-            competition = competitionRepository.findByNameGr(nameGr.toUpperCase());
+            competition = competitionRepository.findByNameGrAndSeason(nameGr.toUpperCase(), season);
             if (competition == null) {
-                competition = competitionRepository.findByNameGr(greekToUpper(nameGr));
+                competition = competitionRepository.findByNameGrAndSeason(greekToUpper(nameGr), season);
             }
         }
         return competition;
@@ -137,7 +159,12 @@ public class CompetitionServiceImpl implements CompetitionService {
         List<Competition> competitions = competitionRepository.findAllByCountryAndSeason(country, season);
         if (competitions != null) {
             for (Competition competition : competitions) {
-                if (competition.getCode().contains(competitionSubCat)) {
+                String compCode = competition.getCode();
+                if (Objects.nonNull(compCode) && compCode.contains(competitionSubCat)) {
+                    return competition;
+                }
+                String compNameGr = competition.getNameGr();
+                if (Objects.nonNull(compNameGr) && compNameGr.contains(competitionSubCat)) {
                     return competition;
                 }
             }

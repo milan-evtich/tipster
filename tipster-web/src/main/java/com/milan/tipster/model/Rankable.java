@@ -9,4 +9,6 @@ public interface Rankable {
     Long getRank();
 
     Map<Long, Long> getRankTableMap();
+
+    void rate();
 }

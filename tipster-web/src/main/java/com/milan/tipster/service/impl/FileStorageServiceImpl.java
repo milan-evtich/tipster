@@ -25,7 +25,7 @@ public class FileStorageServiceImpl implements FileStorageService {
         try {
             Path newFilePath = Paths.get(fileName + (timestampFlag ? new Date().getTime() : "") + ".html");
             Files.createFile(newFilePath);
-            Files.write(newFilePath, document.html().getBytes());
+            Files.write(newFilePath, document.body().text().getBytes());
             log.info("New file {} saved", newFilePath);
         } catch (FileAlreadyExistsException faee) {
             log.info("File already saved | fileName: {}", fileName);

@@ -98,7 +98,7 @@ public class FetchingServiceImpl implements FetchingService {
             File input = new File(urlOrPath);
             return Jsoup.parse(input, "UTF-8", "");
         } else {
-            log.info("Sleeping 3-13 seconds");
+            log.info("Sleeping 1-5 seconds");
             Utils.sleep(SLEEP_MINIMUM_3_SECONDS);
             return Jsoup.connect(urlOrPath).get();
         }

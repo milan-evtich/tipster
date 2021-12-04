@@ -11,6 +11,16 @@ import java.util.Objects;
 public class SeasonServiceImpl implements SeasonService {
     @Override
     public ESeason determineSeason(LocalDateTime gamePlayedOn) {
+        if (gamePlayedOn.isAfter(Utils.convertStringToLocalDateTime("01-07-21-00-00-00", null))
+                && gamePlayedOn.isBefore(Utils.convertStringToLocalDateTime("30-06-22-00-00-00", null))
+        ) {
+            return ESeason._2021_2022;
+        }
+        if (gamePlayedOn.isAfter(Utils.convertStringToLocalDateTime("01-07-20-00-00-00", null))
+                && gamePlayedOn.isBefore(Utils.convertStringToLocalDateTime("30-06-21-00-00-00", null))
+        ) {
+            return ESeason._2020_2021;
+        }
         if (gamePlayedOn.isAfter(Utils.convertStringToLocalDateTime("01-07-19-00-00-00", null))
                 && gamePlayedOn.isBefore(Utils.convertStringToLocalDateTime("30-06-20-00-00-00", null))
         ) {
@@ -19,7 +29,8 @@ public class SeasonServiceImpl implements SeasonService {
                 && gamePlayedOn.isBefore(Utils.convertStringToLocalDateTime("30-06-19-00-00-00", null))) {
             return ESeason._2018_2019;
         } else {
-            return ESeason.OTHER;
+            // default
+            return ESeason._2021_2022;
         }
     }
 

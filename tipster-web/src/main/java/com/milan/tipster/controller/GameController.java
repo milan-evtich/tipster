@@ -101,7 +101,7 @@ public class GameController {
                     true);
 
         } else {
-            log.error("No games been fetched from url {}", url);
+            log.warn("No games been fetched from url {}", url);
         }
         return games;
     }

@@ -4,7 +4,7 @@ spring.data.rest.base-path: "/api"
 spring.datasource:
   url: "jdbc:postgresql://localhost:5432/tipsterdb"
   username: "tipsteruser"
-  password: "tipsteruser@pass"
+  password: "pass"
 
 # The SQL dialect makes Hibernate generate better SQL for the chosen database
 spring.jpa.properties.hibernate:
@@ -12,7 +12,7 @@ spring.jpa.properties.hibernate:
   jdbc.lob.non_contextual_creation: true
 
 # Hibernate ddl auto (validate, update, DONT USE OTHERS --- create, create-drop(it drops everything at the end) ---)
-spring.jpa.hibernate.ddl-auto: none
+spring.jpa.hibernate.ddl-auto: validate
 
 # Dictionary initialization config
 spring:
@@ -21,6 +21,6 @@ spring:
       - countries
       - sports
       - associations
-      - competitions-and-teams
+#      - competitions-and-teams
       - discovery-scheduler
-      - bookies
+#      - bookies

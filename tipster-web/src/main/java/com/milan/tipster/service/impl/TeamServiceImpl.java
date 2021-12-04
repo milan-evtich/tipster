@@ -45,7 +45,7 @@ public class TeamServiceImpl implements TeamService {
             team = findTeamInCompetitionByTeamNameGr(competition, teamNameGr);
         }
         if (team == null) {
-            log.error("----ERROR----TEAM NOT FOUND----{}---gameCode:{}", teamNameGr, gameCode);
+            log.warn("----WARN----TEAM NOT FOUND----{}---gameCode:{}", teamNameGr, gameCode);
             team = Team.builder()
                     .code(teamCode)
                     .nameGr(teamNameGr)
@@ -77,12 +77,10 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Team findTeamInCompetitionByTeamNameGr(Competition competition, String teamNameGr) {
-
-        for (Team team : competition.getTeams()) {
-            if (team.getNameGr().equalsIgnoreCase(teamNameGr)) {
-                return team;
-            }
-        }
-        return null;
+        return competition.getTeams()
+                .stream()
+                .filter(t -> t.getNameGr().equalsIgnoreCase(teamNameGr))
+                .findFirst()
+                .orElse(null);
     }
 }

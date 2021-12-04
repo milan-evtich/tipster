@@ -36,7 +36,7 @@ public enum EFetchStatus {
             case SPOT_X:
             case SPOT_DNB_1:
             case SPOT_DNB_2:
-            case NO_BET:
+            case NOBET:
                 return false;
 
             case UNKNOWN:

@@ -27,6 +27,8 @@ public class Rating implements Serializable {
     private Double overallScore = 0D;
     // Тотальный рейтинг
     private Long overallRating = 0L;
+    // Коэффициент выигранные ставки - проигранные
+    private Double overallCoefficient = 0D;
 
     public Rating addTipDNB() {
         this.tipsDNB++;
@@ -62,4 +64,16 @@ public class Rating implements Serializable {
         this.unknownCount++;
         return this;
     }
+
+    public Rating addCoefficientWin(double coefficient) {
+        this.overallCoefficient += (coefficient - 1);
+        return this;
+    }
+
+    public Rating addCoefficientLost(double coefficient) {
+        double odds = 1/(coefficient) - 1;
+        this.overallCoefficient -= odds;
+        return this;
+    }
+
 }

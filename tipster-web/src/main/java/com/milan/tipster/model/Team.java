@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Builder
 @ToString
-@EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class Team {
 
     @Id

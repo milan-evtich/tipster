@@ -21,14 +21,16 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country findOrMakeCountry(Elements tdsElms, String gameCode) {
         Element countryEl = tdsElms.first();
-        String countryCode = parseCountryCode(countryEl);
-        Country country = countryRepository.findByCode(countryCode);
+//        String countryCode = parseCountryFlag(countryEl);
+        String countryFlag = parseCountryFlag(countryEl);
+//        Country country = countryRepository.findByCode(countryCode);
+        Country country = countryRepository.findByFlag(countryFlag);
         if (country == null) {
-            log.error("----ERROR----COUNTRY NOT FOUND----{}---countryEl:{}---gameCode:{}", countryCode, tdsElms.toString(), gameCode);
+            log.warn("----WARN----COUNTRY NOT FOUND----{}---countryEl:{}---gameCode:{}", countryFlag, tdsElms.toString(), gameCode);
             // make Country name
             String countryName = parseCountryName(tdsElms);
             country = Country.builder()
-                    .code(countryCode)
+                    .flag(countryFlag)
                     .name(countryName)
                     .build();
             country = countryRepository.save(country);
@@ -38,8 +40,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country findCountryFromSeasonLabel(Element seasonLabelEl) {
-        String countryCode = parseCountryCode(seasonLabelEl);
-        return countryRepository.findByCode(countryCode);
+        String countryFlag = parseCountryFlag(seasonLabelEl);
+        return countryRepository.findByFlag(countryFlag);
     }
 
     private String parseCountryName(Elements tdsElms) {
@@ -47,7 +49,7 @@ public class CountryServiceImpl implements CountryService {
         return greekToUpper(competitionEl.text().trim()).split(" - ")[0];
     }
 
-    private String parseCountryCode(Element countryEl) {
+    private String parseCountryFlag(Element countryEl) {
         log.info("-----COUNTRY------countryEl:{}", countryEl.toString());
         Element countrySpanEl = countryEl.selectFirst("span");
         String[] countryParts = countrySpanEl.className().split(" ");

@@ -4,31 +4,42 @@ import com.milan.tipster.dao.BookieRepository;
 import com.milan.tipster.dao.FaultRepository;
 import com.milan.tipster.dao.TipCustomRepository;
 import com.milan.tipster.dao.TipRepository;
+import com.milan.tipster.dao.TipmanCompetitionRatingRepository;
+import com.milan.tipster.dto.PredictionTipDto;
+import com.milan.tipster.dto.TipmanCompetitionDto;
 import com.milan.tipster.error.exception.GameException;
 import com.milan.tipster.error.exception.TipAlreadyExistsWarning;
 import com.milan.tipster.error.exception.TipsterException;
+import com.milan.tipster.mapper.TipToPredictionOrikaMapper;
 import com.milan.tipster.model.*;
 import com.milan.tipster.model.enums.*;
 import com.milan.tipster.service.*;
 import com.milan.tipster.util.Utils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.milan.tipster.model.enums.EFetchStatus.makeFetchStatus;
 import static com.milan.tipster.util.Constants.*;
+import static com.milan.tipster.util.ScoreUtils.oddsScore;
 import static com.milan.tipster.util.Utils.*;
+import static com.milan.tipster.util.Utils.textHasAnyOfWords;
+import static java.lang.Double.parseDouble;
 
 @Slf4j
 @Component
@@ -54,6 +65,10 @@ public class TipServiceImpl implements TipService {
     private TipCustomRepository tipCustomRepository;
     @Autowired
     private BookieRepository bookieRepository;
+    @Autowired
+    private TipmanCompetitionRatingRepository tipmanCompetitionRatingRepository;
+    @Autowired
+    private TipToPredictionOrikaMapper tipToPredictionOrikaMapper;
 
     @Override
     public int fetchTipsPlayedOnNull(boolean fetchFromFile) {
@@ -106,6 +121,14 @@ public class TipServiceImpl implements TipService {
 
         String url = fetchFromFile ? DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode() + ".html" : game.getLink();
         Document tipDocument = fetchingService.fetchDocByUrlOrPath(url, fetchFromFile);
+        /*Element body = tipDocument.body();
+        Document simpleDoc = new Document(tipDocument.baseUri());
+        DocumentType docType = new DocumentType("html", "", "", "");
+        simpleDoc.appendChild(docType);
+        Element html = simpleDoc.createElement("html");
+        simpleDoc.appendChild(html);
+        html.appendChild(simpleDoc.createElement("head"));
+        html.appendChild(body);*/
 
         fileStorageService.saveToFileIfNotExists(tipDocument,
                 DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode(),
@@ -160,8 +183,22 @@ public class TipServiceImpl implements TipService {
         if (tipman == null) {
             fileStorageService.moveFileToDir(absoluteFilePath, ERROR_FILE_STORAGE_DIR);
             throw new TipsterException("Tipman not found for game " + game.getCode());
+        } else {
+            Competition competition = game.getCompetition();
+            if (Objects.nonNull(competition)) {
+                // update tipman_competition
+                Optional<Competition> competitionOptional = tipman
+                        .getCompetitions()
+                        .stream()
+                        .filter(c -> c
+                                .getCompetitionId()
+                                .equals(competition.getCompetitionId()))
+                        .findAny();
+                if (!competitionOptional.isPresent()) {
+                    tipmanService.makeTipmanCompetition(tipman.getTipmanId(), competition.getCompetitionId());
+                }
+            }
         }
-
         boolean tipUpdatedOrSaved = false;
         try {
             tipUpdatedOrSaved = updateOrSaveTip(game, tipDoc);
@@ -216,8 +253,13 @@ public class TipServiceImpl implements TipService {
             Game game = tip.getGame();
             if (game != null) {
                 try {
-                    Document tipDoc = fetchingService
-                            .fetchDocByUrlOrPath(DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode() + ".html", fileOrUrl);
+                    String urlOrPath = "";
+                    if (fileOrUrl) {
+                        urlOrPath = DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode() + ".html";
+                    } else {
+                        urlOrPath = game.getLink();
+                    }
+                    Document tipDoc = fetchingService.fetchDocByUrlOrPath(urlOrPath, fileOrUrl);
                     if (makeAndUpdatePick(tip, tipDoc)) {
                         log.info("Tip updated");
                         count++;
@@ -244,6 +286,104 @@ public class TipServiceImpl implements TipService {
         return fetchTipsForGames(games, fetchFromFile);
     }
 
+    @Override
+    @Transactional
+    public List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes) {
+        LocalDateTime startDateTime = LocalDateTime.now().plusHours(hours).plusMinutes(minutes);
+        List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnAfter(ETipStatus.OPEN, startDateTime);
+//        Map<RankedTip> rankedTips = new ArrayList<>();
+        // all tips that can be played
+        return mapToPredictionDtos(openTips);
+    }
+
+    @Override
+    public List<PredictionTipDto> getTipsPredictionForPeriod(int top, LocalDateTime start, LocalDateTime end) {
+        List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnBetween(ETipStatus.OPEN, start, end);
+//        Map<RankedTip> rankedTips = new ArrayList<>();
+        // all tips that can be played
+        return mapToPredictionDtos(openTips);
+    }
+
+    private List<PredictionTipDto> mapToPredictionDtos(List<Tip> openTips) {
+        return openTips
+                .stream()
+                .filter(tip -> Objects.nonNull(tip.getOdds()))
+                .filter(tip -> tip.getOdds() > 1.89 && tip.getOdds() < 2.51)
+                .filter(tip -> tip.getTipman().getRank() <= 16)
+                .filter(tip -> tip.getGame().getCompetition().getRank() <= 35)
+                .map(this::makePredictionScore)
+                .map(tipToPredictionOrikaMapper::toDto)
+                .map(this::addTipmanCompetitionRating)
+                .sorted(Comparator
+                        .comparingDouble(PredictionTipDto::getScore)
+                        .reversed())
+                .collect(Collectors.toList())
+                ;
+    }
+
+    private PredictionTipDto addTipmanCompetitionRating(PredictionTipDto predictionTipDto) {
+        TipmanCompetitionRating tipmanCompetitionRating = tipmanCompetitionRatingRepository.findTipmanCompetitionRating(predictionTipDto.getTipman().getTipmanId(),
+                predictionTipDto.getGame().getCompetition().getCompetitionId());
+        predictionTipDto.setTipmanCompetition(tipToPredictionOrikaMapper.map(tipmanCompetitionRating, TipmanCompetitionDto.class));
+        return predictionTipDto;
+    }
+
+    @Override
+    public int fetchTipsWithStatusAndPlayedAlready(boolean fetchFromFile, ETipStatus status) {
+        List<Tip> openTips = tipRepository.findAllByStatus(ETipStatus.OPEN);
+        List<Game> openGames = openTips
+                .stream()
+                .map(Tip::getGame)
+                .filter(game -> game
+                        .getPlayedOn()
+                        .isBefore(LocalDateTime.now().minusHours(2L)))
+                .collect(Collectors.toList());
+
+        log.info("Start fetching {} games!", openGames.size());
+        return fetchTipsForGames(openGames, fetchFromFile);
+    }
+
+    @Override
+    public int fetchTipsWithStatusAndNotPlayedYet(boolean fetchFromFile, ETipStatus status) {
+        List<Tip> openTips = tipRepository.findAllByStatus(ETipStatus.OPEN);
+        List<Game> openGames = openTips
+                .stream()
+                .map(Tip::getGame)
+                .filter(game -> game
+                        .getPlayedOn()
+                        .isAfter(LocalDateTime.now().plusMinutes(20L)))
+                .collect(Collectors.toList());
+
+        log.info("Start fetching {} games!", openGames.size());
+        return fetchTipsForGames(openGames, fetchFromFile);
+    }
+
+    // Calculate overall score of the tip in order to determine the top best open tips for now
+     private Tip makePredictionScore(Tip tip) {
+        Competition competition = tip.getGame().getCompetition();
+        Tipman tipman = tip.getTipman();
+        TipmanCompetitionRating tipmanCompetitionRating = tipmanCompetitionRatingRepository.findTipmanCompetitionRating(tipman.getTipmanId(), competition.getCompetitionId());
+        double tcOverallScore = 0D;
+        if (Objects.nonNull(tipmanCompetitionRating)) {
+            tcOverallScore = tipmanCompetitionRating.getRating().getOverallScore();
+        }
+        double score =
+                9 * tcOverallScore
+                + 8 * tipman.getRating().getOverallScore()
+                + 7 * competition.getRating().getOverallScore()
+                + 6 * tip.getPick().score()
+                + 5 * oddsScore(tip.getOdds())
+                + 10 * (tip.getHotMatch() ? 1 : 0)
+                ;
+
+        tip.setScore(score);
+        return tipRepository.save(tip);
+    }
+
+
+
+
+
     /**
      * Updates spot tip
      *
@@ -267,6 +407,7 @@ public class TipServiceImpl implements TipService {
         if (updated) {
             game = gameService.findGameByCode(game.getCode());
             tip.setGame(game);
+
         }
 
         ///////////////// make pick ////////////////////////
@@ -279,6 +420,7 @@ public class TipServiceImpl implements TipService {
         updated = updated || makeAndUpdateHotMatch(tip, tipDoc);
 
         ///////////////// make status //////////////////////
+
         updated = updated || makeAndUpdateStatus(tip, game.getScore(), true);
 
         // type
@@ -351,7 +493,7 @@ public class TipServiceImpl implements TipService {
     }
 
     private boolean makeAndUpdateOdds(Tip tip, Document tipDoc) {
-        if (tip.getOdds() == null || tip.getOdds() == ODDS_UNKNOWN) {
+        if (tip.getOdds() == null || tip.getOdds() == ODDS_UNKNOWN || tip.getOdds().equals(0D)) {
             Double newOdds = makeAndUpdateOdds(tip.getPick(), tipDoc);
             if (newOdds != null) {
                 return tipCustomRepository.updateOdds(tip.getTipId(), newOdds);
@@ -363,7 +505,7 @@ public class TipServiceImpl implements TipService {
     private boolean makeAndUpdatePick(Tip tip, Document tipDoc) {
         Element spotDiv = tipDoc.selectFirst("div[data-tabconnect=spot]");
         if (tip.getPick() == null || tip.getPick().equals(EPick.UNKNOWN)) {
-            EPick newPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, tip.getGame());
+            EPick newPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, tip.getGame(), tipDoc);
             if (newPick != null && !EPick.UNKNOWN.equals(newPick)) {
                 log.info("Updating pick for tip {}! New pick {}", tip.getTipId(), newPick);
                 return tipCustomRepository.updatePick(tip.getTipId(), newPick);
@@ -375,7 +517,9 @@ public class TipServiceImpl implements TipService {
     private boolean makeGameScore(Document tipDoc, Game game) {
         if (game.getScore() == null) {
             game.setScore(scoreService.makeScore(tipDoc.selectFirst("div.event")));
-            return gameService.updateScore(game);
+            if (Objects.nonNull(game.getScore())) {
+               return true;
+            }
         }
         return false;
     }
@@ -422,7 +566,7 @@ public class TipServiceImpl implements TipService {
         ///////////////// pick ////////////////////////
         EPick spotPick = null;
         try {
-            spotPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, game);
+            spotPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, game, tipDoc);
         } catch (Exception e) {
             log.error("Error making MM spot pick for game {}", game.getLink(), e);
         }
@@ -454,8 +598,11 @@ public class TipServiceImpl implements TipService {
                 .hotMatch(hotMatch)
                 .build();
 
-        makeAndUpdateStatus(spotTip, game.getScore(), false);
-// check that status is saved
+        if (Objects.nonNull(game.getScore()) && spotPick != EPick.UNKNOWN && spotPick != EPick.NOBET) {
+             makeAndUpdateStatus(spotTip, game.getScore(), false);
+        }
+
+        // check that status is saved
         updateFetchStatus(spotTip, false);
         tipRepository.save(spotTip);
 
@@ -464,32 +611,32 @@ public class TipServiceImpl implements TipService {
     }
 
     private Double makeAndUpdateOdds(EPick spotPick, Document tipDoc) {
-        Element opapOddsDiv = tipDoc.selectFirst("div.match-odds");
-        if (opapOddsDiv == null) {
-            return makeOddsFromSpotDivStrongText(tipDoc);
-        }
-
-        Elements oddsElements = opapOddsDiv.select("div.row-value");
-
         Objects.requireNonNull(tipDoc);
-        switch (spotPick) {
-            case SPOT_1:
-                return Double.valueOf(oddsElements.get(1).text());
-            case SPOT_2:
-                return Double.valueOf(oddsElements.get(3).text());
-            case SPOT_X:
-                return Double.valueOf(oddsElements.get(2).text());
-            case SPOT_DNB_1:
-            case SPOT_DNB_2:
-                return makeOddsFromSpotDivStrongText(tipDoc);
-            case NO_BET:
-                return ODDS_NO_BET;
-            case TODO:
-                return ODDS_TODO;
-            case UNKNOWN:
-            default:
-                return ODDS_UNKNOWN;
+
+        Element opapOddsDiv = tipDoc.selectFirst("div.match-odds");
+        if (opapOddsDiv != null) {
+            Elements oddsElements = opapOddsDiv.select("div.row-value");
+            if (Objects.nonNull(oddsElements)) {
+                switch (spotPick) {
+                    case SPOT_1:
+                        return Double.valueOf(oddsElements.get(1).text());
+                    case SPOT_2:
+                        return Double.valueOf(oddsElements.get(3).text());
+                    case SPOT_X:
+                        return Double.valueOf(oddsElements.get(2).text());
+                    case NOBET:
+                        return ODDS_NO_BET;
+                    case TODO:
+                        return ODDS_TODO;
+                    case UNKNOWN:
+                    case SPOT_DNB_1:
+                    case SPOT_DNB_2:
+                    default:
+                        return makeOddsFromSpotDivStrongText(tipDoc);
+                }
+            }
         }
+        return makeOddsFromSpotDivStrongText(tipDoc);
     }
 
     private Double makeOddsFromSpotDivStrongText(Element tipDoc) {
@@ -501,50 +648,39 @@ public class TipServiceImpl implements TipService {
 
 
     private boolean makeAndUpdateStatus(Tip tip, Score score, boolean shouldUpdateTip) {
-        Objects.requireNonNull(score, "Score!");
-
         ETipStatus newStatus;
-        if (score.getScoreType() == EScoreType.GAME_CANCELLED) {
+// check the status for OPEN tips after they are played
+        if (score == null) {
+            newStatus = ETipStatus.OPEN;
+        } else if (score.getScoreType() == EScoreType.GAME_CANCELLED) {
             newStatus = ETipStatus.GAME_CANCELLED;
+        } else if (score.getScoreType() == EScoreType.GAME_POSTPONED) {
+            newStatus = ETipStatus.GAME_POSTPONED;
         } else {
             switch (tip.getPick()) {
                 case SPOT_1:
-                    if (score == null) {
-                        newStatus = ETipStatus.OPEN;
-                    } else {
                         if (score.getHomeGoals() > score.getAwayGoals()) {
                             newStatus = ETipStatus.WON;
                         } else {
                             newStatus = ETipStatus.LOST;
                         }
-                    }
                     break;
                 case SPOT_X:
-                    if (score == null) {
-                        newStatus = ETipStatus.OPEN;
-                    } else {
+
                         if (score.getHomeGoals() == score.getAwayGoals()) {
                             newStatus = ETipStatus.WON;
                         } else {
                             newStatus = ETipStatus.LOST;
                         }
-                    }
                     break;
                 case SPOT_2:
-                    if (score == null) {
-                        newStatus = ETipStatus.OPEN;
-                    } else {
                         if (score.getHomeGoals() < score.getAwayGoals()) {
                             newStatus = ETipStatus.WON;
                         } else {
                             newStatus = ETipStatus.LOST;
                         }
-                    }
                     break;
                 case SPOT_DNB_1:
-                    if (score == null) {
-                        newStatus = ETipStatus.OPEN;
-                    } else {
                         if (score.getHomeGoals() > score.getAwayGoals()) {
                             newStatus = ETipStatus.WON;
                         } else if (score.getHomeGoals() < score.getAwayGoals()) {
@@ -552,12 +688,8 @@ public class TipServiceImpl implements TipService {
                         } else {
                             newStatus = ETipStatus.DNB;
                         }
-                    }
                     break;
                 case SPOT_DNB_2:
-                    if (score == null) {
-                        newStatus = ETipStatus.OPEN;
-                    } else {
                         if (score.getHomeGoals() > score.getAwayGoals()) {
                             newStatus = ETipStatus.LOST;
                         } else if (score.getHomeGoals() < score.getAwayGoals()) {
@@ -565,9 +697,22 @@ public class TipServiceImpl implements TipService {
                         } else {
                             newStatus = ETipStatus.DNB;
                         }
+                    break;
+                case SPOT_2X:
+                    if (score.getHomeGoals() > score.getAwayGoals()) {
+                        newStatus = ETipStatus.LOST;
+                    } else {
+                        newStatus = ETipStatus.WON;
                     }
                     break;
-                case NO_BET:
+                case SPOT_1X:
+                    if (score.getHomeGoals() < score.getAwayGoals()) {
+                        newStatus = ETipStatus.LOST;
+                    } else {
+                        newStatus = ETipStatus.WON;
+                    }
+                    break;
+                case NOBET:
                     newStatus = ETipStatus.NOBET;
                     break;
                 case UNKNOWN:
@@ -601,57 +746,81 @@ public class TipServiceImpl implements TipService {
     }
 
     // TODO
-//    procitati ostale igre iz fajlova i probati ih fetchnuti
-//    iz BD frtchnut igre
-//    napraviti novi metod u tipController sa periodom iz datuma za obrabotku
-//    zapustiti to za sacuvane u bazi igre
-    private EPick makePickForMatchMonye(Element tipEl, ETipType type, Game game) {
+    //  Использовать рекомендованные котировки для определение PICK для тех у которых четко не понятно что за пик
+
+    private EPick makePickForMatchMonye(Element tipEl, ETipType type, Game game, Document tipDoc) {
         String strongText = getStrongText(tipEl, false);
         if (StringUtils.isEmpty(strongText)) {
             return EPick.UNKNOWN;
         }
-        if (textHasAnyOfWords(strongText, M_M_NO_BET, M_M_PASO, M_M_APOFIGI, M_M_XAMILA, M_M_DEN_THA_ASXOLITHO, M_M_XORIS_AKSIA,
-                M_M_DEN_THA_PARO, M_M_DEN_EXEI_AKSIA, M_M_DEN_YPARXEI_AKSIA, M_M_DEN_PEZETE, M_M_MIKROS_ASOS, M_M_DISKOLO,
-                M_M_KAMIA_EMPLOKH, M_M_KANENAS_LOGOS_EMPLOKHS, M_M_TO_AFINO, M_M_APOFIGOUME, M_M_APOXH, M_M_AMETOXOUS,
-                M_M_MHN_PONTAROUME, M_M_KANENA_ENDIAFERON, M_M_MHN_ANAMIXTOUME, M_M_MAKRIA, M_M_DEN_VRISKETE, M_M_NA_MPLEKSO,
+        if (textHasAnyOfWords(strongText, M_M_XORIS_NOIMA, M_M_NO_BET, M_M_NO_BET_2, M_M_NO_BET_3, M_M_NO_BET_4, M_M_PASO, M_M_MHN_APODEXTO, M_M_MH_APODEXTO, M_M_DEN_APODEXTO, M_M_APOFIGI, M_M_XAMILO, M_M_XAMILA, M_M_ZORIKO, M_M_ASMFIROPO, M_M_DEN_THA_ASXOLITHO, M_M_XORIS_AKSIA,
+                M_M_ASXOLITHOYME, M_M_DEN_THA_PARO, M_M_DEN_EXEI_AKSIA, M_M_DEN_YPARXEI_AKSIA, M_M_DEN_PEZETE, M_M_MIKROS_ASOS, M_M_DISKOLO,
+                M_M_KAMIA_AKSIA, M_M_KAMIA_EMPLOKH, M_M_KANENAS_LOGOS_EMPLOKHS, M_M_TO_AFINO, M_M_APEZOUME, M_M_APOFIGOUME, M_M_APOXH, M_M_AMETOXOUS,
+                M_M_MHN_PONTAROUME, M_M_KANENA_ENDIAFERON, M_M_MHN_ANAMIXTOUME, M_M_GRIFOS, M_M_MAKRIA, M_M_DEN_VRISKETE, M_M_NA_MPLEKSO,
                 M_M_TO_AFINOUME, M_M_DE_THA_TO_EPEZA, M_M_TRIPLI, M_M_PROSPERASI, M_M_ALLA, M_M_N_O_BET, M_M_DEN_AKSIZI,
-                M_M_DEN_MAS_LENE, M_M_DEN_VLEPO, M_M_DEN_INE, M_M_KAKO, M_M_DEN_BORUME, M_M_DEN_VGENEI, M_M_DEN_BORO, M_M_MENO_EKTOS,
-                M_M_ADIAFORO
+                M_M_DEN_MAS_LENE, M_M_DEN_VLEPO, M_M_DEN_INE, M_M_STIN_AKRH, M_M_DEN_KRATAME, M_M_KAKO, M_M_DEN_BORUME, M_M_DEN_VGENEI, M_M_DEN_BORO, M_M_MENO_EKTOS,
+                M_M_ADIAFORO,M_M_MPERDEMA,M_M_MPERDEMENO,M_M_PROSPERNAME,M_M_DEN_EXEI_NOIMA,M_M_DEN_THA_MPLEKSO, M_M_EMPLEKOYME, M_M_DEN_THA_MPLEKSOYME,M_M_DEN_PROKITE_ASXOLITHO,
+                M_M_DEN_GIA_PARATIRISI, M_M_DEN_PROS_PARATIRISI
+
         )) {
-            return EPick.NO_BET;
+            return EPick.NOBET;
         }
         Element bookieLink = tipEl.select("a").first();
         boolean strongTextHasBookieName = textHasAnyOfBookieName(strongText);
         if (strongTextHasBookieName || bookieLink != null && bookieLink.hasText()) {
             switch (type) {
                 case SPOT:
-                    if (textHasAnyOfWords(strongText, M_M_ASOS, M_M_ASO, M_M_TOU_ASOU)) {
+                    if (textHasAnyOfWords(strongText, M_M_ASOS, M_M_ASO, M_M_ASOU, M_M_NIKI_TIS_EDRAS, M_M_ARISTERA)) {
                         return EPick.SPOT_1;
-                    } else if (textHasAnyOfWords(strongText, M_M_DIPLO, M_M_TOU_DIPLOU)) {
+                    } else if (textHasAnyOfWords(strongText, M_M_DIPLO, M_M_TOU_DIPLOU, M_M_DEKSIA)) {
                         return EPick.SPOT_2;
                     } else if (textHasAnyOfWords(strongText, M_M_TO_X, M_M_ISOPALIA)) {
                         return EPick.SPOT_X;
-                    } else if (textHasAnyOfWords(strongText, M_M_1_DNB, M_M_ASOS_DNB, M_M_ASO_DNB, M_M_1X, M_M_X1)) {
+                    } else if (textHasAnyOfWords(strongText, M_M_1__DNB, M_M_ASIATIKO_1, M_M_1_DNB, M_M_ASOS_DNB, M_M_ASO_DNB)) {
                         return EPick.SPOT_DNB_1;
-                    } else if (textHasAnyOfWords(strongText, M_M_2_DNB, M_M_DIPLO_DNB, M_M_2X, M_M_X2)) {
+                    } else if (textHasAnyOfWords(strongText, M_M_1X, M_M_X1)) {
+                        return EPick.SPOT_1X;
+                    } else if (textHasAnyOfWords(strongText, M_M_2X, M_M_X2)) {
+                        return EPick.SPOT_2X;
+                    } else if (textHasAnyOfWords(strongText, M_M_2__DNB, M_M_2_DNB, M_M_ASIATIKO_2, M_M_DIPLO_DNB)) {
                         return EPick.SPOT_DNB_2;
-                    } else if (textHasWord(strongText, M_M_FAVORI)) {
-                        if (textHasAnyOfWords(strongText, M_M_GIPEDOUXOS, M_M_GIPEDOUXI)) {
-                            return EPick.SPOT_1;
-                        }
-                        if (textHasAnyOfWords(strongText, M_M_FILOXENOUMENH, M_M_FILOXENOUMENOS)) {
-                            return EPick.SPOT_2;
-                        }
+                    } else {
                         Double odds = parseOddFromText(strongText);
                         if (odds != null) {
-                            String homeTeamNaemGr = game.getHomeTeam().getNameGr();
-                            String awayTeamNameGr = game.getAwayTeam().getNameGr();
-                            for (String part : strongText.split(" ")) {
-                                String greekToUpperPart = greekToUpper(part);
-                                if (wordsAreSimillar(homeTeamNaemGr, greekToUpperPart)) {
-                                    return EPick.SPOT_1;
-                                } else if (wordsAreSimillar(awayTeamNameGr, greekToUpperPart)) {
-                                    return EPick.SPOT_2;
+                            if (textHasAnyOfWords(strongText, M_M_THA_STHRIKSOYME,M_M_STOIXIMAN,M_M_INTERWETTEN,M_M_BET_365,M_M_BET365,M_M_NOVIBET,M_M_PAMESTOIXMA,M_M_PAMESTOIXIMA)) {
+                                EPick pick = determinePickByOdds(tipDoc, odds, 0.2);
+                                if (!pick.equals(EPick.UNKNOWN)) {
+                                    return pick;
+                                }
+                            }
+                            if (textHasAnyOfWords(strongText, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0)) {
+                                EPick pick = determinePickByOdds(tipDoc, odds, 1.3);
+                                if (pick.equals(EPick.SPOT_1)) {
+                                    return EPick.SPOT_DNB_1;
+                                }
+                                if (pick.equals(EPick.SPOT_2)) {
+                                    return EPick.SPOT_DNB_2;
+                                }
+                            }
+                        }
+                        if (textHasWord(strongText, M_M_FAVORI)) {
+                            if (textHasAnyOfWords(strongText, M_M_GIPEDOUXOS, M_M_GIPEDOUXI)) {
+                                return EPick.SPOT_1;
+                            }
+                            if (textHasAnyOfWords(strongText, M_M_FILOXENOUMENH, M_M_FILOXENOUMENOS)) {
+                                return EPick.SPOT_2;
+                            }
+
+                            if (odds != null) {
+                                String homeTeamNaemGr = game.getHomeTeam().getNameGr();
+                                String awayTeamNameGr = game.getAwayTeam().getNameGr();
+                                for (String part : strongText.split(" ")) {
+                                    String greekToUpperPart = greekToUpper(part);
+                                    if (wordsAreSimillar(homeTeamNaemGr, greekToUpperPart)) {
+                                        return EPick.SPOT_1;
+                                    } else if (wordsAreSimillar(awayTeamNameGr, greekToUpperPart)) {
+                                        return EPick.SPOT_2;
+                                    }
                                 }
                             }
                         }
@@ -667,6 +836,43 @@ public class TipServiceImpl implements TipService {
         }
         // if we cant determine
         return EPick.UNKNOWN;
+    }
+
+    private EPick determinePickByOdds(Document tipDoc, Double odds, double e) {
+        Objects.requireNonNull(tipDoc);
+        Element opapOddsDiv = tipDoc.selectFirst("div.match-odds");
+        if (Objects.isNull(opapOddsDiv)) {
+            return EPick.UNKNOWN;
+        }
+        Elements oddsElements = opapOddsDiv.select("div.row-value");
+        if (Objects.isNull(oddsElements)) {
+            return EPick.UNKNOWN;
+        }
+        Double odd_spot_1_distance = Math.abs(odds - parseDouble(oddsElements.get(1).text()));
+        Double odd_spot_2_distance = Math.abs(odds - parseDouble(oddsElements.get(3).text()));
+        Double odd_spot_X_distance = Math.abs(odds - parseDouble(oddsElements.get(2).text()));
+        Objects.requireNonNull(odd_spot_1_distance);
+        Objects.requireNonNull(odd_spot_2_distance);
+        Objects.requireNonNull(odd_spot_X_distance);
+
+        return Stream
+                .of(odd_spot_1_distance, odd_spot_2_distance, odd_spot_X_distance)
+                .min(Double::compareTo)
+                .map(o -> {
+                    if (o > e) {
+                        // погрешность
+                        return EPick.UNKNOWN;
+                    }
+                    if (o.equals(odd_spot_1_distance)) {
+                        return EPick.SPOT_1;
+                    } else if (o.equals(odd_spot_2_distance)) {
+                        return EPick.SPOT_2;
+                    } else if (o.equals(odd_spot_X_distance)) {
+                        return EPick.SPOT_X;
+                    } else {
+                        return EPick.UNKNOWN;
+                    }})
+                .get();
     }
 
     private boolean textHasAnyOfBookieName(String strongText) {

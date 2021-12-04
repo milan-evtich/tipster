@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.regex.Matcher;
 
 import static com.milan.tipster.util.Constants.DIFFERENCE_LIMIT;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -33,7 +32,7 @@ public class Utils {
 
     public static void sleep(int minimumTimeInMiliSecs) {
         try {
-            Thread.sleep((long)(Math.random() * 10000 + minimumTimeInMiliSecs));
+            Thread.sleep((long)((Math.random() * 10000 + minimumTimeInMiliSecs)) % 5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -137,7 +136,7 @@ public class Utils {
     }
 
     public static boolean textHasWord(String text, String word) {
-        if (greekToUpper(text).matches(".*\\b" + word + "\\b.*")) {
+        if (greekToUpper(removeDot(text)).matches(".*\\b" + word + "\\b.*")) {
             return true;
         } else {
             return false;
@@ -146,6 +145,10 @@ public class Utils {
 
     public static String greekToUpper(String text) {
         return removeTonos(text).toUpperCase();
+    }
+
+    public static String removeDot(String text) {
+        return text.replaceAll("\\.", "");
     }
 
     public static boolean isCanonicalDateFormat(String s){

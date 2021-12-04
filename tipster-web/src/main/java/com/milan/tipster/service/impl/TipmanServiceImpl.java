@@ -63,6 +63,11 @@ public class TipmanServiceImpl implements TipmanService {
     }
 
     @Override
+    public void makeTipmanCompetition(Long tipmanId, Long competitionId) {
+        tipmanRepository.createNewTipmanCompetition(tipmanId, competitionId);
+    }
+
+    @Override
     public void updateTipmanRating(String tipmanFullName, Tip... tips) {
         // TODO
     }

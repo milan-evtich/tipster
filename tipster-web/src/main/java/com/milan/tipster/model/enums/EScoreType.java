@@ -6,5 +6,6 @@ public enum EScoreType {
     SPOT_X,
     SPOT_2,
     GAME_CANCELLED,
+    GAME_POSTPONED,
     UNKNOWN
 }

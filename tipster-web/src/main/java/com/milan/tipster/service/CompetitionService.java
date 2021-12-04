@@ -37,4 +37,6 @@ public interface CompetitionService {
     List<Competition> findAllCompetitionsByCountry(Country country);
 
     Competition findCompetition(Country country, String competitionSubCat, ESeason season);
+
+    Competition makeNewCompetition(String gameCode, Country country, String compNameGr1, ESeason season, String compLabel);
 }

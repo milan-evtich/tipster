@@ -3,6 +3,7 @@ package com.milan.tipster.controller;
 import com.milan.tipster.dao.FaultRepository;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Tip;
+import com.milan.tipster.model.enums.ETipStatus;
 import com.milan.tipster.service.FetchingService;
 import com.milan.tipster.service.GameService;
 import com.milan.tipster.service.TipService;
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,7 +67,32 @@ public class TipController {
         return String.format(resultFormat, count);
     }
 
+    /**
+     * Fetching tips for all games without tips
+     * @return
+     */
+    @GetMapping(value = "/tips/fetch-all-tips-for-games-without-tips")
+    public int fetchTipsForGamesWithoutTips() {
+        return tipService.fetchTipsWithGameFetchStatusPartlyFetched(parseFetchFileOrUrl("URL"));
+    }
 
+    /**
+     * Fetching tips for games with status open and datetime game played already
+     * @return
+     */
+    @GetMapping(value = "/tips/fetch/{fileOrUrl}/status/{status}")
+    public int fetchOpenTipsThatPlayedAlready(@PathVariable String fileOrUrl, @PathVariable ETipStatus status) {
+        return tipService.fetchTipsWithStatusAndPlayedAlready(parseFetchFileOrUrl(fileOrUrl), status);
+    }
+
+    /**
+     * Fetching tips for games with status open and game not played
+     * @return
+     */
+    @GetMapping(value = "/tips/fetch-open-not-played-yet/{fileOrUrl}/status/{status}")
+    public int fetchTipsNotPlayedYet(@PathVariable String fileOrUrl, @PathVariable ETipStatus status) {
+        return tipService.fetchTipsWithStatusAndNotPlayedYet(parseFetchFileOrUrl(fileOrUrl), status);
+    }
     /**
      * Fetching tips for games with bad link syntaxis without playedOn date
      * @return

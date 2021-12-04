@@ -18,6 +18,9 @@ public class ScoreServiceImpl implements ScoreService {
         if (timeLabelEl.hasText() && timeLabelEl.text().contains("AKYP")) {
             return Score.builder().scoreType(EScoreType.GAME_CANCELLED).build();
         }
+        if (timeLabelEl.hasText() && timeLabelEl.text().contains("ANAB")) {
+            return Score.builder().scoreType(EScoreType.GAME_POSTPONED).build();
+        }
         Elements eventSpanEls = timeLabelEl.select("span");
         if (eventSpanEls.size() == 2) {
             String scoreStr = eventSpanEls.get(0).text().replace(eventSpanEls.get(1).text(), "");

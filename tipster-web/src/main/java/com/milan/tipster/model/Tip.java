@@ -76,7 +76,8 @@ public class Tip {
     private Long tipId;
 
     @Enumerated(EnumType.STRING)
-    private ETipStatus status;
+    @Builder.Default
+    private ETipStatus status = ETipStatus.OPEN;
 
     @Enumerated(EnumType.STRING)
     private ETipType type;
@@ -85,7 +86,8 @@ public class Tip {
     private EPick pick;
 
     @Embedded
-    private RatedFlag ratedFlag;
+    @Builder.Default
+    private RatedFlag ratedFlag = new RatedFlag();
 
     @ManyToOne
     @JoinColumn(name = "gameId")
@@ -109,4 +111,7 @@ public class Tip {
     private String strong;
 
     private String text; // maybe is not needed
+
+    @Builder.Default
+    private Double score = 0D;
 }

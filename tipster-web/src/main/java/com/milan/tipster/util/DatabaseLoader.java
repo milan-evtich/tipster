@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-//@Component
+@Component
 public class DatabaseLoader implements CommandLineRunner {
 
     @Autowired
@@ -52,94 +52,96 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         createDefaultManagers(false);
-        makeAuthentication(false);
+        makeAuthentication(true);
 
         SecurityContextHolder.clearContext();
 
         /////////////////////////////////
         // DICTIONARIES INITIALIZATION //
 
-        log.info("==== COUNTRIES INITIALIZATION ====");
-        if (dictionaryProperties.getCountryImport() == true && !dictionaryProperties.getCountries().isEmpty()) {
-            for (Country country : dictionaryProperties.getCountries()) {
-                this.countryRepository.save(country);
-                log.info("Country= name:{}, code:{}", country.getName(), country.getCode());
-            }
-        } else {
-            log.info("Country import option turned off in configuration");
-        }
+        // NOT WORKING SINCE 10.11.2021
+//
+//        log.info("==== COUNTRIES INITIALIZATION ====");
+//        if (dictionaryProperties.getCountryImport() == true && !dictionaryProperties.getCountries().isEmpty()) {
+//            for (Country country : dictionaryProperties.getCountries()) {
+//                this.countryRepository.save(country);
+//                log.info("Country= name:{}, code:{}", country.getName(), country.getCode());
+//            }
+//        } else {
+//            log.info("Country import option turned off in configuration");
+//        }
+//
+//        log.info("==== SPORTS INITIALIZATION ====");
+//        if (dictionaryProperties.getSportImport() == true && !dictionaryProperties.getSports().isEmpty()) {
+//            for (Sport sport : dictionaryProperties.getSports()) {
+//                this.sportRepository.save(sport);
+//                log.info("Sport= name:{}, code:{}", sport.getName(), sport.getCode());
+//            }
+//        } else {
+//            log.info("Sport import option turned off in configuration");
+//        }
+//
+//        log.info("==== BOOKIES INITIALIZATION ====");
+//        if (dictionaryProperties.getBookieImport() == true && !dictionaryProperties.getBookies().isEmpty()) {
+//            for (Bookie bookie : dictionaryProperties.getBookies()) {
+//                this.bookieRepository.save(bookie);
+//                log.info("Bookie= name:{}, code:{}", bookie.getName(), bookie.getCode());
+//            }
+//        } else {
+//            log.info("Bookie import option turned off in configuration");
+//        }
+//
+//        log.info("==== ASSOCIATIONS INITIALIZATION ====");
+//        if (dictionaryProperties.getAssociationImport() == true && !dictionaryProperties.getAssociations().isEmpty()) {
+//            for (Association association : dictionaryProperties.getAssociations()) {
+//                this.associationRepository.save(association);
+//                log.info("Association= name:{}, code:{}", association.getName(), association.getCode());
+//            }
+//        } else {
+//            log.info("Association import option turned off in configuration");
+//        }
+//
+//        log.info("==== COMPETITIONS AND TEAMS INITIALIZATION ====");
+//        if (dictionaryProperties.getCompetitionImport() == true && !dictionaryProperties.getCompetitions().isEmpty()) {
+//            for (Competition competition : dictionaryProperties.getCompetitions()) {
+//                competition.setSeason(ESeason._2018_2019);
+//                List<Team> teams = new ArrayList<>();
+//                log.info(competition.getTeams().toString());
+///*
+//                // TEAMS should get the teams from config-competition-and-teams.yml file
+//                if (competition.getType() == ECompetitionType.LEAGUE) {
+//                    teams = fetchingService.fetchTeams("/leagues/" +  competition.getCode()  + "/");
+//                    for (Team team : teams) {
+//                        team.getCompetitions().add(competition);
+//                        competition.getTeams().add(team);
+//                    }
+//                }
+//*/
+//                this.competitionRepository.save(competition);
+//                log.info("Competition= name:{},season:{}, nameGr: {}, code:{}, type:{}", competition.getName(), competition.getSeason(),
+//                        competition.getNameGr(), competition.getCode(), competition.getType().name());
+//                if (!teams.isEmpty()) {
+//                    log.info("Teams: {}", teams);
+//                }
+//            }
+//            yamlConfigMaker.writeConfig("config-competitions.yaml", dictionaryProperties.getCompetitions());
+//        } else {
+//            log.info("Competition and team import option turned off in configuration");
+//        }
+//
+//        log.info("==== DISCOVERY SCHEDULER ====");
+//        if (dictionaryProperties.getDiscoverySchedulerImport() == true) {
+//            DiscoveryScheduler defaultDiscoveryScheduler = dictionaryProperties.getDefaultDiscoveryScheduler();
+//            if (defaultDiscoveryScheduler != null) {
+//                log.info("Default discovery scheduler: {}", defaultDiscoveryScheduler);
+//                discoverySchedulerRepository.save(defaultDiscoveryScheduler);
+//            }
+//        } else {
+//            log.info("Default discovery scheduler import option turned off in configuration");
+//        }
 
-        log.info("==== SPORTS INITIALIZATION ====");
-        if (dictionaryProperties.getSportImport() == true && !dictionaryProperties.getSports().isEmpty()) {
-            for (Sport sport : dictionaryProperties.getSports()) {
-                this.sportRepository.save(sport);
-                log.info("Sport= name:{}, code:{}", sport.getName(), sport.getCode());
-            }
-        } else {
-            log.info("Sport import option turned off in configuration");
-        }
-
-        log.info("==== BOOKIES INITIALIZATION ====");
-        if (dictionaryProperties.getBookieImport() == true && !dictionaryProperties.getBookies().isEmpty()) {
-            for (Bookie bookie : dictionaryProperties.getBookies()) {
-                this.bookieRepository.save(bookie);
-                log.info("Bookie= name:{}, code:{}", bookie.getName(), bookie.getCode());
-            }
-        } else {
-            log.info("Bookie import option turned off in configuration");
-        }
-
-        log.info("==== ASSOCIATIONS INITIALIZATION ====");
-        if (dictionaryProperties.getAssociationImport() == true && !dictionaryProperties.getAssociations().isEmpty()) {
-            for (Association association : dictionaryProperties.getAssociations()) {
-                this.associationRepository.save(association);
-                log.info("Association= name:{}, code:{}", association.getName(), association.getCode());
-            }
-        } else {
-            log.info("Association import option turned off in configuration");
-        }
-
-        log.info("==== COMPETITIONS AND TEAMS INITIALIZATION ====");
-        if (dictionaryProperties.getCompetitionImport() == true && !dictionaryProperties.getCompetitions().isEmpty()) {
-            for (Competition competition : dictionaryProperties.getCompetitions()) {
-                competition.setSeason(ESeason._2018_2019);
-                List<Team> teams = new ArrayList<>();
-                log.info(competition.getTeams().toString());
-/*
-                // TEAMS should get the teams from config-competition-and-teams.yml file
-                if (competition.getType() == ECompetitionType.LEAGUE) {
-                    teams = fetchingService.fetchTeams("/leagues/" +  competition.getCode()  + "/");
-                    for (Team team : teams) {
-                        team.getCompetitions().add(competition);
-                        competition.getTeams().add(team);
-                    }
-                }
-*/
-                this.competitionRepository.save(competition);
-                log.info("Competition= name:{},season:{}, nameGr: {}, code:{}, type:{}", competition.getName(), competition.getSeason(),
-                        competition.getNameGr(), competition.getCode(), competition.getType().name());
-                if (!teams.isEmpty()) {
-                    log.info("Teams: {}", teams);
-                }
-            }
-            yamlConfigMaker.writeConfig("config-competitions.yaml", dictionaryProperties.getCompetitions());
-        } else {
-            log.info("Competition and team import option turned off in configuration");
-        }
-
-        log.info("==== DISCOVERY SCHEDULER ====");
-        if (dictionaryProperties.getDiscoverySchedulerImport() == true) {
-            DiscoveryScheduler defaultDiscoveryScheduler = dictionaryProperties.getDefaultDiscoveryScheduler();
-            if (defaultDiscoveryScheduler != null) {
-                log.info("Default discovery scheduler: {}", defaultDiscoveryScheduler);
-                discoverySchedulerRepository.save(defaultDiscoveryScheduler);
-            }
-        } else {
-            log.info("Default discovery scheduler import option turned off in configuration");
-        }
-
-        log.info("==== GAMES DISCOVERY ====");
-        gameDiscoveryService.discoverAllGames();
+//        log.info("==== GAMES DISCOVERY ====");
+//        gameDiscoveryService.discoverAllGames();
 
         //                              //
         //////////////////////////////////

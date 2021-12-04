@@ -8,5 +8,6 @@ public enum ETipStatus {
     LOST,
     DNB, // TODO add DNB tips
     GAME_CANCELLED,
+    GAME_POSTPONED,
     UNKNOWN
 }

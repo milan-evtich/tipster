@@ -2,13 +2,16 @@ package com.milan.tipster.dao.impl;
 
 import com.milan.tipster.dao.TipmanCompetitionRatingRepository;
 import com.milan.tipster.model.TipmanCompetitionRating;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Repository
 public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionRatingRepository {
 
@@ -28,7 +31,10 @@ public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionR
                 "overall_tip_count," +
                 "tips_lost," +
                 "tips_won," +
-                "tipsdnb) values (?,?,?,?,?,?,?,?,?)")
+                "nobet_count," +
+                "unknown_count," +
+                "overall_coefficient," +
+                "tipsdnb) values (?,?,?,?,?,?,?,?,?,?,?,?)")
                 .setParameter(1, tipmanId)
                 .setParameter(2, competitionId)
                 .setParameter(3, 0L)
@@ -38,6 +44,9 @@ public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionR
                 .setParameter(7, 0L)
                 .setParameter(8, 0L)
                 .setParameter(9, 0L)
+                .setParameter(10, 0L)
+                .setParameter(11, 0D)
+                .setParameter(12, 0L)
                 .executeUpdate();
     }
 
@@ -45,9 +54,16 @@ public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionR
     public TipmanCompetitionRating findTipmanCompetitionRating(Long tipmanId, Long competitionId) {
         Objects.requireNonNull(tipmanId, "Tipman id!");
         Objects.requireNonNull(competitionId, "Competition id!");
+        log.info("Getting timpanCompetitionRating for tipman {} and competition {}", tipmanId, competitionId);
         return entityManager.createNamedQuery("getTipmanCompetitionRatingByTipmanIdAndCompetitionId", TipmanCompetitionRating.class)
-                .setParameter(1, tipmanId)
-                .setParameter(2, competitionId)
+                .setParameter("tipmanId", tipmanId)
+                .setParameter("competitionId", competitionId)
                 .getSingleResult();
+    }
+
+    @Override
+    public List<TipmanCompetitionRating> findAll() {
+        return entityManager.createNamedQuery("getAllTipmanCompetitionRating", TipmanCompetitionRating.class)
+                .getResultList();
     }
 }

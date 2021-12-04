@@ -3,8 +3,21 @@ package com.milan.tipster.service;
 import com.milan.tipster.model.Competition;
 import com.milan.tipster.model.Tip;
 import com.milan.tipster.model.Tipman;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface RatingService {
+
+    /** Update rating based on tips for some period of time
+     *
+     * @param startDateTime beginning date with time of search period - till now
+     * @return count of rated tips
+     */
+    int rateBaseOnTipsSinceDate(LocalDateTime startDateTime);
+
+    int rateTop100UnratedTips();
 
     /**
      * Creates complex (TipmanCompetitionRating) rating for tipman and competition
@@ -14,24 +27,4 @@ public interface RatingService {
      */
     void createTipmanCompetitionRatingIfNotExist(Tipman tipman, Competition competition);
 
-    /**
-     * Updates complex (TipmanCompetitionRating) rating for tipman and competition
-     * @param tipId
-     * @return
-     */
-    boolean updateTCRating(Long tipId);
-
-    /**
-     * Updates tipman rating
-     * @param tipId
-     * @return
-     */
-    boolean updateTipmanRating(Long tipId);
-
-    /**
-     * Updates competition rating
-     * @param tipId
-     * @return
-     */
-    boolean updateCompetitionRating(Long tipId);
 }

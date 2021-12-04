@@ -1,15 +1,39 @@
 package com.milan.tipster.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
-@Data
+@Getter
+@NoArgsConstructor
 @Embeddable
 public class RatedFlag {
 
-    private Boolean tipmanRated;
-    private Boolean competitionRated;
-    private Boolean tcRated;
+    private boolean rated;
 
+    private boolean tipmanRated;
+
+    private boolean competitionRated;
+
+    private boolean tcRated;
+
+    private void updateRated() {
+        this.rated = tipmanRated & competitionRated & tcRated;
+    }
+
+    public void setTipmanRated(Boolean tipmanRated) {
+        this.tipmanRated = tipmanRated;
+        updateRated();
+    }
+
+    public void setCompetitionRated(Boolean competitionRated) {
+        this.competitionRated = competitionRated;
+        updateRated();
+    }
+
+    public void setTcRated(Boolean tcRated) {
+        this.tcRated = tcRated;
+        updateRated();
+    }
 }

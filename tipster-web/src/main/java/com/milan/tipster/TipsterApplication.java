@@ -16,5 +16,8 @@ public class TipsterApplication {
 
         SpringApplication.run(TipsterApplication.class, args);
 
+        // TODO
+        // 1) Если PICK опредлился как NOBET то и статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
+        // 2) Если поле strong = null то pick NOBET, статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
     }
 }

@@ -3,121 +3,184 @@ dictionary:
   countries:
     - code: greece
       name: Греция
+      flag: GRC
     - code: england
       name: Англия
+      flag: ENG
     - code: germany
       name: Германия
+      flag: DEU
     - code: spain
       name: Испания
+      flag: ESP
     - code: italy
       name: Италия
+      flag: ITA
     - code: france
       name: Франция
+      flag: FRA
     - code: austria
       name: Австрия
+      flag: AUT
     - code: belgium
       name: Бельгия
+      flag: BEG
     - code: denmark
       name: Дания
+      flag: DNK
     - code: switzerland
       name: Швейцария
+      flag: CHE
     - code: ireland
       name: Ирландия
+      flag: IRE
     - code: cyprus
       name: Кипр
+      flag: CYP
     - code: norway
       name: Норвигия
+      flag: NOR
     - code: netherlands
       name: Голландия
+      flag: NLD
     - code: poland
       name: Польша
+      flag: POL
     - code: portugal
       name: Португалия
+      flag: PRT
     - code: russia
       name: Россия
+      flag: RUS
     - code: scotland
       name: Шкотландия
+      flag: SCO
     - code: sweden
       name: Швеция
+      flag: SWE
     - code: turkey
       name: Турция
+      flag: TUR
     - code: czech
       name: Чехия
+      flag: CZE
     - code: finland
       name: Финландия
+      flag: FIN
     - code: argentina
       name: Аргентина
+      flag: ARG
     - code: bolivia
       name: Боливия
+      flag: BOL
     - code: brazil
       name: Бразилия
+      flag: BRA
     - code: usa
       name: США
+      flag: USA
     - code: ecuador
       name: Эквадор
+      flag: ECU
     - code: colombia
       name: Колумбия
+      flag: COL
     - code: mexico
       name: Мексико
+      flag: MEX
     - code: uruguay
       name: Урагвай
+      flag: URY
     - code: paraguay
       name: Парагвай
+      flag: PRY
     - code: peru
       name: Перу
+      flag: PER
     - code: chile
       name: Чили
+      flag: CHL
     - code: australia
       name: Австралия
+      flag: AUS
     - code: japan
       name: Япония
+      flag: JPN
     - code: china
       name: Китай
+      flag: CHN
     - code: south-korea
       name: Южная Корея
+      flag: KOR
     - code: albania
       name: Альбания
+      flag: ALB
     - code: northern-ireland
       name: Северная Ирландия
+      flag: NIR
     - code: bulgaria
       name: Болгария
+      flag: BLG
     - code: iceland
       name: Исландия
+      flag: ICE
     - code: israel
       name: Исраиль
+      flag: ISR
     - code: croatia
       name: Хорватия
+      flag: CRO
     - code: letonia
       name: Латвия
+      flag: LAT
     - code: lithuania
       name: Литва
+      flag: LTH
     - code: wales
       name: Уэльс
+      flag: WLS
     - code: hungary
       name: Венгрия
+      flag: HUN
     - code: ukraine
       name: Украина
+      flag: UKR
     - code: romania
       name: Румыния
+      flag: ROM
     - code: serbia
       name: Сербия
+      flag: SRB
     - code: slovakia
       name: Словакия
+      flag: SLK
     - code: slovenia
       name: Словения
+      flag: SLO
     - code: egypt
       name: Египт
+      flag: EGY
     - code: algeria
       name: Алгерия
+      flag: ALG
     - code: uae
       name: ОАЭ
+      flag: UAE
     - code: iran
       name: Иран
+      flag: IRN
     - code: morocco
       name: Мароко
+      flag: MRC
     - code: south
       name: Южная Африка
+      flag: SAF
     - code: saudi
       name: Саудийская Арабия
+      flag: SAR
     - code: tunisia
       name: Тунисия
+      flag: TUN
+    - code: world-international
+      name: Интернациональные
+      flag: WORL

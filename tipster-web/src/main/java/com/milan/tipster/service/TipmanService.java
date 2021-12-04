@@ -12,7 +12,7 @@ public interface TipmanService {
 
     Tipman fetchAndSaveTipman(Document authorDoc);
 
-
+    void makeTipmanCompetition(Long tipmanId, Long competitionId);
     /**
      * Update ONLY tipman rating
      * @param tipmanFullName

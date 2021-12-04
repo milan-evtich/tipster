@@ -10,6 +10,7 @@ import com.milan.tipster.model.enums.EPick;
 import com.milan.tipster.model.enums.ESeason;
 import com.milan.tipster.service.*;
 import com.milan.tipster.util.Constants;
+import com.milan.tipster.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -180,7 +181,8 @@ public class GameServiceImpl implements GameService {
 
         LocalDateTime playedOn = convertStringToLocalDateTime(String.format(dateStrFormat, day, month, year, hour,
                 minute, seconds), null);
-        return playedOn;
+        // add 1 hour for Moscow - Greece time difference
+        return playedOn.plusHours(1L);
     }
 
 
@@ -260,14 +262,15 @@ public class GameServiceImpl implements GameService {
         Objects.requireNonNull(game, "Game shouldn't be null");
         /////////////////////// game playedOn date fetching ////////////////////
         LocalDateTime playedOnDate = null;
+        Element dateAndTimeElement = null;
         try {
-            Element dateAndTimeElement = mathcDoc.selectFirst("span.time-label");
+            dateAndTimeElement = mathcDoc.selectFirst("span.time-label");
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yy");
             playedOnDate = LocalDateTime.parse(dateAndTimeElement.text(), formatter);
 
         } catch (Exception e) {
-            log.warn("Error fetching playedOn date for game {}", game.getCode());
+            log.warn("Error fetching playedOn date for game {} \ndateAndTimeElement: {} ", game.getCode(), dateAndTimeElement != null ? dateAndTimeElement.text() : null);
         }
         if (playedOnDate == null && game.getPublished() != null) {
             playedOnDate = game.getPublished().plusHours(12);
@@ -333,11 +336,13 @@ public class GameServiceImpl implements GameService {
         }
 
         String[] seasonParts = seasonSpanEls.get(1).text().split("-");
-        String competitionSubCat = seasonParts[0].trim();
+        String competitionSubCat = Utils.greekToUpper(seasonParts[0].trim());
         ESeason season = seasonService.findSeasonByYear(seasonParts[1].trim());
+        // Не находит competition
         Competition competition = competitionService.findCompetition(country, competitionSubCat, season);
         if (competition == null) {
-            throw new TipsterException("Competition not found for game " + gameCode);
+            competition = competitionService.makeNewCompetition(gameCode, country, competitionSubCat, season, null);
+//            throw new TipsterException("Competition not found for game " + gameCode);
         }
 
 

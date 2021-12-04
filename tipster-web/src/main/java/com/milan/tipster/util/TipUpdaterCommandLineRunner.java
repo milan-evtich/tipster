@@ -33,7 +33,8 @@ public class TipUpdaterCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-// if needed uncomment        updateAllTipsFromFiles();
+// if needed uncomment
+//        updateAllTipsFromFiles();
     }
 
     private void updateAllTipsFromFiles() throws IOException {
