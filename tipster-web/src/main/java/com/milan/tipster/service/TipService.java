@@ -3,6 +3,7 @@ package com.milan.tipster.service;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Tip;
+import com.milan.tipster.model.enums.ETipFilter;
 import com.milan.tipster.model.enums.ETipStatus;
 import org.jsoup.nodes.Document;
 
@@ -33,7 +34,7 @@ public interface TipService {
 
     int fetchTipsWithOddsNull(boolean parseFetchFileOrUrl);
 
-    List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes);
+    List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes, ETipFilter filter);
 
     List<PredictionTipDto> getTipsPredictionForPeriod(int top, LocalDateTime start, LocalDateTime end);
 

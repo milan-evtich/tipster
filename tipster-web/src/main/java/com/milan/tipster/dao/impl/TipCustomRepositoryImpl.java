@@ -77,6 +77,7 @@ public class TipCustomRepositoryImpl implements TipCustomRepository {
                     .setParameter(1, status.name())
                     .setParameter(2, tipId)
                     .executeUpdate();
+            log.info("UPDATED STATUS TO {} FOR TIP {} ", status, tipId);
             return true;
         } catch (Exception e) {
             log.error("Error while updating tip status {} with id {} ", status , tipId, e);

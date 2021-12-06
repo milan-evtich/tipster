@@ -96,9 +96,10 @@ public class GameController {
         games.addAll(gameService.fetchGames(latestAnalysisDoc));
         if (games.size() > 0) {
             log.info("Successfully fetched {} games on url {}", games.size(), url);
-            fileStorageService.saveToFileIfNotExists(latestAnalysisDoc,
-                    DEFAULT_FILE_STORAGE_DIR + LATEST_ANALYSIS_DIR_NAME + "/" + FILE_NAME_PREFIX_LATEST_GAMES,
-                    true);
+//  SAVING FILE ON DISK
+//            fileStorageService.saveToFileIfNotExists(latestAnalysisDoc,
+//                    DEFAULT_FILE_STORAGE_DIR + LATEST_ANALYSIS_DIR_NAME + "/" + FILE_NAME_PREFIX_LATEST_GAMES,
+//                    true);
 
         } else {
             log.warn("No games been fetched from url {}", url);

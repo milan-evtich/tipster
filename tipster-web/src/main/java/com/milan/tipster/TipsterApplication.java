@@ -19,5 +19,7 @@ public class TipsterApplication {
         // TODO
         // 1) Если PICK опредлился как NOBET то и статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
         // 2) Если поле strong = null то pick NOBET, статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
+        // 3) Помечать флаг dnb=true для типов SPOT_DNB_*
+        // 4) В ETipFilter добавить разные ставки для DNB а разные для не DNB
     }
 }

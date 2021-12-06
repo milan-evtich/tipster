@@ -5,6 +5,7 @@ import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.dto.ShortTipDto;
 import com.milan.tipster.mapper.TipToPredictionOrikaMapper;
 import com.milan.tipster.model.Tip;
+import com.milan.tipster.model.enums.ETipFilter;
 import com.milan.tipster.service.TipService;
 import com.milan.tipster.util.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -38,7 +40,7 @@ public class PredictionController {
                                                                      @PathVariable(required = false) Integer inMinutes) {
         Integer hours = Objects.nonNull(inHours) ? inHours : 0;
         Integer minutes = Objects.nonNull(inMinutes) ? inMinutes : 30;
-        return ResponseEntity.ok(tipService.getTipsPredictionForToday(top, hours, minutes));
+        return ResponseEntity.ok(tipService.getTipsPredictionForToday(top, hours, minutes, ETipFilter.DEFAULT));
     }
 
 
@@ -56,8 +58,9 @@ public class PredictionController {
 
     @GetMapping("/tips/prediction/top/{top}/full-day-plan")
     ResponseEntity<PredictionFullDayPlanDto> getTipsPredictionForToday(@PathVariable int top,
-                                                                       @PathVariable(required = false) Integer box) {
-        List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30);
+                                                                       @RequestParam(required = false) ETipFilter tipFilter) {
+        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_9__2_5_TIPMAN_16_COMP_35;
+        List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30, filter);
         List<ShortTipDto> tipsPlan = new ArrayList<>();
         tipsPredictionForToday.forEach(t -> addToPlanIfSlotEmpty(tipsPlan, t));
         tipsPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));

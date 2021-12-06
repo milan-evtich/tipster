@@ -1,5 +1,6 @@
 package com.milan.tipster.service.impl;
 
+import com.google.common.collect.ImmutableMap;
 import com.milan.tipster.dao.BookieRepository;
 import com.milan.tipster.dao.FaultRepository;
 import com.milan.tipster.dao.TipCustomRepository;
@@ -29,12 +30,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.milan.tipster.model.enums.EFetchStatus.makeFetchStatus;
+import static com.milan.tipster.model.enums.ETipFilter.validTipsV1;
+import static com.milan.tipster.model.enums.ETipFilter.validTipsV2;
 import static com.milan.tipster.util.Constants.*;
 import static com.milan.tipster.util.ScoreUtils.oddsScore;
 import static com.milan.tipster.util.Utils.*;
@@ -69,6 +74,12 @@ public class TipServiceImpl implements TipService {
     private TipmanCompetitionRatingRepository tipmanCompetitionRatingRepository;
     @Autowired
     private TipToPredictionOrikaMapper tipToPredictionOrikaMapper;
+
+    static final Map<ETipFilter, Predicate<Tip>> tipsFilterMap = ImmutableMap.of(
+            ETipFilter.DEFAULT, validTipsV1,
+            ETipFilter.ODDS_1_9__2_5_TIPMAN_16_COMP_35, validTipsV1,
+            ETipFilter.ODDS_1_5__3_9_TIPMAN_17_COMP_43, validTipsV2
+    );
 
     @Override
     public int fetchTipsPlayedOnNull(boolean fetchFromFile) {
@@ -130,9 +141,11 @@ public class TipServiceImpl implements TipService {
         html.appendChild(simpleDoc.createElement("head"));
         html.appendChild(body);*/
 
-        fileStorageService.saveToFileIfNotExists(tipDocument,
-                DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode(),
-                false);
+        // SAVING FILE ON DISK
+//        fileStorageService.saveToFileIfNotExists(tipDocument,
+//                DEFAULT_FILE_STORAGE_DIR + GAMES_DIR_NAME + "/" + game.getCode(),
+//                false);
+
         boolean tipUpdated = false;
 
         try {
@@ -288,12 +301,12 @@ public class TipServiceImpl implements TipService {
 
     @Override
     @Transactional
-    public List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes) {
+    public List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes, ETipFilter filter) {
         LocalDateTime startDateTime = LocalDateTime.now().plusHours(hours).plusMinutes(minutes);
         List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnAfter(ETipStatus.OPEN, startDateTime);
 //        Map<RankedTip> rankedTips = new ArrayList<>();
         // all tips that can be played
-        return mapToPredictionDtos(openTips);
+        return mapToPredictionDtos(openTips, tipsFilterMap.get(filter));
     }
 
     @Override
@@ -301,17 +314,15 @@ public class TipServiceImpl implements TipService {
         List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnBetween(ETipStatus.OPEN, start, end);
 //        Map<RankedTip> rankedTips = new ArrayList<>();
         // all tips that can be played
-        return mapToPredictionDtos(openTips);
+        return mapToPredictionDtos(openTips, tipsFilterMap.get(ETipFilter.DEFAULT));
     }
 
-    private List<PredictionTipDto> mapToPredictionDtos(List<Tip> openTips) {
+    private List<PredictionTipDto> mapToPredictionDtos(List<Tip> openTips, Predicate<Tip> validTips) {
         return openTips
                 .stream()
                 .filter(tip -> Objects.nonNull(tip.getOdds()))
-                .filter(tip -> tip.getOdds() > 1.89 && tip.getOdds() < 2.51)
-                .filter(tip -> tip.getTipman().getRank() <= 16)
-                .filter(tip -> tip.getGame().getCompetition().getRank() <= 35)
                 .map(this::makePredictionScore)
+                .filter(validTips)
                 .map(tipToPredictionOrikaMapper::toDto)
                 .map(this::addTipmanCompetitionRating)
                 .sorted(Comparator
@@ -721,6 +732,7 @@ public class TipServiceImpl implements TipService {
                     newStatus = ETipStatus.UNKNOWN;
             }
         }
+        log.info("-- TIP STATUS -- OLD: {}; NEW: {}", tip.getStatus(), newStatus);
         if (newStatus != tip.getStatus()) {
             if (shouldUpdateTip) {
                 return tipCustomRepository.updateStatus(tip.getTipId(), newStatus);
