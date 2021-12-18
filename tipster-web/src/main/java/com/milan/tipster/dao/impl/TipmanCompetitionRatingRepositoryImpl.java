@@ -23,18 +23,21 @@ public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionR
     public void createNewTipmanCompetitionRating(Long tipmanId, Long competitionId) {
         Objects.requireNonNull(tipmanId, "Tipman id!");
         Objects.requireNonNull(competitionId, "Competition id!");
-        entityManager.createNativeQuery("insert into tipman_competition_rating (tipman_tipman_id," +
-                "competition_competition_id," +
-                "overall_match_count," +
-                "overall_rating," +
-                "overall_score," +
-                "overall_tip_count," +
-                "tips_lost," +
-                "tips_won," +
-                "nobet_count," +
-                "unknown_count," +
-                "overall_coefficient," +
-                "tipsdnb) values (?,?,?,?,?,?,?,?,?,?,?,?)")
+        entityManager.createNativeQuery("insert into tipman_competition_rating (" +
+                        "tipman_tipman_id," +
+                        "competition_competition_id," +
+                        "overall_match_count," +
+                        "overall_rating," +
+                        "overall_score," +
+                        "overall_tip_count," +
+                        "tips_lost," +
+                        "tips_won," +
+                        "nobet_count," +
+                        "unknown_count," +
+                        "overall_coefficient," +
+                        "new_coefficient," +
+                        "tipsdnb" +
+                        ") values (?,?,?,?,?,?,?,?,?,?,?,?,?)")
                 .setParameter(1, tipmanId)
                 .setParameter(2, competitionId)
                 .setParameter(3, 0L)
@@ -46,7 +49,8 @@ public class TipmanCompetitionRatingRepositoryImpl implements TipmanCompetitionR
                 .setParameter(9, 0L)
                 .setParameter(10, 0L)
                 .setParameter(11, 0D)
-                .setParameter(12, 0L)
+                .setParameter(12, 0D)
+                .setParameter(13, 0L)
                 .executeUpdate();
     }
 

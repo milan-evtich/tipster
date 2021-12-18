@@ -4,10 +4,8 @@ import com.milan.tipster.dto.PredictionFullDayPlanDto;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.dto.ShortTipDto;
 import com.milan.tipster.mapper.TipToPredictionOrikaMapper;
-import com.milan.tipster.model.Tip;
 import com.milan.tipster.model.enums.ETipFilter;
 import com.milan.tipster.service.TipService;
-import com.milan.tipster.util.DateTimeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +57,7 @@ public class PredictionController {
     @GetMapping("/tips/prediction/top/{top}/full-day-plan")
     ResponseEntity<PredictionFullDayPlanDto> getTipsPredictionForToday(@PathVariable int top,
                                                                        @RequestParam(required = false) ETipFilter tipFilter) {
-        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_9__2_5_TIPMAN_16_COMP_35;
+        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_61;
         List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30, filter);
         List<ShortTipDto> tipsPlan = new ArrayList<>();
         tipsPredictionForToday.forEach(t -> addToPlanIfSlotEmpty(tipsPlan, t));

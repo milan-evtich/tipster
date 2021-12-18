@@ -7,8 +7,9 @@ public class RatingDto {
 
     private Long tipsWon;
     private Long tipsLost;
+    private Double newCoefficient;
     private Double overallScore;
-//    private Long overallRating;
+    private Long overallRating;
     private Double overallCoefficient;
 
 }

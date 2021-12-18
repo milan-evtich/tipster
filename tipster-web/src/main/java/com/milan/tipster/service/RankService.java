@@ -6,9 +6,9 @@ public interface RankService {
 
     Long getRankValue(Rankable rankable);
 
-    void rateAndRankTipmans();
+    void rateAndRankTipmans(boolean rankByNewRating);
 
-    void rateAndRankCompetitions();
+    void rateAndRankCompetitions(boolean rankByNewRating);
 
-    void rateAndRankTipmanCompetitions();
+    void rateAndRankTipmanCompetitions(boolean rankByNewRating);
 }

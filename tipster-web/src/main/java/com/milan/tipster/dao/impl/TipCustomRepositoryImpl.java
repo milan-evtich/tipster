@@ -36,6 +36,38 @@ public class TipCustomRepositoryImpl implements TipCustomRepository {
         }
     }
 
+
+    @Override
+    @Transactional
+    public boolean updateDnb(Long tipId) {
+        try {
+            em.joinTransaction();
+            em.createNamedQuery("updateTipDnb", Tip.class)
+                    .setParameter(1, true)
+                    .setParameter(2, tipId)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            log.error("Error while updating tip dnb {} with id {} ", tipId, e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateDoubleChance(Long tipId) {
+        try {
+            em.joinTransaction();
+            em.createNamedQuery("updateTipDoubleChance", Tip.class)
+                    .setParameter(1, true)
+                    .setParameter(2, tipId)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            log.error("Error while updating tip doubleChance {} with id {} ", tipId, e);
+            return false;
+        }
+    }
+
     @Override
     @Transactional
     public boolean updateOdds(Long tipId, Double odds) {

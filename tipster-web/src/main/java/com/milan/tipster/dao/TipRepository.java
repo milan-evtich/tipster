@@ -28,6 +28,8 @@ public interface TipRepository extends CrudRepository<Tip, Long> {
                                                                                                              Boolean competitionRated, Boolean tcRated);
     List<Tip> findAllByStatusNotAndRatedFlag_RatedFalseAndGame_PlayedOnAfter(ETipStatus status, LocalDateTime playedAfterDateTime);
 
+    List<Tip> findAllByRatedFlag_NewRatedFalseAndGame_PlayedOnAfter(LocalDateTime playedAfterDateTime);
+
     List<Tip> findAllByPick(EPick unknown);
 
     List<Tip> findAllByFetchStatus(EFetchStatus fetchStatus);

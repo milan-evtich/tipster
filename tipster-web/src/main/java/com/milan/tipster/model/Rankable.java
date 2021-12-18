@@ -8,6 +8,8 @@ public interface Rankable {
 
     Long getRank();
 
+    void setRank(long rank);
+
     Map<Long, Long> getRankTableMap();
 
     void rate();

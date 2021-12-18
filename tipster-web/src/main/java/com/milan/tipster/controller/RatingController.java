@@ -22,10 +22,9 @@ public class RatingController {
      * Update rating (tc, tip and competition) for top 100 tips where rated=false
      *
      * @return
-     * @throws IOException
      */
     @GetMapping(value = "/rating/update-top-100-unrated-tips")
-    public String rateBaseOnTipsSinceDate() throws IOException {
+    public String rateBaseOnTipsSinceDate() {
         log.info("Start rating all unrated tips");
 
         int count = ratingService.rateTop100UnratedTips();
@@ -38,10 +37,9 @@ public class RatingController {
      * Update rating (tc, tip and competition) for tips where rated=false since date
      *
      * @return
-     * @throws IOException
      */
     @GetMapping(value = "/rating/update-unrated-tips/{startDateTimeStr}")
-    public String rateBaseOnTipsSinceDate(@PathVariable String startDateTimeStr) throws IOException {
+    public String rateBaseOnTipsSinceDate(@PathVariable String startDateTimeStr) {
         log.info("Start rating based on unrated tips since date and time {}", startDateTimeStr);
 
         LocalDateTime startDateTime = Utils.convertStringToLocalDateTime(startDateTimeStr, "dd-MM-yy-HH-mm");
@@ -49,6 +47,25 @@ public class RatingController {
         int count = ratingService.rateBaseOnTipsSinceDate(startDateTime);
 
         String resultFormat = "%s number of tips has been ratedFlag!";
+        return String.format(resultFormat, count);
+    }
+
+
+    /**
+     * Update rating (tc, tip and competition) for tips where ratedNew=false since date
+     *
+     * @return
+     * @throws IOException
+     */
+    @GetMapping(value = "/rating/update-unratedNew-tips/{startDateTimeStr}")
+    public String rateNewBaseOnTipsSinceDate(@PathVariable String startDateTimeStr) {
+        log.info("Start rating rateNew based on rateNew == false for tips since date and time {}", startDateTimeStr);
+
+        LocalDateTime startDateTime = Utils.convertStringToLocalDateTime(startDateTimeStr, "dd-MM-yy-HH-mm");
+
+        int count = ratingService.rateNewBaseOnTipsSinceDate(startDateTime);
+
+        String resultFormat = "%s number of tips has been ratedNewFlag!";
         return String.format(resultFormat, count);
     }
 

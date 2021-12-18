@@ -77,8 +77,8 @@ public class TipServiceImpl implements TipService {
 
     static final Map<ETipFilter, Predicate<Tip>> tipsFilterMap = ImmutableMap.of(
             ETipFilter.DEFAULT, validTipsV1,
-            ETipFilter.ODDS_1_9__2_5_TIPMAN_16_COMP_35, validTipsV1,
-            ETipFilter.ODDS_1_5__3_9_TIPMAN_17_COMP_43, validTipsV2
+            ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_61, validTipsV1,
+            ETipFilter.ODDS_1_5__3_9_TIPMAN_21_COMP_75, validTipsV2
     );
 
     @Override
@@ -464,7 +464,7 @@ public class TipServiceImpl implements TipService {
     }
 
     private boolean updateText(Tip tip, Element spotDiv) {
-        String text = Utils.limitTextTo253(spotDiv.text());
+        String text = Utils.limitTextToSize(spotDiv.text(), 4000);
         if (text != null && !text.equals(tip.getText())) {
             return tipCustomRepository.updateText(tip.getTipId(), text);
         }
@@ -519,6 +519,13 @@ public class TipServiceImpl implements TipService {
             EPick newPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, tip.getGame(), tipDoc);
             if (newPick != null && !EPick.UNKNOWN.equals(newPick)) {
                 log.info("Updating pick for tip {}! New pick {}", tip.getTipId(), newPick);
+                if (newPick.equals(EPick.SPOT_DNB_1) || newPick.equals(EPick.SPOT_DNB_2)) {
+                    tipCustomRepository.updateDnb(tip.getTipId());
+                    log.info("Tip DNB set to true");
+                } else if (newPick.equals((EPick.SPOT_1X)) || newPick.equals((EPick.SPOT_2X))) {
+                    tipCustomRepository.updateDoubleChance(tip.getTipId());
+                    log.info("Tip doubleChance set to true");
+                }
                 return tipCustomRepository.updatePick(tip.getTipId(), newPick);
             }
         }
@@ -662,7 +669,7 @@ public class TipServiceImpl implements TipService {
         ETipStatus newStatus;
 // check the status for OPEN tips after they are played
         if (score == null) {
-            newStatus = ETipStatus.OPEN;
+            newStatus = EPick.NOBET.equals(tip.getPick()) ? ETipStatus.NOBET : ETipStatus.OPEN;
         } else if (score.getScoreType() == EScoreType.GAME_CANCELLED) {
             newStatus = ETipStatus.GAME_CANCELLED;
         } else if (score.getScoreType() == EScoreType.GAME_POSTPONED) {
@@ -727,11 +734,16 @@ public class TipServiceImpl implements TipService {
                     newStatus = ETipStatus.NOBET;
                     break;
                 case UNKNOWN:
+                    if (org.apache.commons.lang3.StringUtils.isBlank(tip.getStrong())) {
+                        newStatus = ETipStatus.NOBET;
+                        break;
+                    }
                 case TODO:
                 default:
                     newStatus = ETipStatus.UNKNOWN;
             }
         }
+        // TODO FIX WON LOST STATUS
         log.info("-- TIP STATUS -- OLD: {}; NEW: {}", tip.getStatus(), newStatus);
         if (newStatus != tip.getStatus()) {
             if (shouldUpdateTip) {
@@ -744,12 +756,12 @@ public class TipServiceImpl implements TipService {
         return false;
     }
 
-    private String getStrongText(Element el, boolean shouldTrimTextTo253) {
+    private String getStrongText(Element el, boolean shouldTrimTextTo4000) {
         Elements strongTextSpotDivEls = el.select("strong, b");
         if (strongTextSpotDivEls.size() > 0) {
             String strong = StringUtils.collectionToDelimitedString(strongTextSpotDivEls.eachText(), " ");
-            if (shouldTrimTextTo253) {
-                return Utils.limitTextTo253(strong);
+            if (shouldTrimTextTo4000) {
+                return Utils.limitTextToSize(strong, 4000);
             } else {
                 return strong;
             }

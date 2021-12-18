@@ -9,6 +9,10 @@ public interface TipCustomRepository {
 
     boolean updatePick(Long tipId, EPick pick);
 
+    boolean updateDnb(Long tipId);
+
+    boolean updateDoubleChance(Long tipId);
+
     boolean updateOdds(Long tipId, Double odds);
 
     boolean updateHotMatch(Long tipId, Boolean hotMatchFlag);

@@ -17,6 +17,13 @@ public interface RatingService {
      */
     int rateBaseOnTipsSinceDate(LocalDateTime startDateTime);
 
+    /** Update rating rateNew based on tips for some period of time
+     *
+     * @param startDateTime beginning date with time of search period - till now
+     * @return count of ratedNew tips
+     */
+    int rateNewBaseOnTipsSinceDate(LocalDateTime startDateTime);
+
     int rateTop100UnratedTips();
 
     /**

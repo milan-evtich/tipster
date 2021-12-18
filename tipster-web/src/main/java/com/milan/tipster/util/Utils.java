@@ -30,6 +30,15 @@ public class Utils {
         return text;
     }
 
+    public static String limitTextToSize(String text, int size) {
+        if (isNotBlank(text)) {
+            if (text.length() > size) {
+                return text.substring(0, size);
+            }
+        }
+        return text;
+    }
+
     public static void sleep(int minimumTimeInMiliSecs) {
         try {
             Thread.sleep((long)((Math.random() * 10000 + minimumTimeInMiliSecs)) % 5);

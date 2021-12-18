@@ -6,6 +6,7 @@ import com.milan.tipster.model.enums.ETipStatus;
 import com.milan.tipster.model.enums.ETipType;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.ColumnResult;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -26,6 +27,16 @@ import javax.persistence.SqlResultSetMapping;
         @NamedNativeQuery(
                 name    =   "updateTipPick",
                 query   =   "UPDATE tip SET pick = ?1 WHERE tip_id = ?2",
+                resultSetMapping = "updateTipResult"
+        ),
+        @NamedNativeQuery(
+                name    =   "updateTipDnb",
+                query   =   "UPDATE tip SET dnb = ?1 WHERE tip_id = ?2",
+                resultSetMapping = "updateTipResult"
+        ),
+        @NamedNativeQuery(
+                name    =   "updateTipDoubleChance",
+                query   =   "UPDATE tip SET doubleChance = ?1 WHERE tip_id = ?2",
                 resultSetMapping = "updateTipResult"
         ),
         @NamedNativeQuery(
@@ -118,7 +129,11 @@ public class Tip {
 
     private String bookie;
 
-    private Boolean dnb;
+    @Builder.Default
+    private boolean dnb = false;
+
+    @Builder.Default
+    private boolean doubleChance = false;
 
     private String strong;
 

@@ -108,6 +108,11 @@ public class Tipman implements Rankable, Rateable {
     }
 
     @Override
+    public void setRank(long rank) {
+        this.rank = rank;
+    }
+
+    @Override
     public Map<Long, Long> getRankTableMap() {
         return rankTableMap;
     }

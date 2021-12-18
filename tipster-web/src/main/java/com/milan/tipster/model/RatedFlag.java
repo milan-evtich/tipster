@@ -18,6 +18,8 @@ public class RatedFlag {
 
     private boolean tcRated;
 
+    private boolean newRated;
+
     private void updateRated() {
         this.rated = tipmanRated & competitionRated & tcRated;
     }

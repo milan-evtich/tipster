@@ -5,6 +5,7 @@ import com.milan.tipster.dao.TipmanCompetitionRatingRepository;
 import com.milan.tipster.dao.TipmanRepository;
 import com.milan.tipster.model.Competition;
 import com.milan.tipster.model.Rankable;
+import com.milan.tipster.model.Rateable;
 import com.milan.tipster.model.Tipman;
 import com.milan.tipster.model.TipmanCompetitionRating;
 import com.milan.tipster.service.RankService;
@@ -49,7 +50,7 @@ public class RankServiceImpl implements RankService {
 
     @Override
     @Transactional
-    public void rateAndRankTipmans() {
+    public void rateAndRankTipmans(boolean rankByNewRating) {
         List<Tipman> all = tipmanRepository.findAll().stream()
                 .filter(rateableActive())
                 .collect(Collectors.toList());
@@ -57,17 +58,12 @@ public class RankServiceImpl implements RankService {
         log.info(all.toString());
 
         // Rating
-        all.forEach(Tipman::rateRateable);
-        log.info("All active tipmans after rating: ");
-        log.info(all.toString());
+        rateAll(all);
+
+        sortAll(all, rankByNewRating);
 
         // Ranking
-        all.sort((o1, o2) -> Double.compare(
-                o2.getRating().getOverallScore(),
-                o1.getRating().getOverallScore())
-        );
-        AtomicLong rank = new AtomicLong(1L);
-        all.forEach(tipman -> tipman.setRank(rank.getAndIncrement()));
+        rankAll(all);
 
         log.info("All tipmans after ranking: ");
         log.info(all.toString());
@@ -75,7 +71,7 @@ public class RankServiceImpl implements RankService {
 
     @Override
     @Transactional
-    public void rateAndRankCompetitions() {
+    public void rateAndRankCompetitions(boolean rankByNewRating) {
         List<Competition> all = competitionRepository.findAll()
                 .stream()
                 .filter(rateableActive())
@@ -84,17 +80,12 @@ public class RankServiceImpl implements RankService {
         log.info(all.toString());
 
         // Rating
-        all.forEach(Competition::rateRateable);
-        log.info("All competitions after rating: ");
-        log.info(all.toString());
+        rateAll(all);
+
+        sortAll(all, rankByNewRating);
 
         // Ranking
-        all.sort((o1, o2) -> Double.compare(
-                o2.getRating().getOverallScore(),
-                o1.getRating().getOverallScore())
-        );
-        AtomicLong rank = new AtomicLong(1L);
-        all.forEach(competition -> competition.setRank(rank.getAndIncrement()));
+        rankAll(all);
 
         log.info("All competitions after ranking: ");
         log.info(all.toString());
@@ -102,7 +93,7 @@ public class RankServiceImpl implements RankService {
 
     @Override
     @Transactional
-    public void rateAndRankTipmanCompetitions() {
+    public void rateAndRankTipmanCompetitions(boolean rankByNewRating) {
         List<TipmanCompetitionRating> all = tipmanCompetitionRatingRepository.findAll()
                 .stream()
                 .filter(rateableActive())
@@ -111,20 +102,52 @@ public class RankServiceImpl implements RankService {
         log.info(all.toString());
 
         // Rating
-        all.forEach(TipmanCompetitionRating::rateRateable);
-        log.info("All TipmanCompetitions after rating: ");
-        log.info(all.toString());
+        rateAll(all);
+
+        sortAll(all, rankByNewRating);
 
         // Ranking
-        all.sort((o1, o2) -> Double.compare(
-                o2.getRating().getOverallScore(),
-                o1.getRating().getOverallScore())
-        );
-        AtomicLong rank = new AtomicLong(1L);
-        all.forEach(tipmanCompetitionRating -> tipmanCompetitionRating.setRank(rank.getAndIncrement()));
+        rankAll(all);
 
         log.info("All TipmanCompetitions after ranking: ");
         log.info(all.toString());
     }
+
+    private void rateAll(List<? extends Rateable> all) {
+        all.forEach(Rateable::rateRateable);
+        all.forEach(Rateable::rateNewRateable);
+        log.info("All TipmanCompetitions after rating: ");
+        log.info(all.toString());
+
+    }
+
+    private void sortAll(List<? extends Rateable> all, boolean rankByNewRating) {
+        if (rankByNewRating) {
+            sortAllByOverallRatingNewCoefficient(all);
+        } else {
+            sortAllByOverallScore(all);
+        }
+    }
+
+    private void rankAll(List<? extends Rankable> all) {
+
+        AtomicLong rank = new AtomicLong(1L);
+        all.forEach(tipmanCompetitionRating -> tipmanCompetitionRating.setRank(rank.getAndIncrement()));
+    }
+
+    private void sortAllByOverallScore(List<? extends Rateable> all) {
+        all.sort((o1, o2) -> Double.compare(
+                o2.getRating().getOverallScore(),
+                o1.getRating().getOverallScore())
+        );
+    }
+
+    private void sortAllByOverallRatingNewCoefficient(List<? extends Rateable> all) {
+        all.sort((o1, o2) -> Long.compare(
+                o2.getRating().getOverallRating(),
+                o1.getRating().getOverallRating())
+        );
+    }
+
 
 }

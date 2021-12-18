@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class ShortTipDto {
     private LocalDateTime playedOn;
+    private String nameGr;
     private String link;
     private Double odds;
     private Double score;

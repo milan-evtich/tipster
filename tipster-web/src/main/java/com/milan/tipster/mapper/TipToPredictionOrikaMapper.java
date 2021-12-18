@@ -52,6 +52,7 @@ public class TipToPredictionOrikaMapper extends AbstractOrikaMapper<PredictionTi
         factory.classMap(PredictionTipDto.class, ShortTipDto.class)
                 .field("game.playedOn", "playedOn")
                 .field("game.link", "link")
+                .field("game.nameGr", "nameGr")
                 .byDefault()
                 .register();
 
