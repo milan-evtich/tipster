@@ -16,5 +16,6 @@ public class PredictionTipDto {
     private GameDto game;
     private TipmanDto tipman;
     private Long tipId;
+    private boolean hotMatch;
 
 }

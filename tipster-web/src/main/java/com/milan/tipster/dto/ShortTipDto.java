@@ -13,4 +13,5 @@ public class ShortTipDto {
     private Double odds;
     private Double score;
     private EPick pick;
+    private boolean hotMatch;
 }

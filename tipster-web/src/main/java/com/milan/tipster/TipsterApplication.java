@@ -18,15 +18,20 @@ public class TipsterApplication {
 
         // TODO
 
-        // 1) TODO FIX WON LOST STATUS TipServiceImpl 746
+        // 1) Не проставляется флаг dnb
+        // 2) Не распознали как SPOT_1: Με τον άσο πάντως στο 3,25 της Bet 365 παίρνω τα ρίσκα μου.
 
-        // 2) Не распозналось
-            // Μου αρέσει το διπλό σε DNB στο 2,62 της Bet 365, η Τιαντζίν έδειξε σαφέστατα πιο έτοιμη στην επανέναρξη.
-            // Στο 2,06 το διπλό DNB στη Novibet.
-        // 1) Если pick NOBET тогда и статус NOBET
-        // 2) Если pick.strong пусто or null то pick и статус NOBET
+        // 1) DONE --- Σωστά μετρημένο το σετ, μένουμε θεατές. не попадает в NOBET
+        // 2) DONE --- Στο 1,66 η διπλή, στο 2,40 ο άσος με DNB στη Novibet. определено как SPOT_1
+        // 3) DONE --- Ένα κλικ στα αριστερά και στον άσο σε DNB στο 2,04 της Novibet .  определено как SPOT_1
+        // 4) DONE --- Ο άσος σε DNB στο 2,10 στην Bet365. определено как SPOT_1
+
+        // 1) DONE --- FIX WON LOST STATUS TipServiceImpl 746
+        // 2) DONE - ON TEST --- Не распозналось
+
+        // 2) DONE - ON TEST --- Если pick.strong пусто or null то pick и статус NOBET
         // 1) DONE --- Дополнить ответ для плана, добавить название матча nameGr
-        // 2) Проверить как ранкирование проходит (ocerall_rating) in competition, tipman and tc
+        // 2) DONE --- Проверить как ранкирование проходит (ocerall_rating) in competition, tipman and tc
         // 3) DONE --- Fix newCoefficient initial value для новых объектов
         // 4) DONE --- Увеличить размер текста и strong
 

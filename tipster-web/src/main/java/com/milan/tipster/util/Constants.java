@@ -36,6 +36,7 @@ public class Constants {
     public static final String M_M_PROSPERNAME = "ΠΡΟΣΠΕΡΝΑΜΕ";
     public static final String M_M_DEN_EXEI_NOIMA = "ΔΕΝ ΕΧΕΙ ΝΟΗΜΑ";
     public static final String M_M_DEN_THA_MPLEKSO = "ΔΕΝ ΘΑ ΜΠΛΕΞΩ";
+    public static final String M_M_MENOUME_THEATES = "ΜΕΝΟΥΜΕ ΘΕΑΤΕΣ";
     public static final String M_M_DEN_THA_MPLEKSOYME = "ΔΕΝ ΘΑ ΜΠΛΕΞΟΥΜΕ";
     public static final String M_M_EMPLEKOYME = "ΕΜΠΛΕΚΟΥΜΕ";
     public static final String M_M_DEN_PROKITE_ASXOLITHO = "ΔΕΝ ΠΡΟΚΗΤΑΙ ΝΑ ΑΣΧΟΛΗΘΩ";
@@ -57,6 +58,7 @@ public class Constants {
     public static final String M_M_TO_PROSPERASO = "ΠΡΟΣΠΕΡΑΣΩ";
     public static final String M_M_TO_DE = "Δ Ε";
     public static final String M_M_TO_D_E_ = "Δ.Ε.";
+    public static final String M_M_DNB = "DNB";
     public static final String M_M_TO_AFINOUME = "ΤΟ ΑΦΗΝΟΥΜΕ";
     public static final String M_M_APOFIGOUME = "ΑΠΟΦΥΓΟΥΜΕ";
     public static final String M_M_APOXH = "ΑΠΟΧΗ";
@@ -96,6 +98,12 @@ public class Constants {
     public static final String M_M_X2 = "Χ2";
     public static final String M_M_DIPLO_DNB = "ΔΙΠΛΟ DNB";
     public static final String M_M_2__DNB = "2 DNB";
+    public static final String M_M_ASO_SE_DNB = "ΑΣΟ ΣΕ DNB";
+    public static final String M_M_ASOS_SE_DNB = "ΑΣΟΣ ΣΕ DNB";
+    public static final String M_M_ASOS_ME_DNB = "ΑΣΟΣ ΜΕ DNB";
+    public static final String M_M_ASO_ME_DNB = "ΑΣΟ ΜΕ DNB";
+    public static final String M_M_DIPLO_SE_DNB = "ΔΙΠΛΟ ΣΕ DNB";
+    public static final String M_M_DIPLO_ME_DNB = "ΔΙΠΛΟ ΜΕ DNB";
     public static final String M_M_ASO = "ΑΣΟ";
     public static final String M_M_ARISTERA = "ΑΡΙΣΤΕΡΑ";
     public static final String M_M_DIPLO = "ΔΙΠΛΟ";

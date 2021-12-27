@@ -415,42 +415,37 @@ public class TipServiceImpl implements TipService {
 
         ///////////////// make score ////////////////////////
         updated = makeGameScore(tipDoc, game);
-        if (updated) {
-            game = gameService.findGameByCode(game.getCode());
-            tip.setGame(game);
-
-        }
 
         ///////////////// make pick ////////////////////////
-        updated = updated || makeAndUpdatePick(tip, tipDoc);
+        updated = makeAndUpdatePick(tip, tipDoc) || updated;
 
         ///////////////// make odds ////////////////////////
-        updated = updated || makeAndUpdateOdds(tip, tipDoc);
+        updated = makeAndUpdateOdds(tip, tipDoc) || updated;
 
         ///////////////// make hot match flag ///////////////////
-        updated = updated || makeAndUpdateHotMatch(tip, tipDoc);
+        updated = makeAndUpdateHotMatch(tip, tipDoc) || updated;
 
         ///////////////// make status //////////////////////
 
-        updated = updated || makeAndUpdateStatus(tip, game.getScore(), true);
+        updated = makeAndUpdateStatus(tip, game.getScore(), true) || updated;
 
         // type
-        updated = updated || updateType(tip, ETipType.SPOT);
+        updated = updateType(tip, ETipType.SPOT) || updated;
 
         // tipman
-        updated = updated || updateTipman(tip, tipman);
+        updated = updateTipman(tip, tipman) || updated;
 
         // game
-        updated = updated || updateGame(tip, game);
+        updated = updateGame(tip, game) || updated;
 
         // text
-        updated = updated || updateText(tip, spotDiv);
+        updated = updateText(tip, spotDiv) || updated;
 
         // strongText
-        updated = updated || updateStrongText(tip, spotDiv);
+        updated = updateStrongText(tip, spotDiv) || updated;
 
         // fetchStatus
-        updated = updated || updateFetchStatus(tip, true);
+        updated = updateFetchStatus(tip, true) || updated;
 
         return updated;
     }
@@ -497,6 +492,7 @@ public class TipServiceImpl implements TipService {
         if (tip.getHotMatch() == null) {
             Boolean newHotMatchFlag = makeHotMatchFlag(tipDoc);
             if (newHotMatchFlag != null) {
+                tip.setHotMatch(newHotMatchFlag);
                 return tipCustomRepository.updateHotMatch(tip.getTipId(), newHotMatchFlag);
             }
         }
@@ -581,12 +577,19 @@ public class TipServiceImpl implements TipService {
             log.error("Error making score for game {}", game.getLink(), e);
         }
 
+        ///////////////// strong text /////////////////
+        String strongText = getStrongText(spotDiv, true);
+
         ///////////////// pick ////////////////////////
         EPick spotPick = null;
-        try {
-            spotPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, game, tipDoc);
-        } catch (Exception e) {
-            log.error("Error making MM spot pick for game {}", game.getLink(), e);
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(strongText)) {
+            try {
+                spotPick = makePickForMatchMonye(spotDiv, ETipType.SPOT, game, tipDoc);
+            } catch (Exception e) {
+                log.error("Error making MM spot pick for game {}", game.getLink(), e);
+            }
+        } else {
+            spotPick = EPick.NOBET;
         }
 
         ///////////////// odds ////////////////////////
@@ -607,7 +610,7 @@ public class TipServiceImpl implements TipService {
 
         Tip spotTip = Tip.builder()
                 .text(Utils.limitTextTo253(spotDiv.text()))
-                .strong(getStrongText(spotDiv, true))
+                .strong(strongText)
                 .type(ETipType.SPOT)
                 .pick(spotPick)
                 .tipman(tipman)
@@ -624,7 +627,8 @@ public class TipServiceImpl implements TipService {
         updateFetchStatus(spotTip, false);
         tipRepository.save(spotTip);
 
-        log.info("Tip spot: {}", spotTip);
+        log.info(" --- TIP --- Pick = {}; Status = {}; GameCode = {}", spotTip.getPick(),
+                spotTip.getStatus(), spotTip.getGame().getCode());
         return spotTip;
     }
 
@@ -783,7 +787,7 @@ public class TipServiceImpl implements TipService {
                 M_M_MHN_PONTAROUME, M_M_KANENA_ENDIAFERON, M_M_MHN_ANAMIXTOUME, M_M_GRIFOS, M_M_MAKRIA, M_M_DEN_VRISKETE, M_M_NA_MPLEKSO,
                 M_M_TO_AFINOUME, M_M_DE_THA_TO_EPEZA, M_M_TRIPLI, M_M_PROSPERASI, M_M_ALLA, M_M_N_O_BET, M_M_DEN_AKSIZI,
                 M_M_DEN_MAS_LENE, M_M_DEN_VLEPO, M_M_DEN_INE, M_M_STIN_AKRH, M_M_DEN_KRATAME, M_M_KAKO, M_M_DEN_BORUME, M_M_DEN_VGENEI, M_M_DEN_BORO, M_M_MENO_EKTOS,
-                M_M_ADIAFORO,M_M_MPERDEMA,M_M_MPERDEMENO,M_M_PROSPERNAME,M_M_DEN_EXEI_NOIMA,M_M_DEN_THA_MPLEKSO, M_M_EMPLEKOYME, M_M_DEN_THA_MPLEKSOYME,M_M_DEN_PROKITE_ASXOLITHO,
+                M_M_ADIAFORO,M_M_MPERDEMA,M_M_MPERDEMENO,M_M_PROSPERNAME,M_M_DEN_EXEI_NOIMA,M_M_MENOUME_THEATES,M_M_DEN_THA_MPLEKSO, M_M_EMPLEKOYME, M_M_DEN_THA_MPLEKSOYME,M_M_DEN_PROKITE_ASXOLITHO,
                 M_M_DEN_GIA_PARATIRISI, M_M_DEN_PROS_PARATIRISI
 
         )) {
@@ -794,21 +798,25 @@ public class TipServiceImpl implements TipService {
         if (strongTextHasBookieName || bookieLink != null && bookieLink.hasText()) {
             switch (type) {
                 case SPOT:
-                    if (textHasAnyOfWords(strongText, M_M_ASOS, M_M_ASO, M_M_ASOU, M_M_NIKI_TIS_EDRAS, M_M_ARISTERA)) {
-                        return EPick.SPOT_1;
-                    } else if (textHasAnyOfWords(strongText, M_M_DIPLO, M_M_TOU_DIPLOU, M_M_DEKSIA)) {
-                        return EPick.SPOT_2;
-                    } else if (textHasAnyOfWords(strongText, M_M_TO_X, M_M_ISOPALIA)) {
-                        return EPick.SPOT_X;
-                    } else if (textHasAnyOfWords(strongText, M_M_1__DNB, M_M_ASIATIKO_1, M_M_1_DNB, M_M_ASOS_DNB, M_M_ASO_DNB)) {
+                    if (textHasAnyOfWords(strongText, M_M_2__DNB, M_M_2_DNB, M_M_ASIATIKO_2, M_M_DIPLO_SE_DNB, M_M_DIPLO_ME_DNB, M_M_DIPLO_DNB)) {
+                        return EPick.SPOT_DNB_2;
+                    }  else if (textHasAnyOfWords(strongText, M_M_1__DNB, M_M_ASIATIKO_1, M_M_1_DNB, M_M_ASOS_DNB, M_M_ASO_DNB, M_M_ASO_SE_DNB, M_M_ASOS_SE_DNB, M_M_ASOS_ME_DNB, M_M_ASO_ME_DNB)) {
                         return EPick.SPOT_DNB_1;
+                    }
+                    else if (textHasAnyOfWords(strongText, M_M_ASOS, M_M_ASO, M_M_ASOU, M_M_NIKI_TIS_EDRAS, M_M_ARISTERA)
+                            && !textHasAnyOfWords( M_M_DNB, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0)) {
+                        return EPick.SPOT_1;
+                    } else if (textHasAnyOfWords(strongText, M_M_DIPLO, M_M_TOU_DIPLOU, M_M_DEKSIA)
+                            && !textHasAnyOfWords( M_M_DNB, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0)) {
+                        return EPick.SPOT_2;
+                    } else if (textHasAnyOfWords(strongText, M_M_TO_X, M_M_ISOPALIA)
+                            && !textHasAnyOfWords( M_M_DNB, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0)) {
+                        return EPick.SPOT_X;
                     } else if (textHasAnyOfWords(strongText, M_M_1X, M_M_X1)) {
                         return EPick.SPOT_1X;
                     } else if (textHasAnyOfWords(strongText, M_M_2X, M_M_X2)) {
                         return EPick.SPOT_2X;
-                    } else if (textHasAnyOfWords(strongText, M_M_2__DNB, M_M_2_DNB, M_M_ASIATIKO_2, M_M_DIPLO_DNB)) {
-                        return EPick.SPOT_DNB_2;
-                    } else {
+                    }  else {
                         Double odds = parseOddFromText(strongText);
                         if (odds != null) {
                             if (textHasAnyOfWords(strongText, M_M_THA_STHRIKSOYME,M_M_STOIXIMAN,M_M_INTERWETTEN,M_M_BET_365,M_M_BET365,M_M_NOVIBET,M_M_PAMESTOIXMA,M_M_PAMESTOIXIMA)) {
@@ -817,7 +825,7 @@ public class TipServiceImpl implements TipService {
                                     return pick;
                                 }
                             }
-                            if (textHasAnyOfWords(strongText, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0)) {
+                            if (textHasAnyOfWords(strongText, M_M_TO_DE, M_M_TO_D_E_, M_M_PLUS_0, M_M_DNB)) {
                                 EPick pick = determinePickByOdds(tipDoc, odds, 1.3);
                                 if (pick.equals(EPick.SPOT_1)) {
                                     return EPick.SPOT_DNB_1;
