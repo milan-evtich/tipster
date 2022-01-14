@@ -132,7 +132,7 @@ public class RankServiceImpl implements RankService {
     private void rankAll(List<? extends Rankable> all) {
 
         AtomicLong rank = new AtomicLong(1L);
-        all.forEach(tipmanCompetitionRating -> tipmanCompetitionRating.setRank(rank.getAndIncrement()));
+        all.forEach(rankable -> rankable.setRank(rank.getAndIncrement()));
     }
 
     private void sortAllByOverallScore(List<? extends Rateable> all) {

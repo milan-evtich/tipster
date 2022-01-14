@@ -5,9 +5,9 @@ import com.milan.tipster.model.Tip;
 import java.util.function.Predicate;
 
 public enum ETipFilter {
-    DEFAULT, // ODDS_1_8__2_75_TIPMAN_17_COMP_61
-    ODDS_1_8__2_75_TIPMAN_17_COMP_61,
-    ODDS_1_5__3_9_TIPMAN_21_COMP_75;
+    DEFAULT, // ODDS_1_8__2_75_TIPMAN_17_COMP_65
+    ODDS_1_8__2_75_TIPMAN_17_COMP_65,
+    ODDS_1_5__3_9_TIPMAN_21_COMP_72;
 
     public static Predicate<Tip> validTipsV1 = tip ->
                     ((
@@ -16,7 +16,7 @@ public enum ETipFilter {
                             || (tip.getOdds() >= 1.8 && tip.getOdds() <= 2.75
                     ))
                     && tip.getTipman().getRank() <= 17
-                    && tip.getGame().getCompetition().getRank() <= 61;
+                    && tip.getGame().getCompetition().getRank() <= 65;
 
     public static Predicate<Tip> validTipsV2 = tip ->
                 ((
@@ -25,5 +25,5 @@ public enum ETipFilter {
                         || (tip.getOdds() >= 1.5 && tip.getOdds() <= 3.9
                 ))
                     && tip.getTipman().getRank() <= 21
-                    && tip.getGame().getCompetition().getRank() <= 75;
+                    && tip.getGame().getCompetition().getRank() <= 72;
 }

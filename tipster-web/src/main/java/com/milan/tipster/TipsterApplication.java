@@ -18,6 +18,71 @@ public class TipsterApplication {
 
         // TODO
 
+        // 1) nobet --> Θα το προσπεράσουμε.
+        // 2) οριακό 1,72 στον Stoiximan  -- не очень то и уверен автор
+        // 3) если определилось что DNB но без 1 либо 2, то можно угадать по названию команды
+        // 1) Показывать разницу между текущим кэфом и тем который автор указал
+
+        // 1) В ответь на fetch-tips-already-played возвращать статистику за день
+        // 2) Разбить day-plan на список для синглов, список для combo и общий список
+        // 2) Хранить dayPlan в БД???
+        // 4) В fetch-new-games если есть <div class="offer-text"> то не создавать под него game
+            // или offers/ не надо <a href="https://www.matchmoney.com.gr/offers/sportingbet-soyper-kap-ispanias-me-apodoseis-poy-den-echeis-xanadei/" class="text-primary
+
+
+        // 1) Уверенность в решении --> Πολύ οριακά θα έδινα ένα μικρό κλικ στο διπλό του 2,50 στη Novibet ,
+        // 2) Понять почему не все матчи идуть на скоринг (score = 0)
+            // [
+        //  {
+        //    "status": "WON",
+        //    "pick": "SPOT_2",
+        //    "odds": 1.8,
+        //    "score_type": "SPOT_2",
+        //    "score": 5161.990277190679,
+        //    "code": "kadith-sevilli-3-1-22-22-15-paleyontas-me-ton-koronoio"
+        //  },
+        //  {
+        //    "status": "WON",
+        //    "pick": "SPOT_2",
+        //    "odds": 3,
+        //    "score_type": "SPOT_2",
+        //    "score": 2891.9487770633054,
+        //    "code": "goychan-tsongkingk-3-1-22-09-30-prognostika-stoichimatos"
+        //  },
+        //  {
+        //    "status": "LOST",
+        //    "pick": "SPOT_1",
+        //    "odds": 2.05,
+        //    "score_type": "SPOT_2",
+        //    "score": 0,
+        //    "code": "ethn-achnas-doxa-k-3-1-22-17-00-prognostika-stoichimatos"
+        //  },
+        //  {
+        //    "status": "LOST",
+        //    "pick": "SPOT_1",
+        //    "odds": 1.64,
+        //    "score_type": "SPOT_2",
+        //    "score": 0,
+        //    "code": "mantsester-g-goylvs-3-1-22-19-30-trechei-gia-to-chameno-edafos"
+        //  },
+        //  {
+        //    "status": "LOST",
+        //    "pick": "SPOT_2",
+        //    "odds": 3.2,
+        //    "score_type": "SPOT_X",
+        //    "score": 0,
+        //    "code": "rentingk-ntermpi-3-1-22-17-00-yparchei-zoi-ston-planiti-ntermpi"
+        //  },
+        //  {
+        //    "status": "WON",
+        //    "pick": "SPOT_2",
+        //    "odds": 3.4,
+        //    "score_type": "SPOT_2",
+        //    "score": 0,
+        //    "code": "stooyk-preston-3-1-22-17-00-prognostika-stoichimatos"
+        //  }
+        //]
+
         // 1) Не проставляется флаг dnb
         // 2) Не распознали как SPOT_1: Με τον άσο πάντως στο 3,25 της Bet 365 παίρνω τα ρίσκα μου.
 

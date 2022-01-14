@@ -4,6 +4,7 @@ import com.milan.tipster.dto.PredictionFullDayPlanDto;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.dto.ShortTipDto;
 import com.milan.tipster.mapper.TipToPredictionOrikaMapper;
+import com.milan.tipster.model.enums.EPick;
 import com.milan.tipster.model.enums.ETipFilter;
 import com.milan.tipster.service.TipService;
 import lombok.RequiredArgsConstructor;
@@ -57,10 +58,12 @@ public class PredictionController {
     @GetMapping("/tips/prediction/top/{top}/full-day-plan")
     ResponseEntity<PredictionFullDayPlanDto> getTipsPredictionForToday(@PathVariable int top,
                                                                        @RequestParam(required = false) ETipFilter tipFilter) {
-        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_61;
+        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_65;
         List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30, filter);
         List<ShortTipDto> tipsPlan = new ArrayList<>();
-        tipsPredictionForToday.forEach(t -> addToPlanIfSlotEmpty(tipsPlan, t));
+        tipsPredictionForToday.stream()
+                .filter(t -> !t.getPick().equals(EPick.SPOT_X))
+                .forEach(t -> addToPlanIfSlotEmpty(tipsPlan, t));
         tipsPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
         return ResponseEntity.ok(PredictionFullDayPlanDto.builder()
                 .day(LocalDate.now()

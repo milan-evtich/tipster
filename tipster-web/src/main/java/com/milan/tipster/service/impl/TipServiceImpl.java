@@ -77,8 +77,8 @@ public class TipServiceImpl implements TipService {
 
     static final Map<ETipFilter, Predicate<Tip>> tipsFilterMap = ImmutableMap.of(
             ETipFilter.DEFAULT, validTipsV1,
-            ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_61, validTipsV1,
-            ETipFilter.ODDS_1_5__3_9_TIPMAN_21_COMP_75, validTipsV2
+            ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_65, validTipsV1,
+            ETipFilter.ODDS_1_5__3_9_TIPMAN_21_COMP_72, validTipsV2
     );
 
     @Override
