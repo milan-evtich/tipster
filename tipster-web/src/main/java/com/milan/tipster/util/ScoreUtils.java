@@ -29,13 +29,17 @@ public class ScoreUtils {
             return 0.3;
         } else if (isBetween(odds, 1.6, 1.8)) {
             return 0.6;
-        } else if (isBetween(odds, 1.8, 2)) {
+        } else if (isBetween(odds, 1.8, 1.9)) {
             return 0.8;
-        } else if (isBetween(odds, 2, 2.2)) {
+        } else if (isBetween(odds, 1.9, 2)) {
             return 1;
-        } else if (isBetween(odds, 2.2, 2.5)) {
+        } else if (isBetween(odds, 2, 2.2)) {
+            return 1.5;
+        } else if (isBetween(odds, 2.2, 2.4)) {
+            return 1;
+        } else if (isBetween(odds, 2.4, 2.6)) {
             return 0.9;
-        } else if (isBetween(odds, 2.5, 3)) {
+        } else if (isBetween(odds, 2.6, 3)) {
             return 0.8;
         } else if (isBetween(odds, 3, 4)) {
             return 0.6;

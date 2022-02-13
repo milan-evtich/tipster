@@ -10,9 +10,11 @@ import java.util.List;
 public class PredictionFullDayPlanNewDto {
 
     private String day;
-    private List<ShortTipDto> singlesMainPlan;
-    private List<ShortTipDto> singlesAdditionalPlan;
+    private List<ShortTipDto> singlesFirstPlan;
+    private List<ShortTipDto> singlesSecondPlan;
+    private List<ShortTipDto> singlesThirdPlan;
     private List<ShortTipDto> combos;
+    private List<ShortTipDto> system;
     private List<PredictionTipDto> topTips;
 
 }

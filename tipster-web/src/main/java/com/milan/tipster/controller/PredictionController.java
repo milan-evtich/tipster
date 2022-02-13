@@ -11,7 +11,6 @@ import com.milan.tipster.service.TipService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +20,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Slf4j
@@ -63,12 +62,12 @@ public class PredictionController {
     @GetMapping("/tips/prediction/top/{top}/full-day-plan")
     ResponseEntity<PredictionFullDayPlanDto> getTipsPredictionForToday(@PathVariable int top,
                                                                        @RequestParam(required = false) ETipFilter tipFilter) {
-        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_65;
+        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_9__2_75_TIPMAN_21_COMP_67;
         List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30, filter);
         List<ShortTipDto> tipsPlan = new ArrayList<>();
+        AtomicInteger dayPlanRank = new AtomicInteger(1);
         tipsPredictionForToday.stream()
-                .filter(t -> !t.getPick().equals(EPick.SPOT_X))
-                .forEach(t -> addToPlansIfSlotEmpty(tipsPlan, new ArrayList<>(), new ArrayList<>(), t));
+                .forEach(t -> addToPlansIfSlotEmpty(tipsPlan, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), t, dayPlanRank.getAndIncrement()));
         tipsPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
         return ResponseEntity.ok(PredictionFullDayPlanDto.builder()
                 .day(LocalDate.now()
@@ -81,46 +80,83 @@ public class PredictionController {
     @GetMapping("/tips/prediction/top/{top}/full-day-plan-new")
     ResponseEntity<PredictionFullDayPlanNewDto> getTipsPredictionNewForToday(@PathVariable int top,
                                                                        @RequestParam(required = false) ETipFilter tipFilter) {
-        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_65;
-        List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 30, filter);
-        List<ShortTipDto> tipsSingleMainPlan = new ArrayList<>();
-        List<ShortTipDto> tipsSingleAdditionalPlan = new ArrayList<>();
+        ETipFilter filter = Objects.nonNull(tipFilter) ? tipFilter : ETipFilter.DEFAULT;
+        List<PredictionTipDto> tipsPredictionForToday = tipService.getTipsPredictionForToday(top, 0, 1, filter);
+        List<ShortTipDto> tipsSingleFirstPlan = new ArrayList<>();
+        List<ShortTipDto> tipsSingleSecondPlan = new ArrayList<>();
+        List<ShortTipDto> tipsSingleThirdPlan = new ArrayList<>();
         List<ShortTipDto> tipsComboPlan = new ArrayList<>();
+        List<ShortTipDto> tipsSystemPlan = new ArrayList<>();
+        AtomicInteger dayPlanRank = new AtomicInteger(1);
 
-        tipsPredictionForToday.stream()
-                .filter(t -> !t.getPick().equals(EPick.SPOT_X))
-                .forEach(t -> addToPlansIfSlotEmpty(tipsSingleMainPlan, tipsSingleAdditionalPlan, tipsComboPlan, t));
+        tipsPredictionForToday
+                .forEach(t -> addToPlansIfSlotEmpty(tipsSingleFirstPlan, tipsSingleSecondPlan, tipsSingleThirdPlan,
+                        tipsComboPlan, tipsSystemPlan, t, dayPlanRank.getAndIncrement()));
 
-        tipsSingleMainPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
-        tipsSingleAdditionalPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
+        tipsSingleFirstPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
+        tipsSingleSecondPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
+        tipsSingleThirdPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
         tipsComboPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
+        tipsSystemPlan.sort(Comparator.comparing(ShortTipDto::getPlayedOn));
 
         return ResponseEntity.ok(PredictionFullDayPlanNewDto
                 .builder()
-                .day(LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE))
+                .day(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                 .topTips(tipsPredictionForToday)
-                .singlesMainPlan(tipsSingleMainPlan)
-                .singlesAdditionalPlan(tipsSingleAdditionalPlan)
+                .singlesFirstPlan(tipsSingleFirstPlan)
+                .singlesSecondPlan(tipsSingleSecondPlan)
+                .singlesThirdPlan(tipsSingleThirdPlan)
                 .combos(tipsComboPlan)
+                .system(tipsSystemPlan)
                 .build());
     }
 
-    private void addToPlansIfSlotEmpty(List<ShortTipDto> tipsMainPlan,
-                                       List<ShortTipDto> tipsAdditionalPlan,
+    private void addToPlansIfSlotEmpty(List<ShortTipDto> tipsFirstPlan,
+                                       List<ShortTipDto> tipsSecondPlan,
+                                       List<ShortTipDto> tipsThirdPlan,
                                        List<ShortTipDto> comboPlan,
-                                       PredictionTipDto tip) {
-        boolean addedToMainPlan = addTipToPlan(tipsMainPlan, tip);
-        if (!addedToMainPlan) {
-            boolean addedToAdditionalPlan = addTipToPlan(tipsAdditionalPlan, tip);
-            if (!addedToAdditionalPlan) {
-                if(comboPlan.size() < MAX_COMBO_SIZE) {
-                    comboPlan.add(tipToPredictionOrikaMapper.map(tip, ShortTipDto.class));
+                                       List<ShortTipDto> systemPlan,
+                                       PredictionTipDto tip, int dayPlanRank) {
+        boolean addedToFirstPlan = addTipToPlan(tipsFirstPlan, tip, dayPlanRank);
+        if (!addedToFirstPlan) {
+            boolean addedToSecondPlan = addTipToPlan(tipsSecondPlan, tip, dayPlanRank);
+            if (!addedToSecondPlan) {
+                boolean addedToThirdPlan = addTipToPlan(tipsThirdPlan, tip, dayPlanRank);
+                if (!addedToThirdPlan) {
+                    ShortTipDto shortTipDto = tipToPredictionOrikaMapper.map(tip, ShortTipDto.class);
+                    shortTipDto.setDayPlanRank(dayPlanRank);
+                    if (tip.getPick().equals(EPick.SPOT_X)
+                            || ((tip.getPick().equals(EPick.SPOT_2X) || tip.getPick().equals(EPick.SPOT_1X)) && tip.getOdds() > 2.25)
+                            || ((tip.getPick().equals(EPick.SPOT_DNB_1) || tip.getPick().equals(EPick.SPOT_DNB_2)) && (tip.getOdds() > 2.4))
+                            || (tip.getOdds() >= 2.75)) {
+                        systemPlan.add(shortTipDto);
+                    } else {
+                        if(comboPlan.size() < MAX_COMBO_SIZE) {
+                            comboPlan.add(shortTipDto);
+                        }
+                    }
                 }
             }
         }
     }
 
-    private boolean addTipToPlan(List<ShortTipDto> tipsMainPlan, PredictionTipDto tip) {
+    private boolean addTipToPlan(List<ShortTipDto> tipsMainPlan, PredictionTipDto tip, int dayPlanRank) {
+        if (tip.getPick().equals(EPick.SPOT_X)
+                || (tip.getPick().equals(EPick.SPOT_1 ) && tip.getOdds() < 1.9)
+                || (tip.getPick().equals(EPick.SPOT_1 ) && tip.getOdds() > 2.5)
+                || (tip.getPick().equals(EPick.SPOT_2 ) && tip.getOdds() < 1.9)
+                || (tip.getPick().equals(EPick.SPOT_2 ) && tip.getOdds() > 2.5)
+                || (tip.getPick().equals(EPick.SPOT_1X ) && tip.getOdds() < 1.4)
+                || (tip.getPick().equals(EPick.SPOT_1X ) && tip.getOdds() > 1.8)
+                || (tip.getPick().equals(EPick.SPOT_2X ) && tip.getOdds() < 1.4)
+                || (tip.getPick().equals(EPick.SPOT_2X ) && tip.getOdds() > 1.8)
+                || (tip.getPick().equals(EPick.SPOT_DNB_1 ) && tip.getOdds() < 1.6)
+                || (tip.getPick().equals(EPick.SPOT_DNB_1 ) && tip.getOdds() > 2)
+                || (tip.getPick().equals(EPick.SPOT_DNB_2 ) && tip.getOdds() < 1.6)
+                || (tip.getPick().equals(EPick.SPOT_DNB_2 ) && tip.getOdds() > 2)
+        ) {
+            return false;
+        }
         LocalDateTime tipGameStart = tip.getGame().getPlayedOn();
         AtomicBoolean shouldAddToPlan = new AtomicBoolean(true);
         tipsMainPlan.forEach(t -> {
@@ -132,6 +168,7 @@ public class PredictionController {
         if (shouldAddToPlan.get()) {
             try {
                 ShortTipDto shortTipDto = tipToPredictionOrikaMapper.map(tip, ShortTipDto.class);
+                shortTipDto.setDayPlanRank(dayPlanRank);
                 tipsMainPlan.add(shortTipDto);
                 return true;
             } catch (Exception e) {

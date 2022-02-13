@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.milan.tipster.model.enums.EFetchStatus.makeFetchStatus;
+import static com.milan.tipster.model.enums.ETipFilter.defaultFilter;
 import static com.milan.tipster.model.enums.ETipFilter.validTipsV1;
 import static com.milan.tipster.model.enums.ETipFilter.validTipsV2;
 import static com.milan.tipster.util.Constants.*;
@@ -76,9 +77,9 @@ public class TipServiceImpl implements TipService {
     private TipToPredictionOrikaMapper tipToPredictionOrikaMapper;
 
     static final Map<ETipFilter, Predicate<Tip>> tipsFilterMap = ImmutableMap.of(
-            ETipFilter.DEFAULT, validTipsV1,
-            ETipFilter.ODDS_1_8__2_75_TIPMAN_17_COMP_65, validTipsV1,
-            ETipFilter.ODDS_1_5__3_9_TIPMAN_21_COMP_72, validTipsV2
+            ETipFilter.DEFAULT, defaultFilter,
+            ETipFilter.ODDS_1_9__2_75_TIPMAN_21_COMP_67, validTipsV1,
+            ETipFilter.ODDS_1_5__3_9_TIPMAN_23_COMP_72, validTipsV2
     );
 
     @Override
@@ -384,7 +385,7 @@ public class TipServiceImpl implements TipService {
                 + 7 * competition.getRating().getOverallScore()
                 + 6 * tip.getPick().score()
                 + 5 * oddsScore(tip.getOdds())
-                + 10 * (tip.getHotMatch() ? 1 : 0)
+                + (100 * (tip.getHotMatch() ? 1 : 0))
                 ;
 
         tip.setScore(score);

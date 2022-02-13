@@ -14,4 +14,5 @@ public class ShortTipDto {
     private Double score;
     private EPick pick;
     private boolean hotMatch;
+    private Integer dayPlanRank;
 }
