@@ -17,9 +17,63 @@ public class TipsterApplication {
         SpringApplication.run(TipsterApplication.class, args);
 
         // TODO
+        // контра сто ... это X2 либо X1 пример https://www.matchmoney.com.gr/match/%ce%bd%cf%84%ce%b1%ce%bd%cf%84%ce%b9-%ce%b3%ce%b9%ce%bf%cf%85%ce%bd-%cf%87%ce%b1%cf%81%cf%84%cf%83-24-4-22-1700-%cf%80%cf%81%ce%bf%ce%b3%ce%bd%cf%89%cf%83%cf%84%ce%b9%ce%ba%ce%b1-%cf%83%cf%84/
 
-        // ВАЖНО --> делать daily plan c текущего дня с 00:00 (чтобы не пропустить скоринг всех)
-        // только до следущего дня в 12:00
+        // TODO
+        // Сделать новую колонку с αμφίσκορο
+
+        // TODO
+        // дублирование типов [
+        //  {
+        //    "tip_id": 31147
+        //  },
+        //  {
+        //    "tip_id": 31146
+        //  }
+        //]
+        //[
+        //  {
+        //    "tip_id": 31784
+        //  },
+        //  {
+        //    "tip_id": 31783
+        //  },
+        //  {
+        //    "tip_id": 31782
+        //  },
+        //  {
+        //    "tip_id": 31781
+        //  },
+        //  {
+        //    "tip_id": 31780
+        //  },
+        //  {
+        //    "tip_id": 31776
+        //  },
+        //  {
+        //    "tip_id": 31775
+        //  },
+        //  {
+        //    "tip_id": 31772
+        //  }
+        //]
+        // TODO ВАЖНО TEST
+        // в ответе fetch-new-games вернут список ошибок если они есть. Какие competition не найдены
+        // Competition with nameGr1 ΑΡΓΕΝΤΙΝΗ - ΚΟΠΑ ΝΤΕ ΛΑ ΛΙΓΚΑ ΠΡΟΦΕΣΙΟΝΑΛ or nameGr2 ΚΟΠΑ ΝΤΕ ΛΑ ΛΙΓΚΑ ΠΡΟΦΕΣΙΟΝΑΛ and season _2021_2022 not found in DB!
+        // TODO fetch-open-tips-already-played
+        // Список ошибочных матчей в ответе Error fetching tip for game:https://www.matchmoney.com.gr/match/zakynthos-of-ierapetra-6-2-22-14-45-prognostika-stoichimatos/ -
+
+        // TODO TEST
+        // Error fetching tip for game - добавить gameId и может бы вернуть в ответе список ошибок
+        // TODO
+        // Поменять систем на x2p и туда добавлять все у которых Х или коэфф от 1.95 до 3.00 с интервалом 45 минут
+        // TODO
+        // добавить новое поле коэффициент 1Х2 который всегда будет хранится не смотря на тип
+        // TODO
+        // В fetch-new-games если есть <div class="offer-text"> то не создавать под него game
+        // или offers/ не надо <a href="https://www.matchmoney.com.gr/offers/sportingbet-soyper-kap-ispanias-me-apodoseis-poy-den-echeis-xanadei/" class="text-primary
+
+        // Done только до следущего дня в 12:00
 
         // ОШИБКА SPOT_1 вместо SPOT_2 tipId=22684 Μαρσέιγ 2,90 στην Bet365
         // 1) Не определилось - UNKNOWN  Πάμε με τη δ.ε. της φιλοξενούμενης που βρίσκεται στο 1,70 στη Novibet.
@@ -41,89 +95,13 @@ public class TipsterApplication {
         // 1) nobet --> Θα το προσπεράσουμε.
         // 2) οριακό 1,72 στον Stoiximan  -- не очень то и уверен автор
         // 3) если определилось что DNB но без 1 либо 2, то можно угадать по названию команды
-        // 1) Показывать разницу между текущим кэфом и тем который автор указал
 
         // 1) В ответь на fetch-tips-already-played возвращать статистику за день
-        // 2) DONE Разбить day-plan на список для синглов, список для combo и общий список
         // 2) Хранить dayPlan в БД???
         // 3) Определилось по ошибке как NOBET Λογικό ότι μαζεύτηκε ο άσος, αλλά στέκεται στο 1,75 του Stoiximan
-        // 4) В fetch-new-games если есть <div class="offer-text"> то не создавать под него game
-            // или offers/ не надо <a href="https://www.matchmoney.com.gr/offers/sportingbet-soyper-kap-ispanias-me-apodoseis-poy-den-echeis-xanadei/" class="text-primary
 
 
         // 1) Уверенность в решении --> Πολύ οριακά θα έδινα ένα μικρό κλικ στο διπλό του 2,50 στη Novibet ,
-        // 2) Понять почему не все матчи идуть на скоринг (score = 0)
-            // [
-        //  {
-        //    "status": "WON",
-        //    "pick": "SPOT_2",
-        //    "odds": 1.8,
-        //    "score_type": "SPOT_2",
-        //    "score": 5161.990277190679,
-        //    "code": "kadith-sevilli-3-1-22-22-15-paleyontas-me-ton-koronoio"
-        //  },
-        //  {
-        //    "status": "WON",
-        //    "pick": "SPOT_2",
-        //    "odds": 3,
-        //    "score_type": "SPOT_2",
-        //    "score": 2891.9487770633054,
-        //    "code": "goychan-tsongkingk-3-1-22-09-30-prognostika-stoichimatos"
-        //  },
-        //  {
-        //    "status": "LOST",
-        //    "pick": "SPOT_1",
-        //    "odds": 2.05,
-        //    "score_type": "SPOT_2",
-        //    "score": 0,
-        //    "code": "ethn-achnas-doxa-k-3-1-22-17-00-prognostika-stoichimatos"
-        //  },
-        //  {
-        //    "status": "LOST",
-        //    "pick": "SPOT_1",
-        //    "odds": 1.64,
-        //    "score_type": "SPOT_2",
-        //    "score": 0,
-        //    "code": "mantsester-g-goylvs-3-1-22-19-30-trechei-gia-to-chameno-edafos"
-        //  },
-        //  {
-        //    "status": "LOST",
-        //    "pick": "SPOT_2",
-        //    "odds": 3.2,
-        //    "score_type": "SPOT_X",
-        //    "score": 0,
-        //    "code": "rentingk-ntermpi-3-1-22-17-00-yparchei-zoi-ston-planiti-ntermpi"
-        //  },
-        //  {
-        //    "status": "WON",
-        //    "pick": "SPOT_2",
-        //    "odds": 3.4,
-        //    "score_type": "SPOT_2",
-        //    "score": 0,
-        //    "code": "stooyk-preston-3-1-22-17-00-prognostika-stoichimatos"
-        //  }
-        //]
 
-        // 1) Не проставляется флаг dnb
-        // 2) Не распознали как SPOT_1: Με τον άσο πάντως στο 3,25 της Bet 365 παίρνω τα ρίσκα μου.
-
-        // 1) DONE --- Σωστά μετρημένο το σετ, μένουμε θεατές. не попадает в NOBET
-        // 2) DONE --- Στο 1,66 η διπλή, στο 2,40 ο άσος με DNB στη Novibet. определено как SPOT_1
-        // 3) DONE --- Ένα κλικ στα αριστερά και στον άσο σε DNB στο 2,04 της Novibet .  определено как SPOT_1
-        // 4) DONE --- Ο άσος σε DNB στο 2,10 στην Bet365. определено как SPOT_1
-
-        // 1) DONE --- FIX WON LOST STATUS TipServiceImpl 746
-        // 2) DONE - ON TEST --- Не распозналось
-
-        // 2) DONE - ON TEST --- Если pick.strong пусто or null то pick и статус NOBET
-        // 1) DONE --- Дополнить ответ для плана, добавить название матча nameGr
-        // 2) DONE --- Проверить как ранкирование проходит (ocerall_rating) in competition, tipman and tc
-        // 3) DONE --- Fix newCoefficient initial value для новых объектов
-        // 4) DONE --- Увеличить размер текста и strong
-
-        // 1) DONE --- Если PICK опредлился как NOBET то и статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
-        // 2) DONE --- Если поле strong = null то pick NOBET, статус у него должен быть NOBET а fetch_status = 'FULLY_FETCHED'
-        // 3) DONE --- Помечать флаг dnb=true для типов SPOT_DNB_*
-        // 4) DONE --- В ETipFilter добавить разные ставки для DNB а разные для не DNB
     }
 }

@@ -9,10 +9,14 @@ import com.milan.tipster.model.Competition;
 import com.milan.tipster.model.Rating;
 import com.milan.tipster.model.Tip;
 import com.milan.tipster.model.TipmanCompetitionRating;
+import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.MappingContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+
+import static org.apache.commons.lang3.StringUtils.defaultString;
 
 @Component
 public class TipToPredictionOrikaMapper extends AbstractOrikaMapper<PredictionTipDto, Tip>{

@@ -31,12 +31,20 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 public class DateTimeUtils {
 
     public static final String LOCAL_DATE_TIME_PATTERN_DEFAULT = "dd.MM.yyyy HH:mm:ss";
+    public static final String LOCAL_TIME_PATTERN_DEFAULT = "HH:mm";
     public static final String OFFSET_DATE_TIME_PATTERN_DEFAULT = "yyyy-MM-dd'T'HH:mmZZZZZ";
     public static final String DATE_TIME_PATTERN = "dd.MM.yyyy HH:mm МСК";
     public static final long START_OF_DAY = 0;
     public static final long END_OF_DAY = 24;
     private static Predicate<? super LocalDate> isWeekend = date -> date.getDayOfWeek().equals(DayOfWeek.SATURDAY)
             || date.getDayOfWeek().equals(DayOfWeek.SUNDAY);
+
+    public static String format(LocalTime localTime) {
+        if (isNull(localTime)) {
+            return null;
+        }
+        return localTime.format(DateTimeFormatter.ofPattern(LOCAL_TIME_PATTERN_DEFAULT));
+    }
 
     public static String format(LocalDateTime localDateTime) {
         if (isNull(localDateTime)) {
@@ -306,5 +314,15 @@ public class DateTimeUtils {
             default:
                 return date;
         }
+    }
+
+    public static LocalDateTime summerTime(LocalDateTime playedOn) {
+        // summer time is the same as Russian
+        return playedOn;
+    }
+
+    public static LocalDateTime winterTIme(LocalDateTime playedOn) {
+        // add 1 hour for Moscow - Greece time difference
+        return playedOn.plusHours(1L);
     }
 }

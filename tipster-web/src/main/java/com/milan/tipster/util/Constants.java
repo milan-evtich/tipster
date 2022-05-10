@@ -140,6 +140,7 @@ public class Constants {
 
     public static final String DEFAULT_GAME_DISCOVERY_SCHEDULER = "default-game-scheduler";
     public static final String URL_MATCH_MONEY = "https://www.matchmoney.com.gr/";
+    public static final String URL_MATCH_MONEY_MOBILE_VERSION = "https://mobile.matchmoney.com.gr/";
     public static final String MATCH_MONEY_DB_NAME = "MatchMoney";
     public static final String PATH_LATEST_GAMES = "latest/page/";
     public static final String FILE_NAME_PREFIX_LATEST_GAMES = "latest-games";

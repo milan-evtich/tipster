@@ -11,6 +11,17 @@ public class ScoreUtils {
         return lower < x && x <= upper;
     }
 
+    public static double oddsDifferenceScore(Double oldOdds, Double newOdds) {
+        if (Objects.isNull(oldOdds) || oldOdds.equals(0D) || oldOdds.equals(-1D) || Objects.isNull(newOdds)
+                || newOdds.equals(0D) || newOdds.equals(-1D) ) {
+            return 0D;
+        }
+        double dif = oldOdds - newOdds;
+        if(-1D < dif && dif < 1D) {
+            return 25D * dif;
+        }
+        return 0D;
+    }
 
     public static double oddsScore(Double odds) {
 

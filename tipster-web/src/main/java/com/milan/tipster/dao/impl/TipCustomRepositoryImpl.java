@@ -86,6 +86,22 @@ public class TipCustomRepositoryImpl implements TipCustomRepository {
 
     @Override
     @Transactional
+    public boolean updateAuthorOdds(Long tipId, Double authorOdds) {
+        try {
+            em.joinTransaction();
+            em.createNamedQuery("updateTipAuthorOdds", Tip.class)
+                    .setParameter(1, authorOdds)
+                    .setParameter(2, tipId)
+                    .executeUpdate();
+            return true;
+        } catch (Exception e) {
+            log.error("Error while updating tip authorOdds {} with id {} ", authorOdds, tipId, e);
+            return false;
+        }
+    }
+
+    @Override
+    @Transactional
     public boolean updateHotMatch(Long tipId, Boolean hotMatchFlag) {
         try {
             em.joinTransaction();

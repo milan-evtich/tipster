@@ -45,6 +45,11 @@ import javax.persistence.SqlResultSetMapping;
                 resultSetMapping = "updateTipResult"
         ),
         @NamedNativeQuery(
+                name    =   "updateTipAuthorOdds",
+                query   =   "UPDATE tip SET author_odds = ?1 WHERE tip_id = ?2",
+                resultSetMapping = "updateTipResult"
+        ),
+        @NamedNativeQuery(
                 name    =   "updateTipHotMatch",
                 query   =   "UPDATE tip SET hot_match = ?1 WHERE tip_id = ?2",
                 resultSetMapping = "updateTipResult"
@@ -126,6 +131,8 @@ public class Tip {
     private Boolean hotMatch;
 
     private Double odds;
+
+    private Double authorOdds;
 
     private String bookie;
 

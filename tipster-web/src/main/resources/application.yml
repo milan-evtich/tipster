@@ -11,7 +11,7 @@ spring.jpa.properties.hibernate:
   dialect: org.hibernate.dialect.PostgreSQLDialect
   jdbc.lob.non_contextual_creation: true
 
-# Hibernate ddl auto (validate, update, DONT USE OTHERS --- create, create-drop(it drops everything at the end) ---)
+# Hibernate ddl auto (validate, update, DON'T USE OTHERS --- create, create-drop(it drops everything at the end) ---)
 spring.jpa.hibernate.ddl-auto: validate
 
 # Dictionary initialization config

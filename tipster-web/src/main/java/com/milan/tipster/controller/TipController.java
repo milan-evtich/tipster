@@ -1,6 +1,7 @@
 package com.milan.tipster.controller;
 
 import com.milan.tipster.dao.FaultRepository;
+import com.milan.tipster.dto.FetchTipsForGamesWithoutTipsResponse;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Tip;
 import com.milan.tipster.model.enums.ETipStatus;
@@ -72,8 +73,8 @@ public class TipController {
      * @return
      */
     @GetMapping(value = "/tips/fetch-all-tips-for-games-without-tips")
-    public int fetchTipsForGamesWithoutTips() {
-        return tipService.fetchTipsWithGameFetchStatusPartlyFetched(parseFetchFileOrUrl("URL"));
+    public FetchTipsForGamesWithoutTipsResponse fetchTipsForGamesWithoutTips() {
+        return tipService.fetchAllTipsWithGameFetchStatusPartlyFetched(parseFetchFileOrUrl("URL"));
     }
 
     /**

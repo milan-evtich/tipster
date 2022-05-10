@@ -1,5 +1,6 @@
 package com.milan.tipster.service;
 
+import com.milan.tipster.dto.FetchTipsForGamesWithoutTipsResponse;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Tip;
@@ -20,7 +21,11 @@ public interface TipService {
 
     int fetchTipsWithGameFetchStatusPartlyFetched(boolean fetchFromFile);
 
+    FetchTipsForGamesWithoutTipsResponse fetchAllTipsWithGameFetchStatusPartlyFetched(boolean fetchFromFile);
+
     int fetchTipsForGames(List<Game> games, boolean fetchFromFile);
+
+    FetchTipsForGamesWithoutTipsResponse fetchTipsWithErrorsForGames(List<Game> games, boolean fetchFromFile);
 
     boolean fetchAndSaveOrUpdateTip(Game game, boolean fetchFromFile) throws IOException;
 

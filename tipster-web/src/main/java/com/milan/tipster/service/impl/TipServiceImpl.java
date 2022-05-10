@@ -6,6 +6,7 @@ import com.milan.tipster.dao.FaultRepository;
 import com.milan.tipster.dao.TipCustomRepository;
 import com.milan.tipster.dao.TipRepository;
 import com.milan.tipster.dao.TipmanCompetitionRatingRepository;
+import com.milan.tipster.dto.FetchTipsForGamesWithoutTipsResponse;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.dto.TipmanCompetitionDto;
 import com.milan.tipster.error.exception.GameException;
@@ -15,6 +16,7 @@ import com.milan.tipster.mapper.TipToPredictionOrikaMapper;
 import com.milan.tipster.model.*;
 import com.milan.tipster.model.enums.*;
 import com.milan.tipster.service.*;
+import com.milan.tipster.util.DateTimeUtils;
 import com.milan.tipster.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
@@ -42,6 +44,7 @@ import static com.milan.tipster.model.enums.ETipFilter.defaultFilter;
 import static com.milan.tipster.model.enums.ETipFilter.validTipsV1;
 import static com.milan.tipster.model.enums.ETipFilter.validTipsV2;
 import static com.milan.tipster.util.Constants.*;
+import static com.milan.tipster.util.ScoreUtils.oddsDifferenceScore;
 import static com.milan.tipster.util.ScoreUtils.oddsScore;
 import static com.milan.tipster.util.Utils.*;
 import static com.milan.tipster.util.Utils.textHasAnyOfWords;
@@ -96,6 +99,13 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
+    public FetchTipsForGamesWithoutTipsResponse fetchAllTipsWithGameFetchStatusPartlyFetched(boolean fetchFromFile) {
+        List<Game> games = gameService.findGamesByFetchStatus(EFetchStatus.PARTLY_FETCHED);
+        log.info("Start fetching {} games!", games.size());
+        return fetchTipsWithErrorsForGames(games, fetchFromFile);
+    }
+
+    @Override
     public int fetchTipsOnDate(LocalDate datePlayedOn, boolean fetchFromFile) {
         List<Game> games = gameService.findGamesOnDate(datePlayedOn);
         return fetchTipsForGames(games, fetchFromFile);
@@ -123,6 +133,35 @@ public class TipServiceImpl implements TipService {
         }
         return count;
     }
+
+    @Override
+    public FetchTipsForGamesWithoutTipsResponse fetchTipsWithErrorsForGames(List<Game> games, boolean fetchFromFile) {
+        Objects.requireNonNull(games);
+        int count = 0;
+        FetchTipsForGamesWithoutTipsResponse response = FetchTipsForGamesWithoutTipsResponse
+                .builder()
+                .build();
+        for (Game game : games) {
+            try {
+                boolean tipUpdatedOrSaved = fetchAndSaveOrUpdateTip(game, fetchFromFile);
+                if (tipUpdatedOrSaved) {
+                    log.info("NEW TIP SAVED OR UPDATED for game: {}", game.getCode());
+                    count++;
+                    game = gameService.findGameByCode(game.getCode());
+                    gameService.updateFetchStatus(game, true);
+                }
+            } catch (TipAlreadyExistsWarning tipAlreadyExistsWarning) {
+                log.warn("TIP ALREADY EXISTS AND FULLY FETCHED {}", game.getCode());
+            } catch (Exception e) {
+                response.addErrorMessage("Error fetching tip for game: " + game.getLink() + " " + e.getMessage());
+                log.error("Error fetching tip for game:{} - ", game.getLink(), e);
+                faultRepository.save(Fault.builder().message(limitTextTo253(e.toString())).url(limitTextTo253(game.getCode())).build());
+            }
+        }
+        response.setTipCount(count);
+        return response;
+    }
+
 
     @Override
     public boolean fetchAndSaveOrUpdateTip(Game game, boolean fetchFromFile) throws IOException {
@@ -304,7 +343,8 @@ public class TipServiceImpl implements TipService {
     @Transactional
     public List<PredictionTipDto> getTipsPredictionForToday(int top, Integer hours, Integer minutes, ETipFilter filter) {
         LocalDateTime startDateTime = LocalDateTime.now().plusHours(hours).plusMinutes(minutes);
-        List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnAfter(ETipStatus.OPEN, startDateTime);
+        LocalDateTime endDateTime = startDateTime.toLocalDate().atStartOfDay().plusHours(36L);
+        List<Tip> openTips = tipRepository.findAllByStatusAndGame_PlayedOnBetween(ETipStatus.OPEN, startDateTime, endDateTime);
 //        Map<RankedTip> rankedTips = new ArrayList<>();
         // all tips that can be played
         return mapToPredictionDtos(openTips, tipsFilterMap.get(filter));
@@ -385,12 +425,14 @@ public class TipServiceImpl implements TipService {
                 + 7 * competition.getRating().getOverallScore()
                 + 6 * tip.getPick().score()
                 + 5 * oddsScore(tip.getOdds())
+                + 4 * oddsDifferenceScore(tip.getAuthorOdds(), tip.getOdds())
                 + (100 * (tip.getHotMatch() ? 1 : 0))
                 ;
 
         tip.setScore(score);
         return tipRepository.save(tip);
     }
+
 
 
 
@@ -422,6 +464,9 @@ public class TipServiceImpl implements TipService {
 
         ///////////////// make odds ////////////////////////
         updated = makeAndUpdateOdds(tip, tipDoc) || updated;
+
+        ///////////////// make author odds ////////////////////////
+        updated = makeAndUpdateAuthorOdds(tip, tipDoc) || updated;
 
         ///////////////// make hot match flag ///////////////////
         updated = makeAndUpdateHotMatch(tip, tipDoc) || updated;
@@ -499,7 +544,15 @@ public class TipServiceImpl implements TipService {
         }
         return false;
     }
-
+    private boolean makeAndUpdateAuthorOdds(Tip tip, Document tipDoc) {
+        if (tip.getAuthorOdds() == null || tip.getAuthorOdds() == ODDS_UNKNOWN || tip.getAuthorOdds().equals(0D)) {
+            Double authorOdds = makeOddsFromSpotDivStrongText(tipDoc);
+            if (authorOdds != null) {
+                return tipCustomRepository.updateAuthorOdds(tip.getTipId(), authorOdds);
+            }
+        }
+        return false;
+    }
     private boolean makeAndUpdateOdds(Tip tip, Document tipDoc) {
         if (tip.getOdds() == null || tip.getOdds() == ODDS_UNKNOWN || tip.getOdds().equals(0D)) {
             Double newOdds = makeAndUpdateOdds(tip.getPick(), tipDoc);
@@ -661,6 +714,8 @@ public class TipServiceImpl implements TipService {
         }
         return makeOddsFromSpotDivStrongText(tipDoc);
     }
+
+
 
     private Double makeOddsFromSpotDivStrongText(Element tipDoc) {
         Objects.requireNonNull(tipDoc, "Tip Doc!");

@@ -9,6 +9,8 @@ public enum ETipFilter {
     ODDS_1_9__2_75_TIPMAN_21_COMP_67,
     ODDS_1_5__3_9_TIPMAN_23_COMP_72;
 
+    private static final int MINIMAL_RANK = 3800;
+
     public static Predicate<Tip> defaultFilter = tip ->
             ((
                     ((tip.getPick().equals(EPick.SPOT_1X) || tip.getPick().equals(EPick.SPOT_2X)) && tip.getOdds() >= 1.3 && tip.getOdds() < 2.5)
@@ -16,7 +18,7 @@ public enum ETipFilter {
                             || (tip.getPick().equals(EPick.SPOT_X) && tip.getOdds() > 2.8)
                             || (tip.getOdds() >= 1.55 && tip.getOdds() <= 3.5)
             ))
-                    && tip.getScore() >= 3500;
+                    && tip.getScore() >= MINIMAL_RANK;
 
     public static Predicate<Tip> validTipsV1 = tip ->
                     ((

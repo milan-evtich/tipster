@@ -1,5 +1,6 @@
 package com.milan.tipster.controller;
 
+import com.milan.tipster.dto.FetchGamesResponse;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.service.FetchingService;
 import com.milan.tipster.service.FileStorageService;
@@ -42,7 +43,7 @@ public class GameController {
      * Создает матчей если не существуют в БД
      * Если на страничке был создан хоть один новый матч то сохраняеть файл html с страничкой
      */
-    @GetMapping(value = "/games/fetch/{endDateStr}")
+ /*   @GetMapping(value = "/games/fetch/{endDateStr}")
     public ResponseEntity<String> fetchNewGamesTillEndDate(@PathVariable String endDateStr) throws IOException {
         LocalDate endDate = Utils.convertStringToLocalDate(endDateStr);
         LocalDate endDateLimit = LocalDate.now().minusDays(30);
@@ -68,7 +69,7 @@ public class GameController {
         }
         return new ResponseEntity<String>("Fetched " + gamesFetchedCount + " new games.", HttpStatus.OK);
 
-    }
+    }*/
 
     /**
      * Находит матчей на страничке последних анализов и создает их если раньше не были созданы
@@ -80,17 +81,21 @@ public class GameController {
      * @throws IOException
      */
     @GetMapping(value = "/games/fetch/{startPage}/{endPage}")
-    public List<Game> fetchGames(@PathVariable Integer startPage, @PathVariable Integer endPage) throws IOException {
-        List<Game> games = new ArrayList<>();
+    public ResponseEntity<FetchGamesResponse> fetchGames(@PathVariable Integer startPage, @PathVariable Integer endPage) throws IOException {
+        FetchGamesResponse fetchGamesResponse = FetchGamesResponse.builder()
+                .build();
         for (int page = startPage; page <= endPage; page++) {
-            games = fetchLatestGamesPerPage(page);
+            String url = URL_MATCH_MONEY_MOBILE_VERSION + PATH_LATEST_GAMES + page;
+            log.info("Fetching games with url: {}", url);
+            Document latestAnalysisDoc = fetchingService.fetchDocByUrlOrPath(url, false);
+            gameService.fetchGames(latestAnalysisDoc, fetchGamesResponse);
         }
-        return games;
+        return ResponseEntity.ok(fetchGamesResponse);
     }
 
     private List<Game> fetchLatestGamesPerPage(int page) throws IOException {
         List<Game> games = new ArrayList<>();
-        String url = URL_MATCH_MONEY + PATH_LATEST_GAMES + page;
+        String url = URL_MATCH_MONEY_MOBILE_VERSION + PATH_LATEST_GAMES + page;
         log.info("Fetching games with url: {}", url);
         Document latestAnalysisDoc = fetchingService.fetchDocByUrlOrPath(url, false);
         games.addAll(gameService.fetchGames(latestAnalysisDoc));

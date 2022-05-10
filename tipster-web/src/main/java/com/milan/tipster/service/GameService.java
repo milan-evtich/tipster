@@ -1,5 +1,6 @@
 package com.milan.tipster.service;
 
+import com.milan.tipster.dto.FetchGamesResponse;
 import com.milan.tipster.model.Game;
 import com.milan.tipster.model.Score;
 import com.milan.tipster.model.Tip;
@@ -15,6 +16,8 @@ public interface GameService {
     List<Game> findGamesWithoutDateInLink();
 
     List<Game> fetchGames(Document analysisDoc);
+
+    void fetchGames(Document analysisDoc, FetchGamesResponse fetchGamesResponse);
 
     List<Game> findGamesOnDate(LocalDate localDate);
 

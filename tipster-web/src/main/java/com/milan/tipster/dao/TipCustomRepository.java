@@ -15,6 +15,8 @@ public interface TipCustomRepository {
 
     boolean updateOdds(Long tipId, Double odds);
 
+    boolean updateAuthorOdds(Long tipId, Double odds);
+
     boolean updateHotMatch(Long tipId, Boolean hotMatchFlag);
 
     boolean updateStatus(Long tipId, ETipStatus status);

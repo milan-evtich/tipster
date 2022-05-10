@@ -3,6 +3,7 @@ package com.milan.tipster.service.impl;
 import com.milan.tipster.dao.FaultRepository;
 import com.milan.tipster.dao.GameCustomeRepository;
 import com.milan.tipster.dao.GameRepository;
+import com.milan.tipster.dto.FetchGamesResponse;
 import com.milan.tipster.error.exception.TipsterException;
 import com.milan.tipster.model.*;
 import com.milan.tipster.model.enums.EFetchStatus;
@@ -10,6 +11,7 @@ import com.milan.tipster.model.enums.EPick;
 import com.milan.tipster.model.enums.ESeason;
 import com.milan.tipster.service.*;
 import com.milan.tipster.util.Constants;
+import com.milan.tipster.util.DateTimeUtils;
 import com.milan.tipster.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
@@ -156,6 +158,113 @@ public class GameServiceImpl implements GameService {
         // В конце может стоит подумать на счеть следущего сезона как маштабировать
     }
 
+    @Override
+    public void fetchGames(Document analysisDoc, FetchGamesResponse fetchGamesResponse) {
+        if (Objects.nonNull(analysisDoc)) {
+            List<Game> games = new ArrayList<>();
+            List<String> errorMessages = new ArrayList<>();
+
+            Element latest_analysis_page = analysisDoc.select("div.latest-analysis-page").first();
+            Element tbody = latest_analysis_page.select("tbody").first();
+            Elements tr = tbody.select("tr");
+            for (Element gameTr : tr) {
+                try {
+                    Elements tds = gameTr.select("td");
+                    Element gameEl = tds.get(1).select("a").first();
+                    String[] parts = gameEl.text().split(" - ");
+                    String gameLink = gameEl.attr("abs:href");
+                    String gameCode = gameLink.replaceFirst("https://www.matchmoney.com.gr/match/", "")
+                            .replace("/", "");
+                    String gameNameGr = tds.get(1).text().trim();
+                    String[] gameParts = null;
+
+                    try {
+                        String gameInEnglish = makeGameInEnglish(gameCode);
+                        gameParts = gameInEnglish.split("-");
+//
+                    } catch (Exception e) {
+                        StringBuilder errorMessageSB = new StringBuilder();
+                        errorMessageSB
+                                .append("GameInEnglish error ")
+                                .append(gameCode)
+                                .append(" ")
+                                .append(e.getMessage())
+                                .append(" ")
+                                .append("/n");
+                        errorMessages.add(errorMessageSB.toString());
+                        log.error("GameInEngllish error {} {}", gameCode, e.getMessage());
+                    }
+//                    String dateStr = gameCode.split(gameInEnglish + "-")[1].replace("/", "-00");
+                    LocalDateTime gamePlayedOn = null;
+                    try {
+                        gamePlayedOn = makeDatePlayedOn(gameCode);
+                    } catch (Exception e) {
+                        StringBuilder errorMessageSB = new StringBuilder();
+                        errorMessageSB
+                                .append("GamePlayedOn error ")
+                                .append(gameCode)
+                                .append(" ")
+                                .append(e.getMessage())
+                                .append(" ")
+                                .append("/n");
+                        errorMessages.add(errorMessageSB.toString());
+                        log.error("GamePlayedOn error {} {}", gameCode, e.getMessage());
+                    }
+//                     <td> 13:03 26/10/18</td>
+                    LocalDateTime tipPublishedOn = makePublishedOn(tds.get(3).text());
+
+                    if (gameRepository.existsByCode(gameCode)) {
+                        log.info("----GAME ALREADY EXISTS---- gameCode:{}", gameCode);
+                        continue;
+                    }
+
+                    // COUNTRY
+                    Country country = countryService.findOrMakeCountry(tds, gameCode);
+                    log.info("-----COUNTRY------{}", country);
+
+                    // COMPETITION
+                    Element flagEl = tds.get(0);
+                    Element competitionEl = tds.get(2);
+                    Competition competition = competitionService.findOrMakeCompetition(competitionEl, gameCode, country, gamePlayedOn, flagEl, tipPublishedOn);
+
+                    Team homeTeam = null;
+                    Team awayTeam = null;
+                    if (parts.length > 1) {
+                        /// HOME TEAM
+                        String homeSideNameGr = parts[0].trim();
+                        homeTeam = teamService.findOrMakeTeam(homeSideNameGr, gameParts, 0, gameCode, competition);
+                        competition = competitionService.addTeamToCompetitionIfNotExists(competition, homeTeam);
+
+                        // AWAY TEAM
+                        String avawyTeamNameGr = parts[1].trim();
+                        awayTeam = teamService.findOrMakeTeam(avawyTeamNameGr, gameParts, homeSideNameGr.split(" ").length, gameCode, competition);
+                        competition = competitionService.addTeamToCompetitionIfNotExists(competition, awayTeam);
+                    }
+
+                    // GAME
+                    Game game = makeAndSaveGame(gameCode, gameLink, competition, homeTeam, awayTeam, gamePlayedOn, tipPublishedOn, gameNameGr);
+
+                    log.info("---- GAME CREATED---- {}", game);
+                    games.add(game);
+                } catch (Exception e) {
+                    String s = gameTr.toString();
+                    StringBuilder errorMessageSB = new StringBuilder();
+                    errorMessageSB
+                            .append("Game parsing error - ")
+                            .append(s)
+                            .append(" ")
+                            .append(e.getMessage())
+                            .append("/n");
+                    errorMessages.add(errorMessageSB.toString());
+                    log.error("Game parsing error {} - ", s, e);
+                    faultRepository.save(Fault.builder().message(limitTextTo253(e.toString())).url(limitTextTo253(gameTr.toString())).build());
+                }
+            }
+            fetchGamesResponse.addGames(games);
+            fetchGamesResponse.addErrorMessages(errorMessages);
+        }
+    }
+
     private LocalDateTime makePublishedOn(String tipPublishedOnText) {
         String[] publishedParts = tipPublishedOnText.split(" ");
         return convertStringToLocalDateTime(publishedParts[1]
@@ -182,9 +291,8 @@ public class GameServiceImpl implements GameService {
         LocalDateTime playedOn = convertStringToLocalDateTime(String.format(dateStrFormat, day, month, year, hour,
                 minute, seconds), null);
         // add 1 hour for Moscow - Greece time difference
-        return playedOn.plusHours(1L);
+        return DateTimeUtils.summerTime(playedOn);
     }
-
 
     @Override
     public List<Game> findGamesOnDate(LocalDate localDate) {
