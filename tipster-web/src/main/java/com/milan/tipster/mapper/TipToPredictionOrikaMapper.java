@@ -4,6 +4,7 @@ import com.milan.tipster.dto.CompetitionDto;
 import com.milan.tipster.dto.PredictionTipDto;
 import com.milan.tipster.dto.RatingDto;
 import com.milan.tipster.dto.ShortTipDto;
+import com.milan.tipster.dto.TipSDto;
 import com.milan.tipster.dto.TipmanCompetitionDto;
 import com.milan.tipster.model.Competition;
 import com.milan.tipster.model.Rating;
@@ -60,6 +61,10 @@ public class TipToPredictionOrikaMapper extends AbstractOrikaMapper<PredictionTi
                 .byDefault()
                 .register();
 
+        factory.classMap(Tip.class, TipSDto.class)
+                .field("game.playedOn", "playedOn")
+                .byDefault()
+                .register();
 
     }
 

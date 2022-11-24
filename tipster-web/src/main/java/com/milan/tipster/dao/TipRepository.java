@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
+import java.util.EnumSet;
 import java.util.List;
 
 public interface TipRepository extends CrudRepository<Tip, Long> {
@@ -37,5 +38,8 @@ public interface TipRepository extends CrudRepository<Tip, Long> {
     List<Tip> findAllByOdds(Double odds);
 
     List<Tip> findTop100ByRatedFlag_RatedFalseAndStatusNot(ETipStatus status);
+
+    List<Tip> findAllByStatusInAndGame_PlayedOnBetweenAndOddsGreaterThanAndScoreGreaterThanOrderByScoreDesc(EnumSet<ETipStatus> statuses, LocalDateTime playedOnStart,
+                                                              LocalDateTime playedOnEnd, Double odds, Double minScore);
 
 }

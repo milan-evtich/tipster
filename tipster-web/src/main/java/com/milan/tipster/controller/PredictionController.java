@@ -175,9 +175,9 @@ public class PredictionController {
     }
 
     private boolean addTipToPlan(List<ShortTipDto> tipsMainPlan, PredictionTipDto tip, int dayPlanRank, int timeBound) {
-        if ((tip.getPick().equals(EPick.SPOT_1 ) && tip.getOdds() < 1.9)
+        if ((tip.getPick().equals(EPick.SPOT_1 ) && tip.getOdds() < 1.95)
                 || (tip.getPick().equals(EPick.SPOT_1 ) && tip.getOdds() > 2.5)
-                || (tip.getPick().equals(EPick.SPOT_2 ) && tip.getOdds() < 1.9)
+                || (tip.getPick().equals(EPick.SPOT_2 ) && tip.getOdds() < 1.95)
                 || (tip.getPick().equals(EPick.SPOT_2 ) && tip.getOdds() > 2.5)
                 || (tip.getPick().equals(EPick.SPOT_1X ) && tip.getOdds() < 1.2)
                 || (tip.getPick().equals(EPick.SPOT_1X ) && tip.getOdds() > 1.55)

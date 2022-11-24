@@ -7,9 +7,13 @@ import org.apache.commons.text.similarity.LevenshteinDistance;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.IntStream;
 
 import static com.milan.tipster.util.Constants.DIFFERENCE_LIMIT;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -70,6 +74,17 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static int[] randomUniqueNumbers(int from, int to) {
+        Random rand = new Random();
+        AtomicBoolean[] values = new AtomicBoolean[to];
+        for (int i= 0; i < to; i++) {
+            values[i] = new AtomicBoolean(true);
+        }
+        return rand.ints(20L *to, from, to)
+                .filter(i -> values[i].getAndSet(false))
+                .toArray();
     }
 
     public static boolean isNumeric(String s) {

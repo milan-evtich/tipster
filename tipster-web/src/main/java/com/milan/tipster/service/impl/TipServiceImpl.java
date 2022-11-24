@@ -8,6 +8,7 @@ import com.milan.tipster.dao.TipRepository;
 import com.milan.tipster.dao.TipmanCompetitionRatingRepository;
 import com.milan.tipster.dto.FetchTipsForGamesWithoutTipsResponse;
 import com.milan.tipster.dto.PredictionTipDto;
+import com.milan.tipster.dto.TipSDto;
 import com.milan.tipster.dto.TipmanCompetitionDto;
 import com.milan.tipster.error.exception.GameException;
 import com.milan.tipster.error.exception.TipAlreadyExistsWarning;
@@ -31,6 +32,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -408,6 +410,25 @@ public class TipServiceImpl implements TipService {
 
         log.info("Start fetching {} games!", openGames.size());
         return fetchTipsForGames(openGames, fetchFromFile);
+    }
+
+    @Override
+    public List<Tip> getTipsFromPlanBetweenTwoDates(LocalDate startDate, LocalDate endDate, Double scoreMin) {
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
+        final double ODDS_MIN = 1.19;
+        List<Tip> tips = tipRepository.findAllByStatusInAndGame_PlayedOnBetweenAndOddsGreaterThanAndScoreGreaterThanOrderByScoreDesc(EnumSet.of(ETipStatus.LOST, ETipStatus.WON, ETipStatus.DNB),
+                startDateTime, endDateTime, ODDS_MIN, scoreMin);
+
+        log.info("{} Tips in statuses WON, LOST or DNB for period between {} and {}", tips.size(),
+                DateTimeUtils.format(startDateTime), DateTimeUtils.format(endDateTime));
+        log.info("TIPS_DOR_EVALUATING:  {}", tipToPredictionOrikaMapper.mapAsList(tips, TipSDto.class));
+        return tips;
+    }
+
+    @Override
+    public List<Tip> getTipsFromPlanOnDay(LocalDate day, Double scoreMin) {
+        return getTipsFromPlanBetweenTwoDates(day, day, scoreMin);
     }
 
     // Calculate overall score of the tip in order to determine the top best open tips for now

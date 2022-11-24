@@ -47,4 +47,8 @@ public interface TipService {
 
     int fetchTipsWithStatusAndNotPlayedYet(boolean parseFetchFileOrUrl, ETipStatus status);
 
+    List<Tip> getTipsFromPlanBetweenTwoDates(LocalDate startDate, LocalDate endDate, Double scoreMin);
+
+    List<Tip> getTipsFromPlanOnDay(LocalDate day, Double scoreMin);
+
 }
